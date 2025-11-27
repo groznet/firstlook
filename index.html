@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firstlook — Фото и Видеостудия, Монтаж и Обучение</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body class="dark-bg">
+    <!-- Animated Background Elements -->
+    <!-- Camera Lens Bubble -->
+    <div class="floating-shape camera-bubble"></div>
+
+    <!-- Video Play Icon Bubble -->
+    <div class="floating-shape video-bubble"></div>
+
+    <!-- Wedding Ring / Heart Bubble -->
+    <div class="floating-shape heart-bubble"></div>
+
+    <!-- Morphing Camera Lens -->
+    <div class="morphing-shape morph-camera"></div>
+
+    <!-- Morphing Wedding Ribbon -->
+    <div class="morphing-shape morph-ribbon"></div>
+
+    
+    <!-- Hero Video Background -->
+    <video autoplay muted loop class="hero-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-close-up-of-camera-lens-while-filming-42843-large.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Header -->
+    <header id="header-wrapper">
+        
+    </header>
+    <!-- End: Header -->
+
+    <!-- Hero Section -->
+    <section class="hero-height flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6 text-white glow-text">
+                    <span class="gold-gradient typing-animation">FIRSTLOOK</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
+                    Профессиональная фото- и видеостудия с более чем 20-летним опытом. Свадебная съемка, эмоциональные видеоролики и художественный монтаж.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#portfolio" class="btn-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Смотреть работы</a>
+                    <a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Обсудить проект</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-down">
+            <a href="#portfolio" class="text-gold-400 text-2xl pulse-gold">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
+                    <div class="stat-number">20+</div>
+                    <p class="text-gray-400 mt-2">Лет опыта</p>
+                </div>
+                <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
+                    <div class="stat-number">500+</div>
+                    <p class="text-gray-400 mt-2">Проектов</p>
+                </div>
+                <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
+                    <div class="stat-number">3</div>
+                    <p class="text-gray-400 mt-2">Страны</p>
+                </div>
+                <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
+                    <div class="stat-number">100%</div>
+                    <p class="text-gray-400 mt-2">Довольных клиентов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-padding bg-black bg-opacity-30 parallax-bg">
+        <div class="container mx-auto px-6">
+
+            <!-- Heading -->
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Наши работы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Более 20 лет создаем эмоциональные фото и видео, которые рассказывают ваши истории
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" id="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">Все работы</button>
+                <button class="filter-btn" data-filter="wedding">Свадьбы</button>
+                <button class="filter-btn" data-filter="lovestory">Love Story</button>
+                <button class="filter-btn" data-filter="brand">Бренды</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Wedding -->
+                <div class="portfolio-item card-elegant" data-category="wedding">
+                    <div class="relative h-80 bg-gradient-to-br from-purple-900 to-pink-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Свадьба Ахмеда и Амины</h3>
+                                <p class="text-gray-300">Грозный, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Story -->
+                <div class="portfolio-item card-elegant" data-category="lovestory">
+                    <div class="relative h-80 bg-gradient-to-br from-amber-900 to-yellow-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Love Story в горах</h3>
+                                <p class="text-gray-300">Чечня, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand -->
+                <div class="portfolio-item card-elegant" data-category="brand">
+                    <div class="relative h-80 bg-gradient-to-br from-blue-900 to-cyan-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Съемка для бренда</h3>
+                                <p class="text-gray-300">2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wedding -->
+                <div class="portfolio-item card-elegant" data-category="wedding">
+                    <div class="relative h-80 bg-gradient-to-br from-red-900 to-rose-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Свадьба в Европе</h3>
+                                <p class="text-gray-300">Франция, 2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Love Story -->
+                <div class="portfolio-item card-elegant" data-category="lovestory">
+                    <div class="relative h-80 bg-gradient-to-br from-green-900 to-lime-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Городская Love Story</h3>
+                                <p class="text-gray-300">Грозный, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand -->
+                <div class="portfolio-item card-elegant" data-category="brand">
+                    <div class="relative h-80 bg-gradient-to-br from-slate-900 to-gray-700">
+                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
+                            <div>
+                                <h3 class="text-white text-xl font-bold mb-2">Рекламная съемка</h3>
+                                <p class="text-gray-300">2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- View all -->
+            <div class="text-center mt-12">
+                <a href="/portfolio" class="btn-outline-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
+                    <span>Все портфолио</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Наши услуги</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Полный цикл создания фото и видео контента — от съемки до профессионального монтажа
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-elegant p-8 group">
+                    <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4 group-hover:text-gold-300 transition-colors">Свадебная фотосъемка</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
+                        Профессиональная репортажная и постановочная съемка вашего торжества. 
+                        Эмоциональные кадры, которые сохранят самые важные моменты.
+                    </p>
+                    <a href="/services/wedding-photo" class="text-gold-400 font-medium inline-flex items-center group-hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="card-elegant p-8 group">
+                    <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4 group-hover:text-gold-300 transition-colors">Свадебная видеосъемка</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
+                        Кинематографичное видео вашей свадьбы с профессиональным звуком и светом. 
+                        Создаем эмоциональные фильмы, которые хочется пересматривать.
+                    </p>
+                    <a href="/services/wedding-video" class="text-gold-400 font-medium inline-flex items-center group-hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="card-elegant p-8 group">
+                    <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-6 transform group-hover:scale-110 transition-transform">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4 group-hover:text-gold-300 transition-colors">Монтаж и постпродакшн</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed group-hover:text-gray-300 transition-colors">
+                        Художественный монтаж видео, цветокоррекция, ретушь фото. 
+                        Превращаем сырые материалы в готовые продукты высшего качества.
+                    </p>
+                    <a href="/services/editing" class="text-gold-400 font-medium inline-flex items-center group-hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/services" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
+                    <span>Все услуги</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-black bg-opacity-30 parallax-bg">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="rounded-2xl overflow-hidden h-96 w-full bg-gradient-to-br from-amber-900 to-amber-700 border border-gold-600 transform hover:scale-105 transition-transform"></div>
+                        <div class="absolute -bottom-6 -right-6 h-48 w-48 rounded-2xl bg-gradient-to-br from-purple-900 to-pink-700 border-4 border-gray-900 shadow-xl transform hover:scale-110 transition-transform"></div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-4xl font-bold heading-font text-white mb-6 glow-text">О студии Firstlook</h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        Firstlook — профессиональная фото- и видеостудия с более чем 20-летним опытом работы в Чечне, России и Европе.
+                    </p>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Мы специализируемся на свадебной съемке, создании эмоциональных видеороликов и художественном монтаже. 
+                        Наша команда профессионалов знает, как подчеркнуть вашу уникальность и создать контент, который будет радовать вас годами.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center transform hover:scale-105 transition-transform">
+                            <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">20+ лет опыта</h4>
+                                <p class="text-gray-400 text-sm">В индустрии</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center transform hover:scale-105 transition-transform">
+                            <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">3 страны</h4>
+                                <p class="text-gray-400 text-sm">Чечня, Россия, Европа</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center transform hover:scale-105 transition-transform">
+                            <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">500+ проектов</h4>
+                                <p class="text-gray-400 text-sm">Успешно реализовано</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center transform hover:scale-105 transition-transform">
+                            <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Обучение</h4>
+                                <p class="text-gray-400 text-sm">Для начинающих и профи</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="/about" class="btn-outline-gold px-6 py-3 rounded-full inline-flex items-center transform hover:scale-105 transition-transform">
+                        <span>Подробнее о студии</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Отзывы клиентов</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Что говорят наши клиенты о сотрудничестве с Firstlook
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-900 to-amber-700 mr-4"></div>
+                        <div>
+                            <h4 class="font-bold text-white">Ахмед и Амина</h4>
+                            <p class="text-gray-400 text-sm">Свадьба в Грозном</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Firstlook создали невероятные фото и видео нашей свадьбы! Каждый раз, когда пересматриваем, 
+                        испытываем те же эмоции. Спасибо за профессионализм и внимание к деталям!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 mr-4"></div>
+                        <div>
+                            <h4 class="font-bold text-white">Мадина</h4>
+                            <p class="text-gray-400 text-sm">Love Story</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Съемка Love Story в горах превзошла все ожидания! Команда Firstlook умеет создавать 
+                        по-настоящему атмосферные кадры. Рекомендую всем, кто ценит качество и креатив!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-900 to-purple-700 mr-4"></div>
+                        <div>
+                            <h4 class="font-bold text-white">Руслан</h4>
+                            <p class="text-gray-400 text-sm">Бренд-контент</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Заказывали контент для нашего бренда одежды. Firstlook не только сделали качественные фото, 
+                        но и помогли с креативной концепцией. Результат превзошел ожидания!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold heading-font text-white mb-6 glow-text">Готовы создать незабываемые кадры?</h2>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8 text-glow">
+                Свяжитесь с нами для обсуждения вашего проекта. Мы поможем воплотить ваши идеи в жизнь.
+            </p>
+            <a href="#contact" class="btn-gold px-8 py-4 rounded-full text-lg transform hover:scale-105 transition-transform">Обсудить проект</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-black bg-opacity-70">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Связаться с нами</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Есть вопросы или хотите обсудить проект? Мы всегда на связи!
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <div class="card-elegant p-8">
+                        <h3 class="text-2xl font-bold heading-font text-white mb-6 glow-text">Отправить сообщение</h3>
+                        
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Имя</label>
+                                    <input type="text" class="form-input">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-300 mb-2">Телефон</label>
+                                    <input type="tel" class="form-input">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" class="form-input">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-300 mb-2">Услуга</label>
+                                <select class="form-input">
+                                    <option>Свадебная фотосъемка</option>
+                                    <option>Свадебная видеосъемка</option>
+                                    <option>Монтаж и постпродакшн</option>
+                                    <option>Обучение</option>
+                                    <option>Другое</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-300 mb-2">Сообщение</label>
+                                <textarea rows="4" class="form-input"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-gold w-full py-4 rounded-full text-lg font-medium transform hover:scale-105 transition-transform">Отправить сообщение</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold heading-font text-white mb-6 glow-text">Контакты</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start transform hover:scale-105 transition-transform">
+                                    <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold">Телефон</h4>
+                                        <a href="tel:+79288893557" class="text-gray-400 hover:text-gold-400 transition">+7 (928) 889-35-57</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start transform hover:scale-105 transition-transform">
+                                    <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold">Email</h4>
+                                        <a href="mailto:info@firstlook.ru" class="text-gray-400 hover:text-gold-400 transition">info@firstlook.ru</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start transform hover:scale-105 transition-transform">
+                                    <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold">Адрес</h4>
+                                        <p class="text-gray-400">пр-т Мохаммеда Али, 1, Грозный ​364060</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start transform hover:scale-105 transition-transform">
+                                    <div class="gold-bg text-black p-3 rounded-full mr-4">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-white font-bold">Режим работы</h4>
+                                        <p class="text-gray-400">Пн-Вс: 9:00 - 21:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="gradient-divider my-8"></div>
+                        
+                        <div>
+                            <h3 class="text-2xl font-bold heading-font text-white mb-6 glow-text">Социальные сети</h3>
+                            
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all transform hover:scale-110">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all transform hover:scale-110">
+                                    <i class="fab fa-vk"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all transform hover:scale-110">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all transform hover:scale-110">
+                                    <i class="fab fa-telegram"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all transform hover:scale-110">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script src="/assets/js/main.js"></script>
+    <script>
+        // Load Header
+        fetch('/components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-wrapper').innerHTML = data;
+            });
+
+        // Load Footer
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-wrapper').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
