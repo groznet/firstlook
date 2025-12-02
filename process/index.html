@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Процесс работы | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 60px;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .step-connector {
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -60px;
+            width: 2px;
+            background: linear-gradient(to bottom, #D4AF37, transparent);
+        }
+        
+        .process-step:last-child .step-connector {
+            display: none;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 3px solid #D4AF37;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .timeline-time {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: #D4AF37;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .checklist-item i {
+            color: #D4AF37;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Процесс работы</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    От первой консультации до получения готовых материалов. Прозрачный и понятный процесс, 
+                    разработанный за 20 лет работы в свадебной индустрии.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#process" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Этапы работы</a>
+                    <a href="#consultation" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Начать сотрудничество</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Overview -->
+    <section id="process" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Этапы сотрудничества</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Четкий пошаговый процесс, который гарантирует качественный результат и комфортную работу
+                </p>
+            </div>
+
+            <!-- Step 1: Consultation -->
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-connector"></div>
+                
+                <div class="card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/3">
+                            <h3 class="text-2xl font-bold text-white mb-4 glow-text">Первичная консультация</h3>
+                            <p class="text-gray-400 mb-6">
+                                Знакомство и обсуждение вашего мероприятия. Мы внимательно слушаем и задаем правильные вопросы, 
+                                чтобы понять ваши ожидания и предложить оптимальное решение.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="contact.html" class="btn-gold px-6 py-3 rounded-full text-sm">Записаться на консультацию</a>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-2/3">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Что мы узнаем:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Дата и локация свадьбы</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Формат и стиль мероприятия</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Количество гостей</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Желания по стилю съёмки</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Бюджет и ожидаемый результат</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Особые традиции и ритуалы</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Формы консультации:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-phone text-sm"></i>
+                                        <span class="text-gray-300">Телефонный звонок</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fab fa-whatsapp text-sm"></i>
+                                        <span class="text-gray-300">WhatsApp/Telegram</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-video text-sm"></i>
+                                        <span class="text-gray-300">Видеоконференция</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-coffee text-sm"></i>
+                                        <span class="text-gray-300">Личная встреча в студии</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Technical Information -->
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-connector"></div>
+                
+                <div class="card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/3">
+                            <h3 class="text-2xl font-bold text-white mb-4 glow-text">Сбор технической информации</h3>
+                            <p class="text-gray-400 mb-6">
+                                Детальное планирование съёмочного дня. Мы учитываем все нюансы локаций, 
+                                временные рамки и технические ограничения для безупречной работы.
+                            </p>
+                        </div>
+                        
+                        <div class="lg:w-2/3">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Локации съёмки:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-home text-sm"></i>
+                                        <span class="text-gray-300">Дом жениха и невесты</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-ring text-sm"></i>
+                                        <span class="text-gray-300">ЗАГС или место церемонии</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-utensils text-sm"></i>
+                                        <span class="text-gray-300">Банкетный зал</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-tree text-sm"></i>
+                                        <span class="text-gray-300">Места для прогулки</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-clipboard-list"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Технические детали:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-clock text-sm"></i>
+                                        <span class="text-gray-300">Детальное расписание дня</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-users text-sm"></i>
+                                        <span class="text-gray-300">Параллельная работа операторов</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-drone text-sm"></i>
+                                        <span class="text-gray-300">Ограничения для дрона</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-volume-mute text-sm"></i>
+                                        <span class="text-gray-300">Акустические ограничения</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-lightbulb text-sm"></i>
+                                        <span class="text-gray-300">Освещение помещений</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Example Timeline -->
+                            <div class="mt-8">
+                                <h4 class="text-white font-bold mb-4 text-lg">Пример расписания съёмочного дня:</h4>
+                                <div class="space-y-4">
+                                    <div class="timeline-item">
+                                        <div class="timeline-time">08:00 - 10:30</div>
+                                        <h5 class="text-white font-bold mb-2">Утро невесты</h5>
+                                        <p class="text-gray-400 text-sm">Сборы, детали платья, эмоции с подругами и родителями</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-time">10:30 - 12:00</div>
+                                        <h5 class="text-white font-bold mb-2">Выкуп</h5>
+                                        <p class="text-gray-400 text-sm">Традиционные обряды, игры, эмоциональные моменты</p>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-time">13:00 - 14:30</div>
+                                        <h5 class="text-white font-bold mb-2">Церемония</h5>
+                                        <p class="text-gray-400 text-sm">ЗАГС, официальная часть</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Package Selection -->
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-connector"></div>
+                
+                <div class="card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/3">
+                            <h3 class="text-2xl font-bold text-white mb-4 glow-text">Выбор пакета услуг</h3>
+                            <p class="text-gray-400 mb-6">
+                                На основе собранной информации мы подбираем оптимальный пакет услуг 
+                                или создаем индивидуальный тариф, идеально подходящий для вашего мероприятия.
+                            </p>
+                            <a href="prices.html" class="btn-gold px-6 py-3 rounded-full text-sm inline-flex items-center">
+                                <span>Посмотреть пакеты</span>
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="lg:w-2/3">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                                <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-800">
+                                    <div class="feature-icon mx-auto">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Команда</h4>
+                                    <p class="text-gray-400 text-sm">
+                                        Определяем количество фотографов и операторов исходя из 
+                                        <a href="about.html#team" class="text-gold-400 hover:text-gold-300">размера мероприятия</a>
+                                    </p>
+                                </div>
+                                
+                                <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-800">
+                                    <div class="feature-icon mx-auto">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Время работы</h4>
+                                    <p class="text-gray-400 text-sm">
+                                        Стандартные 8 часов или полный день 12-14 часов в зависимости от 
+                                        <a href="faq.html#duration" class="text-gold-400 hover:text-gold-300">графика мероприятия</a>
+                                    </p>
+                                </div>
+                                
+                                <div class="text-center p-6 bg-gray-900 rounded-lg border border-gray-800">
+                                    <div class="feature-icon mx-auto">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Оборудование</h4>
+                                    <p class="text-gray-400 text-sm">
+                                        Дрон, стедикам, GoPro, дополнительный свет и звук по 
+                                        <a href="services.html#equipment" class="text-gold-400 hover:text-gold-300">необходимости</a>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-amber-900 bg-opacity-20 p-6 rounded-lg border border-amber-700">
+                                <div class="flex items-start">
+                                    <i class="fas fa-lightbulb text-amber-400 text-xl mr-4 mt-1"></i>
+                                    <div>
+                                        <h4 class="text-amber-400 font-bold mb-2">Как определить количество операторов?</h4>
+                                        <p class="text-gray-300 text-sm">
+                                            Количество операторов зависит от размера свадьбы, количества гостей и локаций. 
+                                            <a href="faq.html#operators" class="text-amber-300 hover:text-amber-200 underline">Подробнее в разделе FAQ</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Contract & Payment -->
+            <div class="process-step">
+                <div class="step-number">4</div>
+                
+                <div class="card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/3">
+                            <h3 class="text-2xl font-bold text-white mb-4 glow-text">Договор и предоплата</h3>
+                            <p class="text-gray-400 mb-6">
+                                Заключаем официальный договор, который защищает интересы обеих сторон 
+                                и фиксирует все договоренности.
+                            </p>
+                            <a href="contact.html" class="btn-outline-gold px-6 py-3 rounded-full text-sm">Запросить договор</a>
+                        </div>
+                        
+                        <div class="lg:w-2/3">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Условия договора:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Фиксированное время начала и окончания</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Количество операторов и фотографов</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Используемое оборудование</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Выбранный пакет услуг</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-check text-sm"></i>
+                                        <span class="text-gray-300">Сроки сдачи материалов</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <h4 class="text-white font-bold mb-3">Финансовые условия:</h4>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-percentage text-sm"></i>
+                                        <span class="text-gray-300">Предоплата 20-50% от суммы</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-exchange-alt text-sm"></i>
+                                        <span class="text-gray-300">Условия переноса даты</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-undo text-sm"></i>
+                                        <span class="text-gray-300">Политика возвратов</span>
+                                    </div>
+                                    <div class="checklist-item">
+                                        <i class="fas fa-plus-circle text-sm"></i>
+                                        <span class="text-gray-300">Доплата за изменения условий</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Important Notes -->
+                            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-red-900 bg-opacity-20 p-4 rounded-lg border border-red-700">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-exclamation-triangle text-red-400 mr-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="text-red-400 font-bold mb-1">Важно знать:</h5>
+                                            <p class="text-gray-300 text-sm">
+                                                Изменение условий (добавление операторов, продление времени, новые локации) 
+                                                считаются изменением договора и требуют доплаты
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-900 bg-opacity-20 p-4 rounded-lg border border-green-700">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-shield-alt text-green-400 mr-3 mt-1"></i>
+                                        <div>
+                                            <h5 class="text-green-400 font-bold mb-1">Гарантии:</h5>
+                                            <p class="text-gray-300 text-sm">
+                                                Договор защищает обе стороны и гарантирует выполнение всех оговоренных условий
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="consultation" class="section-padding bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Готовы начать сотрудничество?</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Запишитесь на бесплатную консультацию и мы подробно обсудим все детали вашего мероприятия
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg">Записаться на консультацию</a>
+                    <a href="prices.html" class="btn-outline-gold px-8 py-4 rounded-full text-lg">Посмотреть пакеты услуг</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Частые вопросы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Ответы на самые популярные вопросы о процессе работы
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="card-elegant p-6" x-data="{ open: false }">
+                    <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                        <span class="text-lg font-medium text-white">Какой размер предоплаты требуется?</span>
+                        <i class="fas fa-chevron-down transition-transform" :class="{'rotate-180': open}"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="mt-4 text-gray-400">
+                        <p>Размер предоплаты составляет от 20% до 50% от общей суммы заказа, в зависимости от пакета услуг и времени до мероприятия. Подробности уточняйте при заключении договора.</p>
+                    </div>
+                </div>
+                
+                <div class="card-elegant p-6" x-data="{ open: false }">
+                    <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                        <span class="text-lg font-medium text-white">Можно ли перенести дату съёмки?</span>
+                        <i class="fas fa-chevron-down transition-transform" :class="{'rotate-180': open}"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="mt-4 text-gray-400">
+                        <p>Да, перенос даты возможен при условии уведомления не менее чем за 14 дней до мероприятия. При переносе предоплата сохраняется. Подробные условия указаны в договоре.</p>
+                    </div>
+                </div>
+                
+                <div class="card-elegant p-6" x-data="{ open: false }">
+                    <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                        <span class="text-lg font-medium text-white">Что делать, если свадьба затянулась?</span>
+                        <i class="fas fa-chevron-down transition-transform" :class="{'rotate-180': open}"></i>
+                    </button>
+                    <div x-show="open" x-collapse class="mt-4 text-gray-400">
+                        <p>Если мероприятие продолжается дольше оговоренного времени, возможна доплата за каждый дополнительный час работы. Стоимость доплаты зависит от состава съёмочной группы.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-8">
+                    <a href="faq.html" class="btn-outline-gold px-6 py-3 rounded-full inline-flex items-center">
+                        <span>Все вопросы и ответы</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Load Header and Footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            // Load Footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate process steps on scroll
+                gsap.utils.toArray('.process-step').forEach((step, i) => {
+                    gsap.from(step, {
+                        scrollTrigger: {
+                            trigger: step,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate cards within steps
+                gsap.utils.toArray('.card-elegant').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.6,
+                        delay: i * 0.1,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

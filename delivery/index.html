@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Передача материалов | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .delivery-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .format-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .format-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+        
+        .material-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .storage-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .storage-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(5px);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .checklist-item i {
+            color: #D4AF37;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #D4AF37, transparent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 45%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+        }
+        
+        .timeline-item:nth-child(even) {
+            margin-right: auto;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            top: 30px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -60px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -60px;
+        }
+        
+        .package-comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .package-comparison th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .package-comparison td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .package-comparison tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .feature-included {
+            color: #4CAF50;
+            font-weight: 600;
+        }
+        
+        .feature-not-included {
+            color: #888;
+        }
+        
+        .download-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid #D4AF37;
+        }
+        
+        .quality-badge {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Передача материалов</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Удобные форматы, полный комплект материалов и гарантированное хранение. 
+                    Получите ваши воспоминания в лучшем качестве.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#formats" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Форматы передачи</a>
+                    <a href="#materials" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Что входит</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Formats Section -->
+    <section id="formats" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Форматы передачи материалов</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Выберите наиболее удобный способ получения ваших фото и видео материалов
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    <!-- Online Cloud -->
+                    <div class="delivery-card card-elegant p-6 text-center">
+                        <div class="format-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Онлайн диск / Облако</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Доступ к материалам через защищённую онлайн-платформу
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Мгновенный доступ</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">С любого устройства</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Высокая скорость загрузки</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Без ограничений по времени</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- USB Flash -->
+                    <div class="delivery-card card-elegant p-6 text-center">
+                        <div class="format-icon">
+                            <i class="fas fa-usb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Флешка</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Физический носитель с дизайнерским оформлением
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Флешка 128GB</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Дизайнерский бокс</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Подарочная упаковка</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Пожизненное хранение</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hard Drive -->
+                    <div class="delivery-card card-elegant p-6 text-center">
+                        <div class="format-icon">
+                            <i class="fas fa-hdd"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Жёсткий диск</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Передача на ваш внешний жёсткий диск
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Ваш носитель</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Быстрая передача</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Проверка данных</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="text-gray-300">Диск предоставляет клиент</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Online Gallery -->
+                    <div class="delivery-card card-elegant p-6 text-center">
+                        <div class="format-icon">
+                            <i class="fas fa-images"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Онлайн-галерея</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Персональная галерея для просмотра и заказа фотопечати
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Просмотр в высоком качестве</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Возможность скачивания</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Заказ печати онлайн</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Доступ для родных и друзей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery Timeline -->
+                <div class="card-elegant p-8">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center glow-text">Процесс передачи материалов</h3>
+                    
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card-elegant p-6">
+                                <div class="quality-badge">Этап 1</div>
+                                <h4 class="text-xl font-bold text-white mb-3">Предварительный просмотр</h4>
+                                <p class="text-gray-400">
+                                    После завершения монтажа вы получаете ссылку для предварительного просмотра материалов
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card-elegant p-6">
+                                <div class="quality-badge">Этап 2</div>
+                                <h4 class="text-xl font-bold text-white mb-3">Подтверждение и правки</h4>
+                                <p class="text-gray-400">
+                                    Вы подтверждаете готовность материалов или вносите правки в соответствии с договором
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card-elegant p-6">
+                                <div class="quality-badge">Этап 3</div>
+                                <h4 class="text-xl font-bold text-white mb-3">Подготовка к передаче</h4>
+                                <p class="text-gray-400">
+                                    Мы готовим материалы в выбранном формате и проверяем целостность данных
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="card-elegant p-6">
+                                <div class="quality-badge">Этап 4</div>
+                                <h4 class="text-xl font-bold text-white mb-3">Передача материалов</h4>
+                                <p class="text-gray-400">
+                                    Вы получаете материалы выбранным способом и подтверждаете получение
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Included Section -->
+    <section id="materials" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Что входит в комплект</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Полный набор материалов, которые вы получаете после завершения работы
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Raw Materials -->
+                    <div class="card-elegant p-6 text-center">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Исходные материалы</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Необработанные фото и видео файлы в максимальном качестве
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="text-gray-300">Только в Premium пакетах</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-hdd"></i>
+                                <span class="text-gray-300">Требуется 500GB+ места</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-download"></i>
+                                <span class="text-gray-300">Специальный формат передачи</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full Movie -->
+                    <div class="card-elegant p-6 text-center">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Полный фильм</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Художественно смонтированный фильм о вашем дне
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-clock"></i>
+                                <span class="text-gray-300">30-90 минут</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-hd"></i>
+                                <span class="text-gray-300">4K Ultra HD качество</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-music"></i>
+                                <span class="text-gray-300">Профессиональный саундтрек</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Short Clip -->
+                    <div class="card-elegant p-6 text-center">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Короткий клип</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Динамичный ролик для социальных сетей
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-clock"></i>
+                                <span class="text-gray-300">3-5 минут</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-share-alt"></i>
+                                <span class="text-gray-300">Оптимизирован для соцсетей</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span class="text-gray-300">Вертикальная версия</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edited Photos -->
+                    <div class="card-elegant p-6 text-center">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Обработанные фото</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Профессионально обработанные фотографии
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-image"></i>
+                                <span class="text-gray-300">300-1000+ фотографий</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-paint-brush"></i>
+                                <span class="text-gray-300">Цветокоррекция и ретушь</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-download"></i>
+                                <span class="text-gray-300">Высокое и веб-качество</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package Comparison -->
+                <div class="card-elegant p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center glow-text">Что входит в разные пакеты</h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="package-comparison">
+                            <thead>
+                                <tr>
+                                    <th>Материал / Пакет</th>
+                                    <th>Starter</th>
+                                    <th>Essential</th>
+                                    <th>Basic Plus</th>
+                                    <th>Standard Pro</th>
+                                    <th>Premium</th>
+                                    <th>Bespoke</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Исходные материалы</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Полный фильм (4K)</td>
+                                    <td class="feature-included">HD</td>
+                                    <td class="feature-included">HD</td>
+                                    <td class="feature-included">Full HD</td>
+                                    <td class="feature-included">4K</td>
+                                    <td class="feature-included">4K ProRes</td>
+                                    <td class="feature-included">4K ProRes+</td>
+                                </tr>
+                                <tr>
+                                    <td>Короткий клип</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">2 версии</td>
+                                    <td class="feature-included">3+ версии</td>
+                                </tr>
+                                <tr>
+                                    <td>Reels/Vertical видео</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                </tr>
+                                <tr>
+                                    <td>Обработанные фото</td>
+                                    <td class="feature-included">50+</td>
+                                    <td class="feature-included">150+</td>
+                                    <td class="feature-included">300+</td>
+                                    <td class="feature-included">500+</td>
+                                    <td class="feature-included">800+</td>
+                                    <td class="feature-included">1000+</td>
+                                </tr>
+                                <tr>
+                                    <td>Флешка с дизайном</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-not-included">—</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">✓</td>
+                                    <td class="feature-included">Премиум</td>
+                                </tr>
+                                <tr>
+                                    <td>Онлайн-галерея</td>
+                                    <td class="feature-included">6 месяцев</td>
+                                    <td class="feature-included">12 месяцев</td>
+                                    <td class="feature-included">18 месяцев</td>
+                                    <td class="feature-included">24 месяца</td>
+                                    <td class="feature-included">36 месяцев</td>
+                                    <td class="feature-included">Пожизненно</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Archiving & Storage Section -->
+    <section class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Архивирование и хранение</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Гарантия сохранности ваших материалов и дополнительные опции хранения
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Standard Archiving -->
+                    <div class="storage-card card-elegant p-6">
+                        <h3 class="text-2xl font-bold text-white mb-4">Стандартное архивирование</h3>
+                        <p class="text-gray-400 mb-6">
+                            Бесплатное хранение материалов на наших серверах в зависимости от пакета
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Starter / Essential:</span>
+                                <span class="text-white font-medium">1 месяц</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Basic Plus / Classic:</span>
+                                <span class="text-white font-medium">3 месяца</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Standard Pro / Luxury:</span>
+                                <span class="text-white font-medium">6 месяцев</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Premium / Exclusive:</span>
+                                <span class="text-gold-400 font-bold">12 месяцев</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Bespoke:</span>
+                                <span class="text-gold-400 font-bold">24 месяца</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Extended Storage -->
+                    <div class="storage-card card-elegant p-6">
+                        <h3 class="text-2xl font-bold text-white mb-4">Дополнительное хранение</h3>
+                        <p class="text-gray-400 mb-6">
+                            Продлите срок хранения материалов на наших защищённых серверах
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">+6 месяцев:</span>
+                                <span class="text-white font-medium">5 000 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">+12 месяцев:</span>
+                                <span class="text-white font-medium">8 000 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">+24 месяца:</span>
+                                <span class="text-white font-medium">12 000 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-400">Пожизненное хранение:</span>
+                                <span class="text-gold-400 font-bold">25 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Guarantee -->
+                <div class="download-card card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-center">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-white mb-4">Гарантия сохранности</h3>
+                            <p class="text-gray-400 mb-6">
+                                Мы гарантируем сохранность ваших материалов с помощью профессиональных систем резервного копирования
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="checklist-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span class="text-gray-300">Тройное резервное копирование</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-database"></i>
+                                    <span class="text-gray-300">Хранение на RAID-массивах</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-cloud"></i>
+                                    <span class="text-gray-300">Облачное резервирование</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-temperature-low"></i>
+                                    <span class="text-gray-300">Контролируемые условия хранения</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2">
+                            <div class="bg-gray-900 p-6 rounded-lg">
+                                <h4 class="text-white font-bold mb-4">Резервное копирование</h4>
+                                <div class="space-y-3">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Резервная копия хранится:</span>
+                                        <span class="text-white font-medium">5 лет</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Гарантия восстановления:</span>
+                                        <span class="text-white font-medium">99.9%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Ежемесячная проверка:</span>
+                                        <span class="text-white font-medium">✓</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400">Восстановление данных:</span>
+                                        <span class="text-white font-medium">Бесплатно</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 p-4 bg-amber-900 bg-opacity-20 rounded-lg">
+                                    <p class="text-amber-400 text-sm">
+                                        <i class="fas fa-info-circle mr-2"></i>
+                                        В случае потери материалов по нашей вине мы бесплатно восстановим их из резервных копий
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Instructions -->
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card-elegant p-6">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 text-center">Скачивание материалов</h4>
+                        <p class="text-gray-400 text-sm text-center">
+                            Используйте стабильное интернет-соединение для скачивания больших файлов
+                        </p>
+                    </div>
+
+                    <div class="card-elegant p-6">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 text-center">Проверка данных</h4>
+                        <p class="text-gray-400 text-sm text-center">
+                            Всегда проверяйте целостность файлов после скачивания или передачи
+                        </p>
+                    </div>
+
+                    <div class="card-elegant p-6">
+                        <div class="material-icon mx-auto">
+                            <i class="fas fa-life-ring"></i>
+                        </div>
+                        <h4 class="text-white font-bold mb-3 text-center">Техническая поддержка</h4>
+                        <p class="text-gray-400 text-sm text-center">
+                            При возникновении проблем с доступом к материалам обращайтесь в поддержку
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Остались вопросы по передаче материалов?</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Наши специалисты подробно расскажут о всех форматах передачи и помогут выбрать оптимальный вариант
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg">Задать вопрос</a>
+                    <a href="packages.html" class="btn-outline-gold px-8 py-4 rounded-full text-lg">Выбрать пакет</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Load Header and Footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            // Load Footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate delivery cards
+                gsap.utils.toArray('.delivery-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.7,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate timeline items
+                gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+                    gsap.from(item, {
+                        scrollTrigger: {
+                            trigger: item,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        x: i % 2 === 0 ? -50 : 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate material cards
+                gsap.utils.toArray('.card-elegant').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.6,
+                        delay: i * 0.05,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+                
+                // Animate comparison table rows
+                gsap.utils.toArray('.package-comparison tbody tr').forEach((row, i) => {
+                    gsap.from(row, {
+                        scrollTrigger: {
+                            trigger: row,
+                            start: 'top 90%',
+                            end: 'bottom 10%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        x: -20,
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: i * 0.05,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        /* Custom styles for blog page */
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .blog-card {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .blog-image {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .category-tag {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #D4AF37;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .read-time {
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .search-input {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            padding: 12px 20px;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .filter-btn {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50px;
+            padding: 8px 20px;
+            color: #9CA3AF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+        
+        .sidebar-widget {
+            margin-bottom: 2rem;
+        }
+        
+        .popular-post {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .popular-post:hover {
+            transform: translateX(5px);
+        }
+        
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+        
+        .popular-post-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .gold-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .pagination-btn {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: #9CA3AF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination-btn.active,
+        .pagination-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+        
+        .newsletter-input {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="floating-shape" style="width: 120px; height: 120px; top: 20%; left: 10%;"></div>
+        <div class="floating-shape" style="width: 80px; height: 80px; top: 60%; right: 12%; animation-delay: -2s;"></div>
+        <div class="floating-shape" style="width: 60px; height: 60px; bottom: 30%; left: 15%; animation-delay: -4s;"></div>
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Блог Firstlook</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Полезные статьи, советы по подготовке к съемке и behind the scenes из жизни нашей студии
+                </p>
+                <div class="flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <input type="text" id="blog-search" placeholder="Поиск по статьям..." class="search-input">
+                        <i class="fas fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="section-padding">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Main Content -->
+                <div class="lg:w-2/3">
+                    <!-- Filter Buttons -->
+                    <div class="flex flex-wrap gap-3 mb-8" id="blog-filters">
+                        <button class="filter-btn active" data-filter="all">Все статьи</button>
+                        <button class="filter-btn" data-filter="wedding">Свадьбы</button>
+                        <button class="filter-btn" data-filter="tips">Советы</button>
+                        <button class="filter-btn" data-filter="behind-scenes">За кулисами</button>
+                        <button class="filter-btn" data-filter="equipment">Оборудование</button>
+                        <button class="filter-btn" data-filter="education">Обучение</button>
+                    </div>
+                    
+                    <!-- Blog Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="blog-grid">
+                        <!-- Article 1 -->
+                        <article class="blog-card card-elegant" data-category="wedding tips">
+                            <div class="blog-image bg-gradient-to-br from-amber-900 to-amber-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">Свадьбы</span>
+                                    <span class="read-time">8 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/10-sovetov-podgotovka-svadba">10 советов по подготовке к свадебной съемке</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Как подготовиться к самому важному дню, чтобы фотографии и видео получились идеальными. 
+                                    Практические рекомендации от профессионалов с 20-летним опытом.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Ахьяд</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">15 марта 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Article 2 -->
+                        <article class="blog-card card-elegant" data-category="behind-scenes">
+                            <div class="blog-image bg-gradient-to-br from-purple-900 to-purple-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">За кулисами</span>
+                                    <span class="read-time">6 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/den-iz-zhizni-svadebnogo-operatora">День из жизни свадебного оператора</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Что на самом деле происходит за кадром во время свадебной съемки. 
+                                    От подготовки оборудования до финального монтажа — полный рабочий день глазами оператора.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Ислам</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">10 марта 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Article 3 -->
+                        <article class="blog-card card-elegant" data-category="equipment">
+                            <div class="blog-image bg-gradient-to-br from-blue-900 to-blue-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">Оборудование</span>
+                                    <span class="read-time">12 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/luchshie-kamery-dlya-svadebnoj-semki">Лучшие камеры для свадебной съемки в 2024 году</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Обзор профессионального оборудования, которое мы используем в работе. 
+                                    Почему мы выбрали именно эти камеры и как они помогают создавать качественный контент.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Ахьяд</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">5 марта 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Article 4 -->
+                        <article class="blog-card card-elegant" data-category="wedding">
+                            <div class="blog-image bg-gradient-to-br from-green-900 to-green-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">Свадьбы</span>
+                                    <span class="read-time">5 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/tradicii-svadby-chechne">Особенности свадебных традиций в Чечне</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Как снимать свадьбы с учетом национальных традиций и религиозных особенностей. 
+                                    Советы по работе в условиях разделения мужской и женской зон.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Мадина</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">28 февраля 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Article 5 -->
+                        <article class="blog-card card-elegant" data-category="tips education">
+                            <div class="blog-image bg-gradient-to-br from-red-900 to-red-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">Советы</span>
+                                    <span class="read-time">10 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/color-grading-video">Основы цветокоррекции для начинающих</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Пошаговое руководство по созданию кинематографичного изображения. 
+                                    Базовые принципы работы с цветом в DaVinci Resolve и Adobe Premiere.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Ислам</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">20 февраля 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Article 6 -->
+                        <article class="blog-card card-elegant" data-category="behind-scenes">
+                            <div class="blog-image bg-gradient-to-br from-indigo-900 to-indigo-700 rounded-t-2xl"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="category-tag">За кулисами</span>
+                                    <span class="read-time">7 мин чтения</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 hover:text-gold-400 transition-colors">
+                                    <a href="/blog/organizaciya-semochnoj-gruppy">Как организовать работу съемочной группы на свадьбе</a>
+                                </h3>
+                                <p class="text-gray-400 mb-4 line-clamp-3">
+                                    Процессы коммуникации, распределение ролей и технические нюансы работы команды из 3-4 операторов. 
+                                    Опыт организации крупных свадебных проектов.
+                                </p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 rounded-full bg-gray-700 mr-3"></div>
+                                        <span class="text-gray-400 text-sm">Залина</span>
+                                    </div>
+                                    <span class="text-gray-500 text-sm">15 февраля 2024</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-12">
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="lg:w-1/3">
+                    <!-- About Widget -->
+                    <div class="sidebar-widget card-elegant p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 glow-text">О блоге</h3>
+                        <p class="text-gray-400 mb-4">
+                            В этом блоге мы делимся профессиональными советами, behind the scenes из жизни студии 
+                            и полезными материалами для всех, кто интересуется фото и видео.
+                        </p>
+                        <a href="/about" class="btn-outline-gold w-full py-3 rounded-full text-center inline-flex items-center justify-center">
+                            <span>О студии</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Popular Posts -->
+                    <div class="sidebar-widget card-elegant p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 glow-text">Популярные статьи</h3>
+                        <div class="space-y-4">
+                            <a href="/blog/10-sovetov-podgotovka-svadba" class="popular-post">
+                                <div class="popular-post-image bg-gradient-to-br from-amber-900 to-amber-700"></div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1 hover:text-gold-400 transition-colors">10 советов по подготовке к свадебной съемке</h4>
+                                    <p class="text-gray-500 text-sm">15 марта 2024</p>
+                                </div>
+                            </a>
+                            
+                            <a href="/blog/luchshie-kamery-dlya-svadebnoj-semki" class="popular-post">
+                                <div class="popular-post-image bg-gradient-to-br from-blue-900 to-blue-700"></div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1 hover:text-gold-400 transition-colors">Лучшие камеры для свадебной съемки</h4>
+                                    <p class="text-gray-500 text-sm">5 марта 2024</p>
+                                </div>
+                            </a>
+                            
+                            <a href="/blog/color-grading-video" class="popular-post">
+                                <div class="popular-post-image bg-gradient-to-br from-red-900 to-red-700"></div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1 hover:text-gold-400 transition-colors">Основы цветокоррекции для начинающих</h4>
+                                    <p class="text-gray-500 text-sm">20 февраля 2024</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="sidebar-widget card-elegant p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 glow-text">Категории</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="flex justify-between items-center text-gray-400 hover:text-gold-400 transition-colors py-2 border-b border-gray-800">
+                                <span>Свадьбы</span>
+                                <span class="bg-gray-800 text-gray-400 text-xs px-2 py-1 rounded-full">12</span>
+                            </a>
+                            <a href="#" class="flex justify-between items-center text-gray-400 hover:text-gold-400 transition-colors py-2 border-b border-gray-800">
+                                <span>Советы</span>
+                                <span class="bg-gray-800 text-gray-400 text-xs px-2 py-1 rounded-full">8</span>
+                            </a>
+                            <a href="#" class="flex justify-between items-center text-gray-400 hover:text-gold-400 transition-colors py-2 border-b border-gray-800">
+                                <span>За кулисами</span>
+                                <span class="bg-gray-800 text-gray-400 text-xs px-2 py-1 rounded-full">6</span>
+                            </a>
+                            <a href="#" class="flex justify-between items-center text-gray-400 hover:text-gold-400 transition-colors py-2 border-b border-gray-800">
+                                <span>Оборудование</span>
+                                <span class="bg-gray-800 text-gray-400 text-xs px-2 py-1 rounded-full">5</span>
+                            </a>
+                            <a href="#" class="flex justify-between items-center text-gray-400 hover:text-gold-400 transition-colors py-2">
+                                <span>Обучение</span>
+                                <span class="bg-gray-800 text-gray-400 text-xs px-2 py-1 rounded-full">4</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="sidebar-widget card-elegant p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 glow-text">Рассылка</h3>
+                        <p class="text-gray-400 mb-4">
+                            Подпишитесь на нашу рассылку и получайте новые статьи и советы первыми
+                        </p>
+                        <form class="space-y-4">
+                            <input type="email" placeholder="Ваш email" class="newsletter-input" required>
+                            <button type="submit" class="btn-gold w-full py-3 rounded-full font-medium">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Подписаться
+                            </button>
+                        </form>
+                        <p class="text-gray-500 text-xs mt-3">
+                            Подписываясь, вы соглашаетесь с нашей политикой конфиденциальности
+                        </p>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="sidebar-widget card-elegant p-6">
+                        <h3 class="text-xl font-bold text-white mb-4 glow-text">Теги</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="#" class="category-tag text-sm">свадьба</a>
+                            <a href="#" class="category-tag text-sm">фотосъемка</a>
+                            <a href="#" class="category-tag text-sm">видеомонтаж</a>
+                            <a href="#" class="category-tag text-sm">оборудование</a>
+                            <a href="#" class="category-tag text-sm">советы</a>
+                            <a href="#" class="category-tag text-sm">цветокоррекция</a>
+                            <a href="#" class="category-tag text-sm">звук</a>
+                            <a href="#" class="category-tag text-sm">дрон</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Готовы к сотрудничеству?</h2>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8">
+                Посмотрите наши работы и свяжитесь с нами для обсуждения вашего проекта
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/portfolio" class="btn-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-camera mr-2"></i>
+                    Смотреть портфолио
+                </a>
+                <a href="/contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Написать нам
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header and Footer
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Blog Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogArticles = document.querySelectorAll('.blog-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    blogArticles.forEach(article => {
+                        if (filterValue === 'all') {
+                            article.style.display = 'block';
+                        } else {
+                            const categories = article.getAttribute('data-category').split(' ');
+                            if (categories.includes(filterValue)) {
+                                article.style.display = 'block';
+                            } else {
+                                article.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Blog Search
+            const searchInput = document.getElementById('blog-search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    
+                    blogArticles.forEach(article => {
+                        const title = article.querySelector('h3').textContent.toLowerCase();
+                        const excerpt = article.querySelector('p').textContent.toLowerCase();
+                        
+                        if (title.includes(searchTerm) || excerpt.includes(searchTerm)) {
+                            article.style.display = 'block';
+                        } else {
+                            article.style.display = 'none';
+                        }
+                    });
+                });
+            }
+            
+            // Newsletter Form
+            const newsletterForm = document.querySelector('.card-elegant form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    
+                    if (emailInput.value) {
+                        const originalText = submitBtn.innerHTML;
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Отправка...';
+                        submitBtn.disabled = true;
+                        
+                        // Simulate API call
+                        setTimeout(() => {
+                            submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Подписка оформлена!';
+                            submitBtn.style.background = 'linear-gradient(135deg, #10B981 0%, #059669 100%)';
+                            
+                            emailInput.value = '';
+                            
+                            // Reset button after 3 seconds
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.style.background = '';
+                                submitBtn.disabled = false;
+                            }, 3000);
+                        }, 1500);
+                    }
+                });
+            }
+            
+            // Initialize GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate blog cards
+            gsap.utils.toArray('.blog-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: 'power2.out'
+                });
+            });
+            
+            // Animate sidebar widgets
+            gsap.utils.toArray('.sidebar-widget').forEach((widget, i) => {
+                gsap.from(widget, {
+                    scrollTrigger: {
+                        trigger: widget,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    x: 50,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: i * 0.2,
+                    ease: 'power2.out'
+                });
+            });
+            
+            // Animate popular posts
+            gsap.utils.toArray('.popular-post').forEach((post, i) => {
+                gsap.from(post, {
+                    scrollTrigger: {
+                        trigger: post,
+                        start: 'top 90%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    x: -30,
+                    opacity: 0,
+                    duration: 0.5,
+                    delay: i * 0.1,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

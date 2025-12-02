@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>График работы команды | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .schedule-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .time-badge {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .checklist-item i {
+            color: #D4AF37;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .condition-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .condition-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(5px);
+        }
+        
+        .overtime-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid #D4AF37;
+        }
+        
+        .timeline-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .step-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 24px;
+        }
+        
+        .step-connector {
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, #D4AF37, transparent);
+        }
+        
+        .timeline-step:last-child .step-connector {
+            display: none;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .price-table th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .price-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-table tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">График работы команды</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Четкая организация рабочего времени, прозрачные условия продления 
+                    и профессиональный подход к каждому мероприятию
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#schedule" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Начало работы</a>
+                    <a href="#overtime" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Продление времени</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Start Section -->
+    <section id="schedule" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Начало работы команды</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Четкое планирование времени начала съёмки для максимального охвата важных моментов
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="schedule-card card-elegant p-8 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Стандартное начало</h3>
+                        <p class="text-gray-400 mb-6">
+                            В большинстве случаев съёмка начинается с утренних сборов невесты
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Обычно 08:00 - 09:00</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Подготовка невесты</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Эмоциональные моменты</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Детали и атмосфера</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-card card-elegant p-8 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Индивидуальный график</h3>
+                        <p class="text-gray-400 mb-6">
+                            Начало времени согласовывается индивидуально с каждым клиентом
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Обсуждается при бронировании</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Фиксируется в договоре</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Учитывает ваши пожелания</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Зависит от программы дня</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="card-elegant p-8">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center glow-text">Процесс согласования графика</h3>
+                    
+                    <div class="timeline-step">
+                        <div class="step-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="step-connector"></div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">1. Предварительное обсуждение</h4>
+                        <p class="text-gray-400 mb-4">
+                            На консультации мы изучаем программу вашего дня и предлагаем оптимальное время начала съёмки
+                        </p>
+                        <div class="checklist-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="text-gray-300">За 2-4 недели до мероприятия</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-icon">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div class="step-connector"></div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">2. Фиксация в договоре</h4>
+                        <p class="text-gray-400 mb-4">
+                            Время начала и окончания съёмки чётко прописывается в договоре на оказание услуг
+                        </p>
+                        <div class="checklist-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span class="text-gray-300">Точное время начала</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span class="text-gray-300">Плановое время окончания</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step">
+                        <div class="step-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">3. Подтверждение за день</h4>
+                        <p class="text-gray-400 mb-4">
+                            За день до мероприятия мы связываемся для окончательного подтверждения времени
+                        </p>
+                        <div class="checklist-item">
+                            <i class="fas fa-phone"></i>
+                            <span class="text-gray-300">Телефонный звонок или сообщение</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="text-gray-300">Уточнение адреса начала съёмки</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overtime Section -->
+    <section id="overtime" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Продление рабочего времени</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Прозрачные условия и стоимость продления съёмочного времени
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="overtime-card card-elegant p-8 mb-12">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-white mb-4">Условия продления</h3>
+                            <div class="space-y-4">
+                                <div class="checklist-item">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <span class="text-gray-300">Платная услуга</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span class="text-gray-300">Обсуждается заранее или в день съёмки</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-handshake"></i>
+                                    <span class="text-gray-300">Требует подтверждения клиента</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-receipt"></i>
+                                    <span class="text-gray-300">Оплата в день мероприятия</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-white mb-4">Стоимость продления</h3>
+                            <table class="price-table">
+                                <thead>
+                                    <tr>
+                                        <th>Состав команды</th>
+                                        <th>Стоимость/час</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1 оператор + 1 фотограф</td>
+                                        <td class="text-gold-400 font-bold">8 000 ₽</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 оператора + 1 фотограф</td>
+                                        <td class="text-gold-400 font-bold">12 000 ₽</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2 оператора + 2 фотографа</td>
+                                        <td class="text-gold-400 font-bold">15 000 ₽</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Премиум команда (3+ специалиста)</td>
+                                        <td class="text-gold-400 font-bold">18 000 ₽</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Overtime Process -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <div class="condition-card card-elegant p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-hourglass-start"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Начало отсчёта</h3>
+                        <p class="text-gray-400 mb-4">
+                            Отсчёт дополнительного времени начинается с момента окончания основного рабочего времени, указанного в договоре
+                        </p>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">С момента прибытия оператора</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Округление до 30 минут</span>
+                        </div>
+                    </div>
+
+                    <div class="condition-card card-elegant p-6">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Что включено в переработку</h3>
+                        <p class="text-gray-400 mb-4">
+                            При продлении времени работают все специалисты, присутствующие на съёмке
+                        </p>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Операторы</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Фотографы</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Координатор группы</span>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Ассистенты (при наличии)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Conditions Section -->
+    <section class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Особые условия работы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Дополнительные нюансы, которые могут повлиять на график работы команды
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="condition-card card-elegant p-6 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-car-side"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Долгие переезды</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            При значительных расстояниях между локациями время в пути может учитываться в рабочем графике
+                        </p>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-info-circle"></i>
+                            <span class="text-gray-300">Обсуждается индивидуально</span>
+                        </div>
+                    </div>
+
+                    <div class="condition-card card-elegant p-6 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Ночная работа</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Съёмка поздним вечером и ночью может требовать дополнительного оборудования и подготовки
+                        </p>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-lightbulb"></i>
+                            <span class="text-gray-300">Требуется дополнительный свет</span>
+                        </div>
+                    </div>
+
+                    <div class="condition-card card-elegant p-6 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Новые локации</h3>
+                        <p class="text-gray-400 text-sm mb-4">
+                            Работа на незнакомых площадках требует дополнительного времени на подготовку и разведку
+                        </p>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-search-location"></i>
+                            <span class="text-gray-300">Рекомендуем технический визит</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delay Handling -->
+                <div class="card-elegant p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center glow-text">Если клиент задержался</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gray-900 p-6 rounded-lg">
+                            <h4 class="text-white font-bold mb-4 flex items-center">
+                                <i class="fas fa-clock text-amber-400 mr-3"></i>
+                                Начало отсчёта
+                            </h4>
+                            <p class="text-gray-400 mb-4">
+                                Отсчёт дополнительного времени начинается с момента фактического прибытия оператора на место съёмки
+                            </p>
+                            <div class="checklist-item">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Время прибытия фиксируется</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Округление до 30 минут</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-900 p-6 rounded-lg">
+                            <h4 class="text-white font-bold mb-4 flex items-center">
+                                <i class="fas fa-money-bill text-amber-400 mr-3"></i>
+                                Стоимость ожидания
+                            </h4>
+                            <p class="text-gray-400 mb-4">
+                                Ожидание начала съёмки по вине клиента оплачивается как дополнительное время работы
+                            </p>
+                            <div class="checklist-item">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Тариф как за продление</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Минимум 1 час</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-amber-900 bg-opacity-20 p-4 rounded-lg border border-amber-700">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-triangle text-amber-400 text-lg mr-3 mt-1"></i>
+                            <div>
+                                <p class="text-amber-400 text-sm font-medium mb-1">Важная информация</p>
+                                <p class="text-gray-300 text-sm">
+                                    Все условия продления времени и дополнительные оплаты заранее обсуждаются 
+                                    и могут быть прописаны в договоре. Мы всегда стараемся найти взаимовыгодное решение.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Есть вопросы по графику работы?</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Наши менеджеры подробно объяснят все условия и помогут составить оптимальный график для вашего мероприятия
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg">Задать вопрос</a>
+                    <a href="process.html" class="btn-outline-gold px-8 py-4 rounded-full text-lg">Процесс работы</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Load Header and Footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            // Load Footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate schedule cards
+                gsap.utils.toArray('.schedule-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate timeline steps
+                gsap.utils.toArray('.timeline-step').forEach((step, i) => {
+                    gsap.from(step, {
+                        scrollTrigger: {
+                            trigger: step,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        x: -50,
+                        opacity: 0,
+                        duration: 0.7,
+                        delay: i * 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate condition cards
+                gsap.utils.toArray('.condition-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.6,
+                        delay: i * 0.1,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+                
+                // Animate overtime card
+                gsap.from('.overtime-card', {
+                    scrollTrigger: {
+                        trigger: '.overtime-card',
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

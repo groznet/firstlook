@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Вопросы и ответы | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        /* Custom styles for FAQ page */
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .faq-item.active {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faq-question {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            color: #D4AF37;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .faq-answer.open {
+            max-height: 1000px;
+            opacity: 1;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .nav-pill {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 50px;
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-pill.active {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+        
+        .nav-pill:hover {
+            border-color: #D4AF37;
+        }
+        
+        .search-input {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            padding: 12px 20px;
+            color: #fff;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Вопросы и ответы</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Ответы на самые частые вопросы о наших услугах, процессе работы и условиях сотрудничества
+                </p>
+                <div class="flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <input type="text" id="faq-search" placeholder="Поиск по вопросам..." class="search-input">
+                        <i class="fas fa-search absolute right-5 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Navigation -->
+    <section class="py-8 bg-black bg-opacity-50 sticky top-0 z-20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4" id="faq-nav">
+                <div class="nav-pill active" data-category="all">Все вопросы</div>
+                <div class="nav-pill" data-category="packages">Пакеты и цены</div>
+                <div class="nav-pill" data-category="process">Процесс работы</div>
+                <div class="nav-pill" data-category="team">Команда и оборудование</div>
+                <div class="nav-pill" data-category="editing">Монтаж и обработка</div>
+                <div class="nav-pill" data-category="technical">Технические вопросы</div>
+                <div class="nav-pill" data-category="payment">Оплата и договор</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Sections -->
+    <section class="section-padding">
+        <div class="container mx-auto px-6">
+            <!-- Packages and Pricing Section -->
+            <div class="faq-section mb-16" data-category="packages">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Пакеты и цены</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Вопросы о стоимости услуг, составе пакетов и дополнительных опциях
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Сколько стоит свадебная съемка?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Стоимость зависит от выбранного пакета и дополнительных услуг:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Essential</strong> (только фото) — от 35 000 ₽</li>
+                                <li><strong>Standard</strong> (фото + видео) — от 75 000 ₽</li>
+                                <li><strong>Premium</strong> (полный пакет) — от 120 000 ₽</li>
+                            </ul>
+                            <p class="mt-2">Точная стоимость рассчитывается индивидуально после обсуждения деталей вашей свадьбы. Вы также можете создать индивидуальный тариф в нашем <a href="/prices" class="text-gold-400 hover:underline">конструкторе пакетов</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Что входит в стандартный пакет?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Стандартный пакет включает:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>2 фотографа и 1 видеооператор</li>
+                                <li>8-10 часов съемки</li>
+                                <li>Обработка 150+ фотографий</li>
+                                <li>Клип 3-5 минут для соцсетей</li>
+                                <li>Дрон (по согласованию и погодным условиям)</li>
+                                <li>Цветокоррекция и базовая ретушь</li>
+                                <li>Передача материалов через онлайн-диск</li>
+                            </ul>
+                            <p class="mt-2">Полный список услуг для каждого пакета доступен на странице <a href="/prices" class="text-gold-400 hover:underline">Пакеты услуг</a>.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Можно ли изменить состав пакета?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Да, конечно! Мы понимаем, что каждая свадьба уникальна, поэтому предлагаем гибкие условия:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Можно добавить или убрать определенные услуги</li>
+                                <li>Изменить количество операторов</li>
+                                <li>Скорректировать длительность съемки</li>
+                                <li>Добавить дополнительные локации или дни съемки</li>
+                            </ul>
+                            <p class="mt-2">Для создания индивидуального тарифа воспользуйтесь нашим <a href="/prices#constructor" class="text-gold-400 hover:underline">онлайн-конструктором</a> или свяжитесь с нами для консультации.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Есть ли скидки на съемку в будние дни?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Да, мы предоставляем скидки до 15% на съемку в будние дни (понедельник-четверг).</p>
+                            <p class="mt-2">Также действуют специальные условия для:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Съемки в низкий сезон (ноябрь-март, кроме праздничных дней)</li>
+                                <li>Повторных обращений и рекомендаций</li>
+                                <li>Комплексного заказа (съемка + монтаж + фотокнига)</li>
+                            </ul>
+                            <p class="mt-2">Уточняйте актуальные акции и скидки у нашего менеджера.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process Section -->
+            <div class="faq-section mb-16" data-category="process">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Процесс работы</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Как проходит подготовка, съемка и получение результатов
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 5 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Как происходит бронирование даты?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Бронирование даты происходит в несколько этапов:</p>
+                            <ol class="list-decimal ml-5 mt-2 space-y-2">
+                                <li><strong>Консультация</strong> — обсуждение деталей свадьбы по телефону или лично</li>
+                                <li><strong>Подбор пакета</strong> — выбор подходящего варианта услуг</li>
+                                <li><strong>Договор</strong> — заключение официального договора</li>
+                                <li><strong>Предоплата</strong> — внесение предоплаты 30-50% от суммы</li>
+                            </ol>
+                            <p class="mt-2">После внесения предоплаты дата считается забронированной, и мы не принимаем другие заказы на этот день.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 6 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Нужна ли предварительная встреча?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Предварительная встреча желательна, но не обязательна. Мы можем провести консультацию онлайн или по телефону.</p>
+                            <p class="mt-2">Встреча полезна для:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Знакомства с командой и установления контакта</li>
+                                <li>Обсуждения деталей свадьбы и ваших пожеланий</li>
+                                <li>Просмотра портфолио и примеров работ</li>
+                                <li>Составления подробного плана съемки</li>
+                            </ul>
+                            <p class="mt-2">Если встреча невозможна, мы соберем всю необходимую информацию через онлайн-анкету.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 7 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Что нужно подготовить к съемке?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Для успешной съемки рекомендуем подготовить:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Техническую информацию</strong> — адреса всех локаций, расписание дня, контакты организатора</li>
+                                <li><strong>Список важных моментов</strong> — особые традиции, важные гости, ключевые события</li>
+                                <li><strong>Пожелания по стилю</strong> — примеры понравившихся фото и видео</li>
+                                <li><strong>Ограничения</strong> — если есть места или ситуации, которые нельзя снимать</li>
+                            </ul>
+                            <p class="mt-2">За 1-2 недели до свадьбы мы проведем финальный брифинг, где уточним все детали.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 8 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Что делать, если свадьба переносится?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Мы понимаем, что обстоятельства могут меняться, и готовы предложить гибкие условия:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>При переносе более чем за 30 дней — полный возврат предоплаты или перенос на другую дату</li>
+                                <li>При переносе за 14-30 дней — удерживается 50% предоплаты или полный перенос</li>
+                                <li>При переносе менее чем за 14 дней — удерживается 100% предоплаты, но мы предлагаем скидку на следующую дату</li>
+                            </ul>
+                            <p class="mt-2">Все условия подробно прописываются в договоре. В случае форс-мажорных обстоятельств мы всегда идем навстречу.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team and Equipment Section -->
+            <div class="faq-section mb-16" data-category="team">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Команда и оборудование</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Вопросы о составе команды, технике и дополнительном оборудовании
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 9 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Сколько операторов нужно для нашей свадьбы?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Количество операторов зависит от нескольких факторов:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>До 40 гостей</strong> — 1 оператор (если нет параллельных событий)</li>
+                                <li><strong>50-100 гостей</strong> — 2 оператора (рекомендуем для полноценного охвата)</li>
+                                <li><strong>150+ гостей</strong> — 3-4 оператора (для больших свадеб с несколькими локациями)</li>
+                            </ul>
+                            <p class="mt-2">Также учитывайте:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Количество локаций и необходимость параллельной съемки</li>
+                                <li>Наличие отдельных зон для мужчин и женщин</li>
+                                <li>Желание иметь разные ракурсы и планы</li>
+                            </ul>
+                            <p class="mt-2">Мы поможем определить оптимальное количество операторов для вашего мероприятия.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 10 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Какое оборудование вы используете?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Мы работаем на профессиональной технике ведущих брендов:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Фотоаппараты</strong> — Canon EOS R5, Sony A7IV, Nikon Z9</li>
+                                <li><strong>Видеокамеры</strong> — Sony FX6, Canon C70, Blackmagic Pocket Cinema Camera 6K</li>
+                                <li><strong>Объективы</strong> — полный парк профессиональных объективов от 14mm до 200mm</li>
+                                <li><strong>Осветительное оборудование</strong> — Aputure, Godox, Profoto</li>
+                                <li><strong>Стабилизация</strong> — DJI Ronin, Glidecam, штативы Manfrotto</li>
+                                <li><strong>Звук</strong> — беспроводные микрофоны Rode, петлички, рекордеры Zoom</li>
+                            </ul>
+                            <p class="mt-2">Все оборудование регулярно обслуживается и имеет запасные варианты на случай поломки.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 11 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Когда нужен руководитель съемочной группы?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Руководитель съемочной группы необходим в следующих случаях:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>При работе 2+ операторов для координации действий</li>
+                                <li>На свадьбах со сложной логистикой и несколькими локациями</li>
+                                <li>При большом количестве гостей (150+ человек)</li>
+                                <li>Когда требуется контроль света, звука и общего качества съемки</li>
+                                <li>Для коммуникации с организаторами и другими подрядчиками</li>
+                            </ul>
+                            <p class="mt-2">Руководитель освобождает молодоженов от необходимости управлять процессом съемки и гарантирует, что все важные моменты будут запечатлены.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 12 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Зачем нужен дрон и когда его нельзя использовать?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Дрон позволяет создавать впечатляющие aerial-кадры, которые добавляют масштаб и кинематографичность видео.</p>
+                            <p class="mt-2"><strong>Когда дрон особенно полезен:</strong></p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Съемка на природе, в горах, у водоемов</li>
+                                <li>Просторные банкетные залы с высокими потолками</li>
+                                <li>Свадьбы в исторических местах или с красивой архитектурой</li>
+                                <li>Создание динамичных планов во время прогулки</li>
+                            </ul>
+                            <p class="mt-2"><strong>Ограничения для использования дрона:</strong></p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Центр города (особенно рядом с административными зданиями)</li>
+                                <li>Рядом с аэропортами и военными объектами</li>
+                                <li>В плохую погоду (дождь, сильный ветер, туман)</li>
+                                <li>В закрытых помещениях (если не согласовано с администрацией)</li>
+                            </ul>
+                            <p class="mt-2">Мы всегда проверяем возможность использования дрона заранее и имеем все необходимые разрешения.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Editing and Post-production Section -->
+            <div class="faq-section mb-16" data-category="editing">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Монтаж и обработка</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Все о сроках, процессе монтажа и получении готовых материалов
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 13 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Сколько длится монтаж видео?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Стандартные сроки монтажа зависят от сложности проекта:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Клип 3-5 минут</strong> — 15-20 дней</li>
+                                <li><strong>Полный фильм 30-90 минут</strong> — 30-45 дней</li>
+                                <li><strong>Reels / вертикальные видео</strong> — 10-15 дней</li>
+                            </ul>
+                            <p class="mt-2">Сроки могут увеличиться при:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Большом количестве операторов и материала</li>
+                                <li>Сложной цветокоррекции и графике</li>
+                                <li>Необходимости синхронизации многоканального звука</li>
+                                <li>Пиковом сезоне (май-сентябрь)</li>
+                            </ul>
+                            <p class="mt-2">Ускоренный монтаж доступен за дополнительную плату.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 14 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Сколько фотографий мы получим?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Количество фотографий зависит от выбранного пакета и длительности съемки:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Essential</strong> — 50-80 обработанных фото</li>
+                                <li><strong>Standard</strong> — 150-200 обработанных фото</li>
+                                <li><strong>Premium</strong> — 300+ обработанных фото</li>
+                            </ul>
+                            <p class="mt-2">Мы отбираем лучшие кадры, убираем дубли, технический брак и неудачные моменты. Каждая фотография проходит:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Цветокоррекцию</li>
+                                <li>Базовую ретушь (коррекция кожи, удаление временных дефектов)</li>
+                                <li>Кадрирование и выравнивание горизонта</li>
+                                <li>Подготовку для печати и публикации в соцсетях</li>
+                            </ul>
+                            <p class="mt-2">Глубокая художественная ретушь доступна как дополнительная услуга.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 15 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Можно ли вносить правки в смонтированное видео?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Да, мы предоставляем возможность внесения правок:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>В стандартный пакет входит <strong>1 круг правок</strong></li>
+                                <li>В премиум пакет входит <strong>2 круга правок</strong></li>
+                                <li>Дополнительные правки обсуждаются индивидуально</li>
+                            </ul>
+                            <p class="mt-2"><strong>Что можно корректировать:</strong></p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Последовательность сцен</li>
+                                <li>Музыкальное сопровождение</li>
+                                <li>Цветокоррекцию отдельных сцен</li>
+                                <li>Текстовые вставки (имена, даты, цитаты)</li>
+                            </ul>
+                            <p class="mt-2"><strong>Ограничения по правкам:</strong></p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Нельзя полностью менять концепцию монтажа</li>
+                                <li>Нельзя добавлять новые сцены, которых нет в исходном материале</li>
+                                <li>Правки должны быть конкретными и обоснованными</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 16 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">В каком формате мы получим материалы?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Материалы передаются в нескольких форматах:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Фотографии</strong> — JPEG высокого качества (для печати и соцсетей)</li>
+                                <li><strong>Видео</strong> — MP4 в разрешении 4K (или Full HD по желанию)</li>
+                                <li><strong>Reels/Stories</strong> — вертикальные видео в форматах для Instagram, TikTok</li>
+                            </ul>
+                            <p class="mt-2"><strong>Способы передачи:</strong></p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Облачное хранилище (Google Drive, Yandex Disk) — ссылка действительна 1 год</li>
+                                <li>Физический носитель (флешка, SSD) — за дополнительную плату</li>
+                                <li>Онлайн-галерея с паролем — для удобного просмотра и скачивания</li>
+                            </ul>
+                            <p class="mt-2">Исходные файлы (RAW фото, исходное видео) передаются по отдельному запросу и за дополнительную плату.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technical Questions Section -->
+            <div class="faq-section mb-16" data-category="technical">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Технические вопросы</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Специфические вопросы о съемке, оборудовании и технических возможностях
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 17 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Как вы снимаете в условиях плохого освещения?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Мы используем несколько подходов для работы в сложных световых условиях:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Профессиональная техника</strong> — камеры с высокой светочувствительностью и стабилизацией</li>
+                                <li><strong>Дополнительное освещение</strong> — портативные LED-светильники, вспышки с софтбоксами</li>
+                                <li><strong>Специальные объективы</strong> — светосильная оптика (f/1.2 - f/2.8)</li>
+                                <li><strong>Техники съемки</strong> — работа с естественным светом, отражение, рассеивание</li>
+                            </ul>
+                            <p class="mt-2">Мы всегда проводим предварительную рекогносцировку локаций, чтобы подготовить необходимое оборудование.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 18 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Как обеспечивается качество звука?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Для записи качественного звука мы используем многоканальную систему:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Петличные микрофоны</strong> — для жениха, невесты и ведущего</li>
+                                <li><strong>Рекордеры Zoom</strong> — для записи общих планов и атмосферы</li>
+                                <li><strong>Накамерные микрофоны</strong> — для синхронизации звука с видео</li>
+                                <li><strong>Прямое подключение</strong> — к звуковой системе банкетного зала</li>
+                            </ul>
+                            <p class="mt-2">В процессе монтажа звук проходит:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Очистку от шумов и помех</li>
+                                <li>Нормализацию громкости</li>
+                                <li>Синхронизацию с видео</li>
+                                <li>Сведение с музыкальным сопровождением</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 19 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Что делать, если оборудование сломается во время съемки?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Мы предусмотрели такие ситуации и имеем комплексную систему подстраховки:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Дублирование оборудования</strong> — каждый оператор имеет запасную камеру и объективы</li>
+                                <li><strong>Многокамерная съемка</strong> — при работе нескольких операторов важные моменты снимаются с разных ракурсов</li>
+                                <li><strong>Регулярное обслуживание</strong> — вся техника проходит регулярный техосмотр</li>
+                                <li><strong>Оперативная поддержка</strong> — в случае серьезных поломок у нас есть возможность быстро доставить замену</li>
+                            </ul>
+                            <p class="mt-2">За 10 лет работы у нас не было случаев, когда поломка оборудования повлияла на результат съемки.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment and Contract Section -->
+            <div class="faq-section mb-16" data-category="payment">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 glow-text">Оплата и договор</h2>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                        Вопросы о финансовых условиях, договоре и гарантиях
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- FAQ 20 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Какой размер предоплаты и когда вносится остаток?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Мы работаем по прозрачной системе оплаты:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Предоплата</strong> — 30-50% от общей суммы (вносится при заключении договора)</li>
+                                <li><strong>Остаток</strong> — 50-70% (вносится за 7 дней до свадьбы или в день съемки)</li>
+                            </ul>
+                            <p class="mt-2">Возможны индивидуальные условия оплаты для:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Долгосрочного бронирования (более 6 месяцев)</li>
+                                <li>Крупных проектов с бюджетом от 200 000 ₽</li>
+                                <li>Постоплаты за услуги монтажа</li>
+                            </ul>
+                            <p class="mt-2">Все финансовые условия подробно прописываются в договоре.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 21 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Что прописано в договоре?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>В договоре подробно фиксируются все условия сотрудничества:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li><strong>Дата, время и место съемки</strong></li>
+                                <li><strong>Состав команды и оборудование</strong></li>
+                                <li><strong>Список услуг и сроки их выполнения</strong></li>
+                                <li><strong>Финансовые условия</strong> (стоимость, порядок оплаты, штрафные санкции)</li>
+                                <li><strong>Права и обязанности сторон</strong></li>
+                                <li><strong>Условия переноса и отмены</strong></li>
+                                <li><strong>Гарантии качества и порядок разрешения споров</strong></li>
+                            </ul>
+                            <p class="mt-2">Мы предоставляем типовой договор, но готовы внести reasonable изменения по вашему запросу.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 22 -->
+                    <div class="faq-item card-elegant p-6">
+                        <div class="faq-question flex justify-between items-center" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-medium text-white">Предоставляете ли вы налоговую отчетность?</h3>
+                            <i class="fas fa-chevron-down text-gold-400 faq-icon"></i>
+                        </div>
+                        <div class="faq-answer mt-4 text-gray-400">
+                            <p>Да, мы являемся официально зарегистрированной компанией и предоставляем полный пакет документов:</p>
+                            <ul class="list-disc ml-5 mt-2 space-y-1">
+                                <li>Договор на оказание услуг</li>
+                                <li>Акт выполненных работ</li>
+                                <li>Счет на оплату</li>
+                                <li>Кассовый чек или бланк строгой отчетности</li>
+                            </ul>
+                            <p class="mt-2">Все документы соответствуют требованиям российского законодательства.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Have Questions Section -->
+    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Остались вопросы?</h2>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8">
+                Не нашли ответ на свой вопрос? Свяжитесь с нами — мы с радостью проконсультируем!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="tel:+79288893557" class="btn-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-phone mr-2"></i>
+                    +7 (928) 889-35-57
+                </a>
+                <a href="https://wa.me/79288893557" class="btn-outline-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Написать в WhatsApp
+                </a>
+                <a href="/contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    Написать на email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQs in the same section
+            const section = faqItem.closest('.faq-section');
+            const allFaqs = section.querySelectorAll('.faq-item');
+            allFaqs.forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('open');
+                    item.querySelector('.faq-icon').classList.remove('rotated');
+                }
+            });
+            
+            // Toggle current FAQ
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('open');
+            icon.classList.toggle('rotated');
+        }
+        
+        // FAQ Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navPills = document.querySelectorAll('.nav-pill');
+            const faqSections = document.querySelectorAll('.faq-section');
+            const searchInput = document.getElementById('faq-search');
+            
+            // Navigation click handler
+            navPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active nav pill
+                    navPills.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show/hide sections
+                    faqSections.forEach(section => {
+                        if (category === 'all' || section.getAttribute('data-category') === category) {
+                            section.style.display = 'block';
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    });
+                    
+                    // Scroll to first visible section
+                    const firstVisible = document.querySelector('.faq-section[style="display: block"]');
+                    if (firstVisible) {
+                        firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                faqSections.forEach(section => {
+                    const faqItems = section.querySelectorAll('.faq-item');
+                    let hasVisibleItems = false;
+                    
+                    faqItems.forEach(item => {
+                        const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                        const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                        
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = 'block';
+                            hasVisibleItems = true;
+                            
+                            // Highlight search term
+                            if (searchTerm) {
+                                highlightText(item, searchTerm);
+                            } else {
+                                removeHighlights(item);
+                            }
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide section based on visible items
+                    section.style.display = hasVisibleItems ? 'block' : 'none';
+                });
+            });
+            
+            // Highlight text function
+            function highlightText(element, term) {
+                removeHighlights(element);
+                
+                const walker = document.createTreeWalker(
+                    element,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+                
+                let node;
+                while (node = walker.nextNode()) {
+                    const parent = node.parentNode;
+                    if (parent.nodeName === 'MARK') continue;
+                    
+                    const index = node.textContent.toLowerCase().indexOf(term);
+                    if (index >= 0) {
+                        const span = document.createElement('mark');
+                        span.style.backgroundColor = 'rgba(212, 175, 55, 0.3)';
+                        span.style.color = '#D4AF37';
+                        span.style.padding = '2px 4px';
+                        span.style.borderRadius = '4px';
+                        
+                        const middle = node.splitText(index);
+                        const after = middle.splitText(term.length);
+                        
+                        const highlighted = middle.cloneNode(true);
+                        span.appendChild(highlighted);
+                        parent.replaceChild(span, middle);
+                    }
+                }
+            }
+            
+            // Remove highlights function
+            function removeHighlights(element) {
+                const marks = element.querySelectorAll('mark');
+                marks.forEach(mark => {
+                    const parent = mark.parentNode;
+                    parent.replaceChild(document.createTextNode(mark.textContent), mark);
+                    parent.normalize();
+                });
+            }
+            
+            // Load Header and Footer
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate FAQ items on scroll
+            gsap.utils.toArray('.faq-item').forEach((item, i) => {
+                gsap.from(item, {
+                    scrollTrigger: {
+                        trigger: item,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: i * 0.05,
+                    ease: 'power2.out'
+                });
+            });
+            
+            // Animate section headers
+            gsap.utils.toArray('.faq-section').forEach(section => {
+                const header = section.querySelector('h2');
+                gsap.from(header, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 70%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

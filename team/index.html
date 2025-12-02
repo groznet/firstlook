@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Состав команды | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .team-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .checklist-item i {
+            color: #D4AF37;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .factor-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .factor-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(5px);
+        }
+        
+        .calculator-step {
+            background: rgba(30, 30, 30, 0.7);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #D4AF37;
+        }
+        
+        .option-selected {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #D4AF37;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid #D4AF37;
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Состав команды</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Профессиональный подбор съёмочной группы для вашего мероприятия. 
+                    Определяем оптимальное количество операторов и необходимое оборудование.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#calculator" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Калькулятор команды</a>
+                    <a href="#team-composition" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Варианты команд</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Factors Section -->
+    <section class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">От чего зависит состав команды</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Мы подбираем оптимальный состав съёмочной группы на основе ключевых факторов вашего мероприятия
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="factor-card card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Количество гостей</h3>
+                    <p class="text-gray-400 text-sm">
+                        Чем больше гостей, тем больше операторов нужно для полного охвата мероприятия
+                    </p>
+                </div>
+
+                <div class="factor-card card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Количество локаций</h3>
+                    <p class="text-gray-400 text-sm">
+                        Параллельные съёмки в разных местах требуют дополнительных операторов
+                    </p>
+                </div>
+
+                <div class="factor-card card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Длительность</h3>
+                    <p class="text-gray-400 text-sm">
+                        Полный день съёмки может потребовать смены операторов или ассистентов
+                    </p>
+                </div>
+
+                <div class="factor-card card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Формат съёмки</h3>
+                    <p class="text-gray-400 text-sm">
+                        Параллельная съёмка жениха и невесты, сложные планы, дополнительные ракурсы
+                    </p>
+                </div>
+            </div>
+
+            <!-- Team Calculator -->
+            <div id="calculator" class="card-elegant p-8">
+                <h2 class="text-3xl font-bold text-white mb-8 text-center glow-text">Калькулятор состава команды</h2>
+                
+                <div x-data="teamCalculator()" class="flex flex-col lg:flex-row gap-8">
+                    <!-- Calculator Inputs -->
+                    <div class="lg:w-2/3">
+                        <div class="calculator-step">
+                            <h3 class="text-xl font-bold text-white mb-4">1. Количество гостей</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.guests === 'small'}"
+                                     @click="selectedOptions.guests = 'small'">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.guests === 'small'"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">До 40 гостей</h4>
+                                            <p class="text-sm text-gray-400">Маленькая свадьба</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.guests === 'medium'}"
+                                     @click="selectedOptions.guests = 'medium'">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.guests === 'medium'"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">50-100 гостей</h4>
+                                            <p class="text-sm text-gray-400">Средняя свадьба</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.guests === 'large'}"
+                                     @click="selectedOptions.guests = 'large'">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.guests === 'large'"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">150+ гостей</h4>
+                                            <p class="text-sm text-gray-400">Большая свадьба</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-step">
+                            <h3 class="text-xl font-bold text-white mb-4">2. Количество локаций</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.locations === 'single'}"
+                                     @click="selectedOptions.locations = 'single'">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.locations === 'single'"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">1-2 локации</h4>
+                                            <p class="text-sm text-gray-400">Одна основная площадка</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.locations === 'multiple'}"
+                                     @click="selectedOptions.locations = 'multiple'">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.locations === 'multiple'"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">3+ локации</h4>
+                                            <p class="text-sm text-gray-400">Несколько площадок одновременно</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-step">
+                            <h3 class="text-xl font-bold text-white mb-4">3. Дополнительные факторы</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.parallel}"
+                                     @click="selectedOptions.parallel = !selectedOptions.parallel">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.parallel"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">Параллельная съёмка</h4>
+                                            <p class="text-sm text-gray-400">Жених и невеста в разных местах</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card-elegant p-4 cursor-pointer" 
+                                     :class="{'option-selected': selectedOptions.premium}"
+                                     @click="selectedOptions.premium = !selectedOptions.premium">
+                                    <div class="flex items-center">
+                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
+                                            <div class="w-3 h-3 rounded-full bg-yellow-500" x-show="selectedOptions.premium"></div>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-white">Премиум формат</h4>
+                                            <p class="text-sm text-gray-400">Мультикам, сложные планы</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calculator Result -->
+                    <div class="lg:w-1/3">
+                        <div class="result-card card-elegant p-6 sticky top-6">
+                            <h3 class="text-2xl font-bold text-white mb-6 text-center">Рекомендуемый состав</h3>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-400">Операторы:</span>
+                                    <span class="text-white font-bold text-xl" x-text="calculateOperators()"></span>
+                                </div>
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-400">Фотографы:</span>
+                                    <span class="text-white font-bold text-xl" x-text="calculatePhotographers()"></span>
+                                </div>
+                                
+                                <div class="flex justify-between items-center" x-show="calculateManager() > 0">
+                                    <span class="text-gray-400">Руководитель:</span>
+                                    <span class="text-white font-bold text-xl" x-text="calculateManager()"></span>
+                                </div>
+                                
+                                <div class="flex justify-between items-center" x-show="selectedOptions.premium">
+                                    <span class="text-gray-400">Ассистенты:</span>
+                                    <span class="text-white font-bold text-xl">1-2</span>
+                                </div>
+                            </div>
+                            
+                            <div class="gradient-divider my-4"></div>
+                            
+                            <div class="text-center">
+                                <p class="text-gray-400 text-sm mb-4" x-text="getRecommendationText()"></p>
+                                <a href="contact.html" class="btn-gold w-full py-3 rounded-full text-lg font-medium">
+                                    Обсудить с менеджером
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Composition Section -->
+    <section id="team-composition" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Варианты составов команд</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Стандартные решения для разных форматов мероприятий
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Team 1: Basic -->
+                <div class="team-card card-elegant p-6 text-center">
+                    <div class="team-badge">БАЗОВЫЙ</div>
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">1 оператор</h3>
+                    <p class="text-gray-400 mb-6">Для небольших камерных мероприятий</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Свадьбы до 40 гостей</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">1-2 локации</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Простой график</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-times text-gray-500"></i>
+                            <span class="text-gray-500">Параллельная съёмка</span>
+                        </div>
+                    </div>
+                    
+                    <a href="prices.html#essential" class="btn-outline-gold w-full py-3 rounded-full">Посмотреть пакет</a>
+                </div>
+
+                <!-- Team 2: Standard -->
+                <div class="team-card card-elegant p-6 text-center">
+                    <div class="team-badge">СТАНДАРТ</div>
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">2 оператора</h3>
+                    <p class="text-gray-400 mb-6">Для средних свадеб 50-100 гостей</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Свадьбы 50-100 гостей</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">2-3 локации</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Параллельная съёмка</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Множество ракурсов</span>
+                        </div>
+                    </div>
+                    
+                    <a href="prices.html#standard" class="btn-gold w-full py-3 rounded-full">Посмотреть пакет</a>
+                </div>
+
+                <!-- Team 3: Premium -->
+                <div class="team-card card-elegant p-6 text-center">
+                    <div class="team-badge">ПРЕМИУМ</div>
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">3+ оператора</h3>
+                    <p class="text-gray-400 mb-6">Для больших и сложных мероприятий</p>
+                    
+                    <div class="space-y-3 mb-6">
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Свадьбы 150+ гостей</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Несколько локаций</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Руководитель группы</span>
+                        </div>
+                        <div class="checklist-item justify-center">
+                            <i class="fas fa-check"></i>
+                            <span class="text-gray-300">Сложные планы и ракурсы</span>
+                        </div>
+                    </div>
+                    
+                    <a href="prices.html#premium" class="btn-outline-gold w-full py-3 rounded-full">Посмотреть пакет</a>
+                </div>
+            </div>
+
+            <!-- Team Leader Section -->
+            <div class="card-elegant p-8">
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <div class="lg:w-1/3 text-center">
+                        <div class="feature-icon mx-auto">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Руководитель съёмочной группы</h3>
+                        <p class="text-gray-400">
+                            Координатор, который обеспечивает слаженную работу всей команды
+                        </p>
+                    </div>
+                    
+                    <div class="lg:w-2/3">
+                        <h4 class="text-xl font-bold text-white mb-4">Когда нужен руководитель:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="checklist-item">
+                                    <i class="fas fa-users"></i>
+                                    <span class="text-gray-300">2+ оператора в команде</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-map-signs"></i>
+                                    <span class="text-gray-300">Сложная логистика</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-warehouse"></i>
+                                    <span class="text-gray-300">Большая площадка</span>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="checklist-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span class="text-gray-300">Плотный график</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span class="text-gray-300">Контроль света и звука</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span class="text-gray-300">Координация планов съёмки</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Equipment Section -->
+    <section class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Стандартное оборудование</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                Базовая комплектация каждого оператора включает всё необходимое для профессиональной съёмки
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Главная камера</h3>
+                    <p class="text-gray-400 text-sm">
+                        Профессиональные фото и видео камеры 4K разрешения
+                    </p>
+                </div>
+
+                <div class="card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Аккумуляторы</h3>
+                    <p class="text-gray-400 text-sm">
+                        Запасные батареи и карты памяти на весь день съёмки
+                    </p>
+                </div>
+
+                <div class="card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Микрофоны</h3>
+                    <p class="text-gray-400 text-sm">
+                        Петличные и камерные микрофоны для чистого звука
+                    </p>
+                </div>
+
+                <div class="card-elegant p-6 text-center">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Штатив</h3>
+                    <p class="text-gray-400 text-sm">
+                        Профессиональные штативы для стабильной съёмки
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p class="text-gray-400 mb-6">
+                    Нужно дополнительное оборудование? 
+                    <a href="services.html#equipment" class="text-gold-400 hover:text-gold-300 underline">
+                        Посмотрите дополнительные услуги
+                    </a>
+                </p>
+                <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg inline-flex items-center">
+                    <span>Получить консультацию</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Cases Section -->
+    <section class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Примеры из практики</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Реальные кейсы подбора состава команды для разных мероприятий
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-elegant p-6">
+                    <div class="text-amber-400 text-lg font-bold mb-2">Кейс #1</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Свадьба на 200 гостей</h3>
+                    <p class="text-gray-400 mb-4">
+                        4 локации, параллельная съёмка жениха и невесты, премиум формат
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Операторы:</span>
+                            <span class="text-white font-medium">3</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Фотографы:</span>
+                            <span class="text-white font-medium">2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Руководитель:</span>
+                            <span class="text-white font-medium">1</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-elegant p-6">
+                    <div class="text-amber-400 text-lg font-bold mb-2">Кейс #2</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Свадьба на 80 гостей</h3>
+                    <p class="text-gray-400 mb-4">
+                        3 локации, стандартный график, европейский формат
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Операторы:</span>
+                            <span class="text-white font-medium">2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Фотографы:</span>
+                            <span class="text-white font-medium">1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Руководитель:</span>
+                            <span class="text-white font-medium">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-elegant p-6">
+                    <div class="text-amber-400 text-lg font-bold mb-2">Кейс #3</div>
+                    <h3 class="text-xl font-bold text-white mb-3">Свадьба на 35 гостей</h3>
+                    <p class="text-gray-400 mb-4">
+                        2 локации, камерный формат, простая программа
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Операторы:</span>
+                            <span class="text-white font-medium">1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Фотографы:</span>
+                            <span class="text-white font-medium">1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Руководитель:</span>
+                            <span class="text-white font-medium">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Team Calculator Alpine.js Component
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('teamCalculator', () => ({
+                selectedOptions: {
+                    guests: 'medium',
+                    locations: 'single',
+                    parallel: false,
+                    premium: false
+                },
+                
+                calculateOperators() {
+                    let operators = 1;
+                    
+                    // Base on guests
+                    if (this.selectedOptions.guests === 'medium') operators = 2;
+                    if (this.selectedOptions.guests === 'large') operators = 3;
+                    
+                    // Adjust based on locations
+                    if (this.selectedOptions.locations === 'multiple') operators += 1;
+                    
+                    // Adjust based on parallel shooting
+                    if (this.selectedOptions.parallel) operators = Math.max(operators, 2);
+                    
+                    // Adjust for premium
+                    if (this.selectedOptions.premium) operators += 1;
+                    
+                    return operators;
+                },
+                
+                calculatePhotographers() {
+                    let photographers = 1;
+                    
+                    if (this.selectedOptions.guests === 'large') photographers = 2;
+                    if (this.selectedOptions.premium) photographers = 2;
+                    
+                    return photographers;
+                },
+                
+                calculateManager() {
+                    if (this.calculateOperators() >= 3 || this.selectedOptions.premium) {
+                        return 1;
+                    }
+                    return 0;
+                },
+                
+                getRecommendationText() {
+                    const operators = this.calculateOperators();
+                    
+                    if (operators === 1) {
+                        return 'Идеально для камерных мероприятий до 40 гостей';
+                    } else if (operators === 2) {
+                        return 'Оптимально для средних свадеб 50-100 гостей';
+                    } else {
+                        return 'Рекомендуется для больших и сложных мероприятий';
+                    }
+                }
+            }))
+        });
+
+        // Load Header and Footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            // Load Footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate team cards
+                gsap.utils.toArray('.team-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate equipment cards
+                gsap.utils.toArray('.card-elegant').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.6,
+                        delay: i * 0.1,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

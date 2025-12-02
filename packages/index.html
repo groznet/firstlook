@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пакеты услуг | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .package-card {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            left: -35px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 8px 40px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(-45deg);
+            z-index: 1;
+        }
+        
+        .package-header {
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+        
+        .package-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .package-footer {
+            padding: 0 30px 30px;
+            margin-top: auto;
+        }
+        
+        .price-tag {
+            font-size: 48px;
+            font-weight: bold;
+            color: #D4AF37;
+            margin: 20px 0;
+        }
+        
+        .price-period {
+            font-size: 14px;
+            color: #888;
+            display: block;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .feature-list {
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            padding: 8px 0;
+        }
+        
+        .feature-item i {
+            color: #D4AF37;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .feature-included {
+            color: #fff;
+        }
+        
+        .feature-excluded {
+            color: #666;
+        }
+        
+        .feature-excluded i {
+            color: #666;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .comparison-table th {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .check-icon {
+            color: #4CAF50;
+            font-size: 18px;
+        }
+        
+        .cross-icon {
+            color: #F44336;
+            font-size: 18px;
+        }
+        
+        .package-tier-1 {
+            border-color: rgba(100, 100, 100, 0.5);
+        }
+        
+        .package-tier-2 {
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .package-tier-3 {
+            border-color: rgba(212, 175, 55, 0.8);
+        }
+        
+        .package-tier-4 {
+            border-color: rgba(212, 175, 55, 1);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: rgba(30, 30, 30, 0.7);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            border-color: #D4AF37;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            border-color: #D4AF37;
+        }
+        
+        .package-section {
+            display: none;
+        }
+        
+        .package-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Пакеты услуг</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    9 готовых решений для разных форматов свадеб и бюджетов. 
+                    От камерных церемоний до масштабных торжеств.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#packages" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Смотреть пакеты</a>
+                    <a href="/packages/constructor/" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Создать свой тариф</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <section class="py-10 bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="basic">Базовые пакеты</button>
+                <button class="tab-btn" data-tab="standard">Стандартные пакеты</button>
+                <button class="tab-btn" data-tab="premium">Премиум пакеты</button>
+                <button class="tab-btn" data-tab="comparison">Сравнение всех пакетов</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Basic Packages -->
+    <section id="packages" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div id="basic" class="package-section active">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white mb-4 glow-text">Базовые пакеты</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                        Идеальные решения для камерных свадеб и мероприятий с ограниченным бюджетом
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Package 1: Mini -->
+                    <div class="package-card card-elegant package-tier-1">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Минимальный</h3>
+                            <p class="text-gray-400">Для самых маленьких свадеб</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">35 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">1 оператор</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">1 фотограф</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">До 6 часов съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Базовый монтаж</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-times"></i>
+                                    <span class="feature-excluded">Без дрона</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-times"></i>
+                                    <span class="feature-excluded">Без дополнительного оборудования</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Идеально для свадеб до 30 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('starter')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 2: Оптимальный -->
+                    <div class="package-card card-elegant package-tier-1">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Оптимальный</h3>
+                            <p class="text-gray-400">Для небольших свадеб</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">55 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">1 оператор + ассистент</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">1 фотограф</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">8 часов съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Базовый монтаж + цветокоррекция</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Дрон (1 локация)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-times"></i>
+                                    <span class="feature-excluded">Без стедикама</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб до 50 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('essential')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 3: Старт Плюс -->
+                    <div class="package-card card-elegant package-tier-1">
+                        <div class="package-badge">ПОПУЛЯРНЫЙ</div>
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Старт Плюс</h3>
+                            <p class="text-gray-400">Оптимальный базовый вариант</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">75 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 оператора</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">1 фотограф</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">10 часов съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Профессиональный монтаж</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Дрон + базовый звук</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 формата видео (фильм + клип)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб до 80 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-gold w-full py-3 rounded-full" onclick="selectPackage('basic-plus')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Standard Packages -->
+            <div id="standard" class="package-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white mb-4 glow-text">Стандартные пакеты</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                        Наиболее популярные решения для классических свадеб со средней программой
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Package 4: Классический -->
+                    <div class="package-card card-elegant package-tier-2">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Классический</h3>
+                            <p class="text-gray-400">Классическая свадьба</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">95 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 оператора</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 фотографа</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">10 часов съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Дрон на 2 локации</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Профессиональный звук</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">3 формата видео (фильм, клип, reels)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб 80-120 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('classic')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 5: Стандарт Про -->
+                    <div class="package-card card-elegant package-tier-2">
+                        <div class="package-badge">САМЫЙ ПОПУЛЯРНЫЙ</div>
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Стандарт Про</h3>
+                            <p class="text-gray-400">Для требовательных клиентов</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">120 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 оператора + координатор</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 фотографа</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">12 часов съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Дрон + стедикам</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Полный звуковой комплект</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Премиум монтаж с анимацией</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб 100-150 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-gold w-full py-3 rounded-full" onclick="selectPackage('standard-pro')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 6: Люкс -->
+                    <div class="package-card card-elegant package-tier-2">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Люкс</h3>
+                            <p class="text-gray-400">Роскошная свадьба</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">150 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">3 оператора</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 фотографа + ассистент</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Полный день (14 часов)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Дрон, кран, стедикам</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Мультикамерная съёмка</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Художественный монтаж</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб 150-200 гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('luxury')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Премиальный Packages -->
+            <div id="premium" class="package-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white mb-4 glow-text">Премиум пакеты</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                        Эксклюзивные решения для масштабных мероприятий и клиентов, ценящих перфекционизм
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Package 7: Премиальный -->
+                    <div class="package-card card-elegant package-tier-3">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Премиальный</h3>
+                            <p class="text-gray-400">Элитная съёмка</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">190 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">3 оператора + старший координатор</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">3 фотографа</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Полный день + ночная съёмка</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Все виды оборудования</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Собственный осветитель</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Кинематографичный монтаж</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для свадеб 200+ гостей
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('premium')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 8: Эксклюзив -->
+                    <div class="package-card card-elegant package-tier-3">
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Эксклюзив</h3>
+                            <p class="text-gray-400">Эксклюзивный формат</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">250 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">4 оператора + режиссёр</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">3 фотографа + стилист</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">2 дня съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Киносъёмочная техника</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Индивидуальный саундтрек</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Документальный фильм о подготовке</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Для звёздных свадеб
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-outline-gold w-full py-3 rounded-full" onclick="selectPackage('exclusive')">
+                                Выбрать пакет
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Package 9: Эксклюзивный -->
+                    <div class="package-card card-elegant package-tier-4">
+                        <div class="package-badge">ЭКСКЛЮЗИВ</div>
+                        <div class="package-header">
+                            <h3 class="text-2xl font-bold text-white mb-2">Эксклюзивный</h3>
+                            <p class="text-gray-400">Полностью индивидуальный</p>
+                        </div>
+                        
+                        <div class="package-content">
+                            <div class="price-tag">от 350 000 ₽</div>
+                            
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Индивидуальный подбор команды</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Любое количество операторов</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Неограниченное время съёмки</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Любое оборудование по запросу</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Съёмка подготовительных мероприятий</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="feature-included">Полный цикл производства</span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="gradient-divider my-4"></div>
+                                <p class="text-gray-400 text-sm text-center">
+                                    Индивидуальное предложение под ваш бюджет
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="package-footer">
+                            <button class="btn-gold w-full py-3 rounded-full" onclick="selectPackage('bespoke')">
+                                Обсудить проект
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div id="comparison" class="package-section">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-white mb-4 glow-text">Сравнение всех пакетов</h2>
+                    <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                        Наглядное сравнение всех 9 пакетов для удобного выбора
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Услуга / Пакет</th>
+                                <th>Минимальный</th>
+                                <th>Оптимальный</th>
+                                <th>Старт Плюс</th>
+                                <th>Классический</th>
+                                <th>Стандарт Про</th>
+                                <th>Люкс</th>
+                                <th>Премиальный</th>
+                                <th>Эксклюзив</th>
+                                <th>Эксклюзивный</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Операторы</td>
+                                <td>1</td>
+                                <td>1+ассистент</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2+координатор</td>
+                                <td>3</td>
+                                <td>3+координатор</td>
+                                <td>4+режиссёр</td>
+                                <td>Индивидуально</td>
+                            </tr>
+                            <tr>
+                                <td>Фотографы</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2+ассистент</td>
+                                <td>3</td>
+                                <td>3+стилист</td>
+                                <td>Индивидуально</td>
+                            </tr>
+                            <tr>
+                                <td>Время съёмки</td>
+                                <td>6 часов</td>
+                                <td>8 часов</td>
+                                <td>10 часов</td>
+                                <td>10 часов</td>
+                                <td>12 часов</td>
+                                <td>14 часов</td>
+                                <td>Полный день+ночь</td>
+                                <td>2 дня</td>
+                                <td>Неограниченно</td>
+                            </tr>
+                            <tr>
+                                <td>Дрон</td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td>1 локация</td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td>2 локации</td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Стедикам/Кран</td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Профессиональный звук</td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td><i class="fas fa-times cross-icon"></i></td>
+                                <td>Базовый</td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td>Полный комплект</td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                                <td><i class="fas fa-check check-icon"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Форматы видео</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>3+</td>
+                                <td>4+</td>
+                                <td>5+</td>
+                                <td>Индивидуально</td>
+                            </tr>
+                            <tr>
+                                <td>Срок монтажа</td>
+                                <td>20-25 дней</td>
+                                <td>20-30 дней</td>
+                                <td>25-35 дней</td>
+                                <td>25-35 дней</td>
+                                <td>30-40 дней</td>
+                                <td>35-45 дней</td>
+                                <td>40-50 дней</td>
+                                <td>45-60 дней</td>
+                                <td>Индивидуально</td>
+                            </tr>
+                            <tr>
+                                <td>Рекомендуемые гости</td>
+                                <td>до 30</td>
+                                <td>до 50</td>
+                                <td>до 80</td>
+                                <td>80-120</td>
+                                <td>100-150</td>
+                                <td>150-200</td>
+                                <td>200+</td>
+                                <td>250+</td>
+                                <td>Любое</td>
+                            </tr>
+                            <tr>
+                                <td>Стоимость</td>
+                                <td class="font-bold">35 000 ₽</td>
+                                <td class="font-bold">55 000 ₽</td>
+                                <td class="font-bold">75 000 ₽</td>
+                                <td class="font-bold">95 000 ₽</td>
+                                <td class="font-bold">120 000 ₽</td>
+                                <td class="font-bold">150 000 ₽</td>
+                                <td class="font-bold">190 000 ₽</td>
+                                <td class="font-bold">250 000 ₽</td>
+                                <td class="font-bold gold-gradient">от 350 000 ₽</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <p class="text-gray-400 mb-6">
+                        Не нашли подходящий пакет? 
+                        <a href="team.html#calculator" class="text-gold-400 hover:text-gold-300 underline">
+                            Рассчитайте нужный состав команды
+                        </a> или 
+                        <a href="packages/constructor/" class="text-gold-400 hover:text-gold-300 underline">
+                            создайте индивидуальный тариф
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="mt-16 text-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-elegant p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Как выбрать пакет?</h3>
+                        <p class="text-gray-400 text-sm">
+                            Ориентируйтесь на количество гостей и сложность программы. 
+                            <a href="team.html" class="text-gold-400 hover:text-gold-300">Наш калькулятор команды</a> поможет с выбором.
+                        </p>
+                    </div>
+
+                    <div class="card-elegant p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Оптимальная длительность</h3>
+                        <p class="text-gray-400 text-sm">
+                            Для большинства свадеб достаточно 10-12 часов. 
+                            <a href="duration.html" class="text-gold-400 hover:text-gold-300">Узнайте больше о длительности съёмки</a>.
+                        </p>
+                    </div>
+
+                    <div class="card-elegant p-6">
+                        <div class="feature-icon mx-auto mb-4">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Нужно что-то изменить?</h3>
+                        <p class="text-gray-400 text-sm">
+                            Любой пакет можно адаптировать под ваши нужды. 
+                            <a href="packages/constructor/" class="text-gold-400 hover:text-gold-300">Используйте конструктор тарифа</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Готовы выбрать пакет?</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Закажите бесплатную консультацию, и мы поможем подобрать идеальный пакет для вашей свадьбы
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg">Заказать консультацию</a>
+                    <a href="process.html" class="btn-outline-gold px-8 py-4 rounded-full text-lg">Процесс работы</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Tab functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const packageSections = document.querySelectorAll('.package-section');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and sections
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    packageSections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show corresponding section
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Scroll to packages section
+                    document.getElementById('packages').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Package selection
+            window.selectPackage = function(packageType) {
+                let message = '';
+                let packageName = '';
+                let price = '';
+                
+                switch(packageType) {
+                    case 'starter':
+                        packageName = 'Минимальный';
+                        price = '35 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Минимальный" (35 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'essential':
+                        packageName = 'Оптимальный';
+                        price = '55 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Оптимальный" (55 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'basic-plus':
+                        packageName = 'Старт Плюс';
+                        price = '75 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Старт Плюс" (75 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'classic':
+                        packageName = 'Классический';
+                        price = '95 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Классический" (95 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'standard-pro':
+                        packageName = 'Стандарт Про';
+                        price = '120 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Стандарт Про" (120 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'luxury':
+                        packageName = 'Люкс';
+                        price = '150 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Люкс" (150 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'premium':
+                        packageName = 'Премиальный';
+                        price = '190 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Премиальный" (190 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'exclusive':
+                        packageName = 'Эксклюзив';
+                        price = '250 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в пакете "Эксклюзив" (250 000 ₽). Можете рассказать подробнее об этом пакете и его условиях?';
+                        break;
+                    case 'bespoke':
+                        packageName = 'Эксклюзивный';
+                        price = 'от 350 000 ₽';
+                        message = 'Здравствуйте! Я заинтересован(а) в индивидуальном пакете "Эксклюзивный". Хотел(а) бы обсудить создание эксклюзивного предложения для моей свадьбы.';
+                        break;
+                }
+                
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/79288893557?text=${encodedMessage}`, '_blank');
+            };
+            
+            // Load Header and Footer
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate package cards with staggered delay
+                gsap.utils.toArray('.package-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 50,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate comparison table rows
+                gsap.utils.toArray('.comparison-table tbody tr').forEach((row, i) => {
+                    gsap.from(row, {
+                        scrollTrigger: {
+                            trigger: row,
+                            start: 'top 90%',
+                            end: 'bottom 10%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        x: -20,
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: i * 0.05,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

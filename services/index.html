@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Firstlook — Фото и Видеостудия, Монтаж и Обучение</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <style>
+        /* Reuse styles from homepage */
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-elegant {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .gold-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+        }
+        
+        .section-padding {
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.05);
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .camera-bubble {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .video-bubble {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+        
+        .heart-bubble {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 80%;
+            animation-delay: 10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        .morphing-shape {
+            position: fixed;
+            background: rgba(212, 175, 55, 0.03);
+            z-index: -1;
+            animation: morph 20s infinite ease-in-out;
+        }
+        
+        .morph-camera {
+            width: 300px;
+            height: 300px;
+            bottom: 10%;
+            left: 10%;
+            border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;
+        }
+        
+        .morph-ribbon {
+            width: 250px;
+            height: 250px;
+            top: 15%;
+            right: 5%;
+            border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+        }
+        
+        @keyframes morph {
+            0%, 100% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; }
+            25% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%; }
+            75% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .form-input {
+            width: 100%;
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 3rem;
+        }
+        
+        .process-step:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d4af37, transparent);
+        }
+        
+        .process-number {
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #000;
+        }
+        
+        .package-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .package-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #f7ef8a);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .package-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .package-card.popular {
+            border: 2px solid #d4af37;
+            transform: scale(1.05);
+        }
+        
+        .package-card.popular:before {
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Animated Background Elements -->
+    <div class="floating-shape camera-bubble"></div>
+    <div class="floating-shape video-bubble"></div>
+    <div class="floating-shape heart-bubble"></div>
+    <div class="morphing-shape morph-camera"></div>
+    <div class="morphing-shape morph-ribbon"></div>
+
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Page Header -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-amber-900/20 to-black z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold heading-font mb-6 text-white glow-text">
+                    <span class="gold-gradient">Наши услуги</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
+                    Полный спектр профессиональных услуг для создания незабываемых фото и видео. От съемки до монтажа и обучения.
+                </p>
+                <div class="flex justify-center">
+                    <a href="#contact" class="btn-gold px-8 py-4 rounded-full text-lg transform hover:scale-105 transition-transform">
+                        Обсудить проект
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section id="main-services" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Основные направления</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Профессиональные услуги, которые превратят ваши важные моменты в произведения искусства
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card card-elegant p-8 text-center">
+                    <div class="service-icon gold-bg mx-auto">
+                        <i class="fas fa-camera text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Фото-съёмка свадьбы</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Профессиональная репортажная и постановочная съемка, которая сохранит самые важные моменты вашего торжества.
+                    </p>
+                    <a href="/services/wedding-photo" class="text-gold-400 font-medium inline-flex items-center justify-center hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card card-elegant p-8 text-center">
+                    <div class="service-icon gold-bg mx-auto">
+                        <i class="fas fa-video text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Видео-съёмка свадьбы</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Кинематографичное видео с профессиональным звуком и светом. Создаем эмоциональные фильмы, которые хочется пересматривать.
+                    </p>
+                    <a href="/services/wedding-video" class="text-gold-400 font-medium inline-flex items-center justify-center hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card card-elegant p-8 text-center">
+                    <div class="service-icon gold-bg mx-auto">
+                        <i class="fas fa-edit text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Монтаж и постпродакшн</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Художественный монтаж видео, цветокоррекция, ретушь фото. Превращаем сырые материалы в готовые продукты высшего качества.
+                    </p>
+                    <a href="/services/editing" class="text-gold-400 font-medium inline-flex items-center justify-center hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card card-elegant p-8 text-center">
+                    <div class="service-icon gold-bg mx-auto">
+                        <i class="fas fa-user-graduate text-black"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Обучение</h3>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Курсы по фото- и видеомонтажу для начинающих и профессионалов. Обучаем всем тонкостям ремесла с 20-летним опытом.
+                    </p>
+                    <a href="/education" class="text-gold-400 font-medium inline-flex items-center justify-center hover:text-gold-300 transition-colors">
+                        <span>Подробнее</span>
+                        <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services Section -->
+    <section id="additional-services" class="section-padding bg-black bg-opacity-50 parallax-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Дополнительные услуги</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Расширенные возможности для создания уникального контента
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Additional Service 1 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-drone"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Аэросъемка (дрон)</h3>
+                        <p class="text-gray-400">Эффектные панорамные кадры с высоты для прогулки и красивых локаций.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 2 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Кран / стабилизированные системы</h3>
+                        <p class="text-gray-400">Плавные движения и широкие планы для больших банкетных залов.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 3 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">GoPro / экшн-камеры</h3>
+                        <p class="text-gray-400">Динамичные кадры для авто, танцев и дублирующих планов.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 4 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Запись звука</h3>
+                        <p class="text-gray-400">Профессиональная запись с использованием Zoom, петличек и рекордеров.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 5 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Руководитель съёмочной группы</h3>
+                        <p class="text-gray-400">Координация работы команды для сложных проектов с несколькими операторами.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 6 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Ускоренный монтаж</h3>
+                        <p class="text-gray-400">Быстрая обработка материала для срочных проектов.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 7 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Продление съёмочного времени</h3>
+                        <p class="text-gray-400">Дополнительные часы съемки для полного охвата мероприятия.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 8 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Фотокнига / распечатки</h3>
+                        <p class="text-gray-400">Качественная печать и оформление фотографий в альбомы.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 9 -->
+                <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Постановочная Love Story</h3>
+                        <p class="text-gray-400">Скромная фотосессия для пар в красивых локациях.</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Service 10 -->
+                <!-- <div class="card-elegant p-6 flex items-start">
+                    <div class="gold-bg text-black p-3 rounded-full mr-4 flex-shrink-0">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Утро невесты (студия)</h3>
+                        <p class="text-gray-400">Профессиональная съемка подготовки невесты в студийных условиях.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Процесс работы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Четко выстроенный процесс от первой консультации до передачи готового материала
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="process-step mb-12">
+                    <div class="process-number gold-bg">1</div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Первичная консультация</h3>
+                    <div class="card-elegant p-6">
+                        <p class="text-gray-400 mb-4">На первой встрече мы узнаем все важные детали:</p>
+                        <ul class="text-gray-400 space-y-2 ml-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Дата, локация и формат свадьбы</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Количество гостей</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Желания по стилю съёмки</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Бюджет и ожидаемый результат</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Особые традиции и пожелания</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step mb-12">
+                    <div class="process-number gold-bg">2</div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Сбор технической информации</h3>
+                    <div class="card-elegant p-6">
+                        <p class="text-gray-400 mb-4">Тщательно прорабатываем все технические детали:</p>
+                        <ul class="text-gray-400 space-y-2 ml-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Места съёмки (дом жениха, дом невесты, ЗАГС, банкет)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Расписание дня</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Необходимость параллельной работы нескольких операторов</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Ограничения локаций (дрон запрещён, шум, свет, движение)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="process-step mb-12">
+                    <div class="process-number gold-bg">3</div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Выбор пакета</h3>
+                    <div class="card-elegant p-6">
+                        <p class="text-gray-400 mb-4">Подбираем оптимальный пакет услуг исходя из ваших потребностей:</p>
+                        <ul class="text-gray-400 space-y-2 ml-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Количество операторов и фотографов</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Время работы</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Дополнительное оборудование</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Сроки монтажа</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="process-step mb-12">
+                    <div class="process-number gold-bg">4</div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Договор и предоплата</h3>
+                    <div class="card-elegant p-6">
+                        <p class="text-gray-400 mb-4">Заключаем официальный договор с четким определением всех условий:</p>
+                        <ul class="text-gray-400 space-y-2 ml-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Размер предоплаты (обычно 20–50%)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Фиксация времени начала, количества операторов, оборудования, пакета</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Условия возврата/переноса даты</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-gold-400 mr-2 mt-1"></i>
+                                <span>Определение изменений условий (добавление операторов, продление, новые локации)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="section-padding bg-black bg-opacity-50 parallax-bg">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Пакеты услуг</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Готовые решения для разных потребностей и бюджетов
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Package 1 -->
+                <div class="package-card card-elegant p-8 text-center">
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Mini</h3>
+                    <div class="text-4xl font-bold gold-gradient mb-6">от 25 000 ₽</div>
+                    
+                    <ul class="text-gray-400 space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>1 оператор</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>1 фотограф</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>До 6 часов съёмки</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Базовый монтаж</span>
+                        </li>
+                        <li class="flex items-center text-gray-500">
+                            <i class="fas fa-times text-gray-500 mr-3"></i>
+                            <span>Без дрона</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn-outline-gold w-full py-3 rounded-full font-medium transform hover:scale-105 transition-transform">
+                        Выбрать пакет
+                    </a>
+                </div>
+                
+                <!-- Package 2 -->
+                <div class="package-card card-elegant p-8 text-center popular">
+                    <div class="absolute top-0 right-0 bg-gold-500 text-black px-4 py-1 rounded-bl-lg font-bold">
+                        Популярный
+                    </div>
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Standard</h3>
+                    <div class="text-4xl font-bold gold-gradient mb-6">от 50 000 ₽</div>
+                    
+                    <ul class="text-gray-400 space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>2 оператора</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Фотограф</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>8–10 часов съёмки</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Дрон</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Фильм + клип</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn-gold w-full py-3 rounded-full font-medium transform hover:scale-105 transition-transform">
+                        Выбрать пакет
+                    </a>
+                </div>
+                
+                <!-- Package 3 -->
+                <div class="package-card card-elegant p-8 text-center">
+                    <h3 class="text-2xl font-bold heading-font text-white mb-4">Premium</h3>
+                    <div class="text-4xl font-bold gold-gradient mb-6">от 85 000 ₽</div>
+                    
+                    <ul class="text-gray-400 space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>3–4 оператора</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Старший координатор</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Полный день съёмки</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Дрон, стедикам, звук</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-gold-400 mr-3"></i>
+                            <span>Максимальный комплект монтажа</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="btn-outline-gold w-full py-3 rounded-full font-medium transform hover:scale-105 transition-transform">
+                        Выбрать пакет
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-400 mb-4">Нужен индивидуальный пакет? Мы готовы создать решение специально для вас!</p>
+                <a href="#contact" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
+                    <span>Обсудить индивидуальный пакет</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Частые вопросы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
+                    Ответы на самые популярные вопросы о наших услугах
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ 1 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Сколько операторов нам нужно?</h3>
+                    <p class="text-gray-400">
+                        Количество операторов зависит от формата свадьбы, количества гостей и локаций. 
+                        Для маленькой свадьбы до 40 гостей обычно достаточно 1 оператора. 
+                        Для средней свадьбы 50–100 гостей рекомендуем 2 операторов для одновременной съёмки в разных местах. 
+                        Для больших свадеб 150+ гостей оптимально 3–4 оператора.
+                    </p>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Сколько длится монтаж?</h3>
+                    <p class="text-gray-400">
+                        Сроки монтажа зависят от количества операторов, длительности свадьбы и сложности монтажа. 
+                        Стандартные сроки составляют 20–45 дней. Также доступен ускоренный монтаж за дополнительную плату.
+                    </p>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Что входит в пакет?</h3>
+                    <p class="text-gray-400">
+                        Каждый пакет включает определенное количество операторов и фотографов, время съёмки, 
+                        базовый или расширенный монтаж, а также дополнительные услуги в зависимости от выбранного пакета. 
+                        Подробное описание каждого пакета вы найдете выше на этой странице.
+                    </p>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Можно ли продлить время съёмки?</h3>
+                    <p class="text-gray-400">
+                        Да, продление времени съёмки возможно за дополнительную плату. 
+                        Стоимость зависит от состава команды и обсуждается заранее или в день свадьбы.
+                    </p>
+                </div>
+                
+                <!-- FAQ 5 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Что мы получим после свадьбы?</h3>
+                    <p class="text-gray-400">
+                        После свадьбы вы получите обработанные фотографии и смонтированное видео в согласованных форматах. 
+                        Это может быть полный фильм (30–90 мин), короткий клип (3–5 мин) и Reels/Vertical видео (30–60 сек). 
+                        Материалы передаются через онлайн-диск/облако, флешку или жёсткий диск.
+                    </p>
+                </div>
+                
+                <!-- FAQ 6 -->
+                <div class="card-elegant p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">Зачем нужен дрон / кран?</h3>
+                    <p class="text-gray-400">
+                        Дрон позволяет создавать эффектные панорамные кадры с высоты, особенно для прогулки и красивых локаций. 
+                        Кран используется для плавных движений и широких планов в больших банкетных залах. 
+                        Оба инструмента добавляют кинематографичности вашему видео.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="/faq" class="btn-outline-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
+                    <span>Все вопросы и ответы</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold heading-font text-white mb-6 glow-text">Готовы обсудить ваш проект?</h2>
+            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8 text-glow">
+                Свяжитесь с нами для консультации и подбора оптимального пакета услуг
+            </p>
+            <a href="#contact" class="btn-gold px-8 py-4 rounded-full text-lg transform hover:scale-105 transition-transform">Обсудить проект</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact-section-wrapper" class="section-padding bg-black bg-opacity-70">
+        <!-- Loaded dynamically -->
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+    <!-- <script src="/assets/js/main.js"></script> -->
+
+    <script>
+        // Load Header
+        fetch('/components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-wrapper').innerHTML = data;
+            });
+
+        // Load Footer
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-wrapper').innerHTML = data;
+            });
+            
+        // GSAP Animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate service cards on scroll
+            gsap.registerPlugin(ScrollTrigger);
+            
+            gsap.utils.toArray('.service-card').forEach(card => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+            
+            // Animate process steps
+            gsap.utils.toArray('.process-step').forEach(step => {
+                gsap.from(step, {
+                    scrollTrigger: {
+                        trigger: step,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    x: -50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.out"
+                });
+            });
+            
+            // Animate package cards
+            gsap.utils.toArray('.package-card').forEach(card => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    ease: "power2.out",
+                    delay: 0.2
+                });
+            });
+        });
+
+        // LOAD ADDITIONAL COMPONENTS
+        // Load Header
+        fetch('/components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-wrapper').innerHTML = data;
+            });
+
+        // Load Footer
+        fetch('/components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-wrapper').innerHTML = data;
+            });
+
+        // Load Contact Section
+        fetch('/components/contact_section.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('contact-section-wrapper').innerHTML = data;
+            });        
+    </script>
+</body>
+</html>

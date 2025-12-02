@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Монтаж видео | Firstlook — Фото и Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <style>
+        .dark-bg {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+        
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn-outline-gold {
+            border: 2px solid #D4AF37;
+            color: #D4AF37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline-gold:hover {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        
+        .card-elegant {
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-elegant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+        
+        .editing-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .timeline-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .timeline-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            position: relative;
+            margin: 30px 0;
+            overflow: hidden;
+        }
+        
+        .timeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #D4AF37, #FFD700);
+            border-radius: 4px;
+            width: 0%;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: -25px;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        
+        .marker-dot {
+            width: 16px;
+            height: 16px;
+            background: #D4AF37;
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            border: 3px solid #0a0a0a;
+        }
+        
+        .marker-label {
+            font-size: 12px;
+            color: #D4AF37;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+        
+        .video-type-card {
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .video-type-card:hover {
+            border-bottom-color: #D4AF37;
+            transform: translateY(-10px);
+        }
+        
+        .video-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+        
+        .duration-badge {
+            background: rgba(212, 175, 55, 0.2);
+            color: #D4AF37;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        
+        .checklist-item i {
+            color: #D4AF37;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .factor-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .factor-card:hover {
+            border-left-color: #D4AF37;
+            transform: translateX(5px);
+        }
+        
+        .correction-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+            border: 2px solid #D4AF37;
+        }
+        
+        .fast-edit-badge {
+            background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .process-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #D4AF37;
+        }
+        
+        .process-connector {
+            position: absolute;
+            left: 30px;
+            top: 60px;
+            bottom: -40px;
+            width: 2px;
+            background: linear-gradient(to bottom, #D4AF37, transparent);
+        }
+        
+        .process-step:last-child .process-connector {
+            display: none;
+        }
+        
+        .editing-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .editing-phase {
+            position: relative;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: rgba(30, 30, 30, 0.5);
+            border-radius: 8px;
+            border-left: 4px solid #D4AF37;
+        }
+        
+        .phase-duration {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: #D4AF37;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="dark-bg">
+    <!-- Header -->
+    <header id="header-wrapper"></header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black to-transparent z-0"></div>
+        
+        <div class="container mx-auto px-6 z-10 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
+                    <span class="gold-gradient">Монтаж видео</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                    Профессиональная постобработка материалов. Превращаем часы съёмки 
+                    в эмоциональные фильмы, которые хочется пересматривать снова и снова.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#timeline" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Сроки монтажа</a>
+                    <a href="#delivery" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Типы выдачи</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Editing Timeline Section -->
+    <section id="timeline" class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Сроки монтажа</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Время обработки материалов зависит от нескольких ключевых факторов
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Timeline Visualization -->
+                <div class="card-elegant p-8 mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center glow-text">Стандартные сроки монтажа</h3>
+                    
+                    <div class="timeline-bar">
+                        <div class="timeline-progress" id="timelineProgress"></div>
+                        
+                        <div class="timeline-marker" style="left: 0%;">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Съёмка</div>
+                        </div>
+                        <div class="timeline-marker" style="left: 10%;">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Материалы</div>
+                        </div>
+                        <div class="timeline-marker" style="left: 40%;">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Монтаж</div>
+                        </div>
+                        <div class="timeline-marker" style="left: 70%;">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Корректировки</div>
+                        </div>
+                        <div class="timeline-marker" style="left: 100%;">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Готово</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                        <div class="text-center p-4 bg-gray-900 rounded-lg">
+                            <h4 class="text-white font-bold mb-2">Стандартный монтаж</h4>
+                            <p class="text-gray-400 text-sm">20-45 дней</p>
+                            <div class="mt-2 h-2 bg-gradient-to-r from-amber-500 to-amber-300 rounded"></div>
+                        </div>
+                        
+                        <div class="text-center p-4 bg-gray-900 rounded-lg">
+                            <div class="fast-edit-badge">УСКОРЕННЫЙ</div>
+                            <h4 class="text-white font-bold mb-2">Экспресс монтаж</h4>
+                            <p class="text-gray-400 text-sm">7-14 дней (+15 000 ₽)</p>
+                            <div class="mt-2 h-2 bg-gradient-to-r from-green-500 to-green-300 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Factors Affecting Timeline -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center glow-text">Факторы, влияющие на сроки</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="factor-card card-elegant p-6">
+                            <div class="video-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 text-center">Количество операторов</h3>
+                            <p class="text-gray-400 text-sm text-center">
+                                Чем больше операторов, тем больше материалов для обработки
+                            </p>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">1 оператор:</span>
+                                    <span class="text-white font-medium">20-25 дней</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">2 оператора:</span>
+                                    <span class="text-white font-medium">25-35 дней</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">3+ оператора:</span>
+                                    <span class="text-white font-medium">35-45 дней</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="factor-card card-elegant p-6">
+                            <div class="video-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 text-center">Длительность свадьбы</h3>
+                            <p class="text-gray-400 text-sm text-center">
+                                Полный день съёмки требует больше времени на отбор и обработку
+                            </p>
+                            <div class="mt-4 space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">6 часов:</span>
+                                    <span class="text-white font-medium">20-30 дней</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">8-10 часов:</span>
+                                    <span class="text-white font-medium">25-35 дней</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">12-14 часов:</span>
+                                    <span class="text-white font-medium">30-45 дней</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="factor-card card-elegant p-6">
+                            <div class="video-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 text-center">Сложность монтажа</h3>
+                            <p class="text-gray-400 text-sm text-center">
+                                Спецэффекты, анимация, сложная цветокоррекция увеличивают время
+                            </p>
+                            <div class="mt-4 space-y-2">
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Базовый монтаж: +0 дней</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Премиум монтаж: +5-10 дней</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Художественный: +10-15 дней</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="factor-card card-elegant p-6">
+                            <div class="video-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 text-center">Выбранный пакет</h3>
+                            <p class="text-gray-400 text-sm text-center">
+                                Разные пакеты услуг включают разный объём работы
+                            </p>
+                            <div class="mt-4 space-y-2">
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Essential: 20-30 дней</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Standard: 25-35 дней</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check"></i>
+                                    <span class="text-gray-300">Premium: 30-45 дней</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fast Editing Option -->
+                <div class="correction-card card-elegant p-8">
+                    <div class="flex flex-col lg:flex-row gap-8 items-center">
+                        <div class="lg:w-1/3 text-center">
+                            <div class="fast-edit-badge">УСКОРЕННЫЙ МОНТАЖ</div>
+                            <h3 class="text-2xl font-bold text-white mb-4">Экспресс обработка</h3>
+                            <p class="text-gray-400">
+                                Получите готовые материалы в 2-3 раза быстрее
+                            </p>
+                        </div>
+                        
+                        <div class="lg:w-2/3">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-gray-900 p-4 rounded-lg">
+                                    <h4 class="text-white font-bold mb-3">Стандартный монтаж</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Срок:</span>
+                                            <span class="text-white font-medium">20-45 дней</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Входит в пакет:</span>
+                                            <span class="text-white font-medium">Да</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Доплата:</span>
+                                            <span class="text-white font-medium">0 ₽</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-900 p-4 rounded-lg border-2 border-green-500">
+                                    <h4 class="text-white font-bold mb-3">Ускоренный монтаж</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Срок:</span>
+                                            <span class="text-gold-400 font-bold">7-14 дней</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Входит в пакет:</span>
+                                            <span class="text-white font-medium">Premium</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Доплата:</span>
+                                            <span class="text-gold-400 font-bold">15 000 ₽</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Types Section -->
+    <section id="delivery" class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Типы выдачи материалов</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Разные форматы для разных целей — от полного фильма до коротких вертикальных роликов
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <!-- Full Movie -->
+                    <div class="video-type-card card-elegant p-6 text-center">
+                        <div class="video-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="duration-badge">30-90 минут</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Полный фильм</h3>
+                        <p class="text-gray-400 mb-6">
+                            Детальный рассказ о вашем дне с самого утра до финальных танцев
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Хронология дня</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Все ключевые моменты</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Профессиональный саундтрек</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Цветокоррекция и графика</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Short Clip -->
+                    <div class="video-type-card card-elegant p-6 text-center">
+                        <div class="video-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="duration-badge">3-5 минут</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Короткий клип</h3>
+                        <p class="text-gray-400 mb-6">
+                            Динамичный ролик с самыми эмоциональными и яркими моментами
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Лучшие моменты дня</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Идеально для соцсетей</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Современный монтаж</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Энергичная музыка</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reels/Vertical -->
+                    <div class="video-type-card card-elegant p-6 text-center">
+                        <div class="video-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="duration-badge">30-60 секунд</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">Reels / Vertical</h3>
+                        <p class="text-gray-400 mb-6">
+                            Вертикальные ролики для Instagram, TikTok и других платформ
+                        </p>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Вертикальный формат 9:16</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Трендовый монтаж</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Идеально для Stories</span>
+                            </div>
+                            <div class="checklist-item justify-center">
+                                <i class="fas fa-check"></i>
+                                <span class="text-gray-300">Быстрая публикация</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Editing Process -->
+                <div class="card-elegant p-8">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center glow-text">Процесс монтажа</h3>
+                    
+                    <div class="editing-timeline">
+                        <div class="editing-phase">
+                            <div class="phase-duration">3-5 дней</div>
+                            <h4 class="text-xl font-bold text-white mb-3">1. Отбор материала</h4>
+                            <p class="text-gray-400">
+                                Просмотр всех отснятых материалов, выбор лучших дублей, логическая сортировка
+                            </p>
+                        </div>
+                        
+                        <div class="editing-phase">
+                            <div class="phase-duration">7-14 дней</div>
+                            <h4 class="text-xl font-bold text-white mb-3">2. Черновой монтаж</h4>
+                            <p class="text-gray-400">
+                                Сборка хронологии дня, подбор музыки, создание структуры фильма
+                            </p>
+                        </div>
+                        
+                        <div class="editing-phase">
+                            <div class="phase-duration">5-10 дней</div>
+                            <h4 class="text-xl font-bold text-white mb-3">3. Чистовой монтаж</h4>
+                            <p class="text-gray-400">
+                                Точная нарезка, цветокоррекция, добавление графики и эффектов
+                            </p>
+                        </div>
+                        
+                        <div class="editing-phase">
+                            <div class="phase-duration">5-10 дней</div>
+                            <h4 class="text-xl font-bold text-white mb-3">4. Звуковое оформление</h4>
+                            <p class="text-gray-400">
+                                Очистка звука, подбор саундтрека, сведение аудиодорожек
+                            </p>
+                        </div>
+                        
+                        <div class="editing-phase">
+                            <div class="phase-duration">3-5 дней</div>
+                            <h4 class="text-xl font-bold text-white mb-3">5. Финальная проверка</h4>
+                            <p class="text-gray-400">
+                                Тестирование на разных устройствах, проверка качества, подготовка к отправке
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corrections Section -->
+    <section class="section-padding bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Корректировки и правки</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Прозрачная система внесения изменений в готовые материалы
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="correction-card card-elegant p-8 mb-12">
+                    <div class="flex flex-col lg:flex-row gap-8 items-start">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-white mb-4">Включённые правки</h3>
+                            <p class="text-gray-400 mb-6">
+                                В стоимость монтажа включено 1-2 круга правок для внесения необходимых изменений
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle text-green-400"></i>
+                                    <span class="text-gray-300">Мелкие правки по хронометражу</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle text-green-400"></i>
+                                    <span class="text-gray-300">Изменение порядка сцен</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle text-green-400"></i>
+                                    <span class="text-gray-300">Корректировка музыки</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle text-green-400"></i>
+                                    <span class="text-gray-300">Незначительная цветокоррекция</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-white mb-4">Дополнительные изменения</h3>
+                            <p class="text-gray-400 mb-6">
+                                Существенные изменения или дополнительные круги правок оплачиваются отдельно
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="checklist-item">
+                                    <i class="fas fa-dollar-sign text-amber-400"></i>
+                                    <span class="text-gray-300">Полная пересборка фильма: от 10 000 ₽</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-dollar-sign text-amber-400"></i>
+                                    <span class="text-gray-300">Смена музыкального сопровождения: 5 000 ₽</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-dollar-sign text-amber-400"></i>
+                                    <span class="text-gray-300">Сложная цветокоррекция: 7 000 ₽</span>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-dollar-sign text-amber-400"></i>
+                                    <span class="text-gray-300">Дополнительный круг правок: 3 000 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Correction Process -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <div class="process-connector"></div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">Получение материала</h4>
+                        <p class="text-gray-400 text-sm">
+                            После завершения монтажа вы получаете ссылку на просмотр готового материала
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <div class="process-connector"></div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">Сбор правок</h4>
+                        <p class="text-gray-400 text-sm">
+                            В течение 3 дней вы просматриваете материал и составляете список правок
+                        </p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        
+                        <h4 class="text-xl font-bold text-white mb-3">Внесение изменений</h4>
+                        <p class="text-gray-400 text-sm">
+                            Мы вносим правки в течение 5-7 дней и отправляем обновлённую версию
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Important Note -->
+                <div class="card-elegant p-6 bg-amber-900 bg-opacity-20 border border-amber-700">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-amber-400 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h4 class="text-amber-400 font-bold mb-2">Важная информация</h4>
+                            <p class="text-gray-300">
+                                Для эффективной работы с правками просим предоставлять чёткие и конкретные указания. 
+                                Лучше всего составлять список правок с указанием временных меток и конкретных пожеланий.
+                                Все правки обсуждаются и согласовываются до начала внесения изменений.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section-padding bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Хотите узнать подробнее о монтаже?</h2>
+                <p class="text-xl text-gray-200 mb-8">
+                    Наши специалисты расскажут о всех этапах обработки и помогут выбрать оптимальные форматы
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact.html" class="btn-gold px-8 py-4 rounded-full text-lg">Задать вопрос</a>
+                    <a href="packages/constructor/" class="btn-outline-gold px-8 py-4 rounded-full text-lg">Выбрать тариф</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+
+    <script>
+        // Animate timeline progress
+        function animateTimeline() {
+            const progress = document.getElementById('timelineProgress');
+            if (progress) {
+                gsap.to(progress, {
+                    width: '100%',
+                    duration: 2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: '.timeline-bar',
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
+            }
+        }
+
+        // Load Header and Footer
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load Header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-wrapper').innerHTML = data;
+                });
+            
+            // Load Footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-wrapper').innerHTML = data;
+                });
+            
+            // Initialize GSAP animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Animate timeline
+                animateTimeline();
+                
+                // Animate factor cards
+                gsap.utils.toArray('.factor-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 30,
+                        opacity: 0,
+                        duration: 0.7,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate video type cards
+                gsap.utils.toArray('.video-type-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        scale: 0.9,
+                        opacity: 0,
+                        duration: 0.8,
+                        delay: i * 0.15,
+                        ease: 'back.out(1.7)'
+                    });
+                });
+                
+                // Animate editing phases
+                gsap.utils.toArray('.editing-phase').forEach((phase, i) => {
+                    gsap.from(phase, {
+                        scrollTrigger: {
+                            trigger: phase,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        x: -50,
+                        opacity: 0,
+                        duration: 0.6,
+                        delay: i * 0.2,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Animate process steps
+                gsap.utils.toArray('.process-step').forEach((step, i) => {
+                    gsap.from(step, {
+                        scrollTrigger: {
+                            trigger: step,
+                            start: 'top 80%',
+                            end: 'bottom 20%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 20,
+                        opacity: 0,
+                        duration: 0.5,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
