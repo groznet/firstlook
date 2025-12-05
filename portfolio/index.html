@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
     <style>
         /* Reuse styles from homepage */
         .dark-bg {
@@ -18,8 +18,8 @@
             color: #fff;
         }
         
-        .gold-gradient {
-            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+        .red-gradient {
+            background: linear-gradient(135deg, #b01b18 0%, #f7ef8a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -28,19 +28,19 @@
         .card-elegant {
             background: rgba(20, 20, 20, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(176, 27, 24, 0.2);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
         
         .card-elegant:hover {
-            border-color: rgba(212, 175, 55, 0.5);
+            border-color: rgba(176, 27, 24, 0.5);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(176, 27, 24, 0.1);
         }
         
         .btn-gold {
-            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #f7ef8a 100%);
             color: #000;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -48,23 +48,23 @@
         
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 5px 15px rgba(176, 27, 24, 0.4);
         }
         
         .btn-outline-gold {
-            border: 2px solid #d4af37;
-            color: #d4af37;
+            border: 2px solid #b01b18;
+            color: #b01b18;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-outline-gold:hover {
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(176, 27, 24, 0.1);
             transform: translateY(-2px);
         }
         
         .gold-bg {
-            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #f7ef8a 100%);
         }
         
         .section-padding {
@@ -77,7 +77,7 @@
         }
         
         .glow-text {
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            text-shadow: 0 0 10px rgba(176, 27, 24, 0.3);
         }
         
         .text-glow {
@@ -86,13 +86,13 @@
         
         .gradient-divider {
             height: 2px;
-            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            background: linear-gradient(90deg, transparent, #b01b18, transparent);
         }
         
         .floating-shape {
             position: fixed;
             border-radius: 50%;
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(176, 27, 24, 0.05);
             z-index: -1;
             animation: float 15s infinite ease-in-out;
         }
@@ -128,7 +128,7 @@
         
         .morphing-shape {
             position: fixed;
-            background: rgba(212, 175, 55, 0.03);
+            background: rgba(176, 27, 24, 0.03);
             z-index: -1;
             animation: morph 20s infinite ease-in-out;
         }
@@ -166,7 +166,7 @@
         .form-input {
             width: 100%;
             background: rgba(30, 30, 30, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(176, 27, 24, 0.3);
             border-radius: 8px;
             padding: 12px 16px;
             color: white;
@@ -175,15 +175,15 @@
         
         .form-input:focus {
             outline: none;
-            border-color: #d4af37;
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+            border-color: #b01b18;
+            box-shadow: 0 0 0 2px rgba(176, 27, 24, 0.2);
         }
         
         /* Portfolio specific styles */
         .filter-btn {
             background: rgba(30, 30, 30, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: #d4af37;
+            border: 1px solid rgba(176, 27, 24, 0.3);
+            color: #b01b18;
             padding: 10px 20px;
             border-radius: 25px;
             transition: all 0.3s ease;
@@ -191,9 +191,9 @@
         }
         
         .filter-btn:hover, .filter-btn.active {
-            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #f7ef8a 100%);
             color: #000;
-            border-color: #d4af37;
+            border-color: #b01b18;
         }
         
         .portfolio-item {
@@ -218,7 +218,7 @@
         
         .portfolio-item:hover {
             transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 30px rgba(176, 27, 24, 0.2);
         }
         
         .video-play-btn {
@@ -229,7 +229,7 @@
             width: 70px;
             height: 70px;
             border-radius: 50%;
-            background: rgba(212, 175, 55, 0.9);
+            background: rgba(176, 27, 24, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -247,7 +247,7 @@
         .stats-number {
             font-size: 3rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #d4af37 0%, #f7ef8a 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #f7ef8a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -255,13 +255,13 @@
         
         .testimonial-card {
             background: rgba(30, 30, 30, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(176, 27, 24, 0.2);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
         
         .testimonial-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
+            border-color: rgba(176, 27, 24, 0.5);
             transform: translateY(-5px);
         }
         
@@ -314,7 +314,7 @@
         <div class="container mx-auto px-6 z-10 relative">
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-5xl md:text-6xl font-bold heading-font mb-6 text-white glow-text">
-                    <span class="gold-gradient">Наше портфолио</span>
+                    <span class="red-gradient">Наше портфолио</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
                     Более 20 лет создаем эмоциональные фото и видео, которые рассказывают ваши истории. 

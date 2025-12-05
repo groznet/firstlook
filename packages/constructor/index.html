@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
     <style>
         /* Custom styles for packages page */
         .dark-bg {
@@ -17,15 +17,15 @@
             color: #fff;
         }
         
-        .gold-gradient {
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+        .red-gradient {
+            background: linear-gradient(135deg, #b01b18 0%, #d6211d 50%, #b01b18 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
             color: #000;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -33,25 +33,25 @@
         
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 20px rgba(176, 27, 24, 0.3);
         }
         
         .btn-outline-gold {
-            border: 2px solid #D4AF37;
-            color: #D4AF37;
+            border: 2px solid #b01b18;
+            color: #b01b18;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-outline-gold:hover {
-            background-color: #D4AF37;
+            background-color: #b01b18;
             color: #000;
         }
         
         .card-elegant {
             background: rgba(30, 30, 30, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(176, 27, 24, 0.2);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
@@ -59,7 +59,7 @@
         .card-elegant:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(212, 175, 55, 0.5);
+            border-color: rgba(176, 27, 24, 0.5);
         }
         
         .package-card {
@@ -72,7 +72,7 @@
             position: absolute;
             top: 20px;
             right: -35px;
-            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+            background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
             color: #000;
             padding: 5px 40px;
             font-size: 12px;
@@ -84,7 +84,7 @@
         .form-input {
             width: 100%;
             background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid rgba(176, 27, 24, 0.3);
             border-radius: 8px;
             padding: 12px 16px;
             color: #fff;
@@ -93,12 +93,12 @@
         
         .form-input:focus {
             outline: none;
-            border-color: #D4AF37;
-            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+            border-color: #b01b18;
+            box-shadow: 0 0 0 2px rgba(176, 27, 24, 0.2);
         }
         
         .glow-text {
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            text-shadow: 0 0 10px rgba(176, 27, 24, 0.5);
         }
         
         .section-padding {
@@ -108,7 +108,7 @@
         
         .gradient-divider {
             height: 2px;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            background: linear-gradient(90deg, transparent, #b01b18, transparent);
         }
         
         .package-feature {
@@ -118,7 +118,7 @@
         }
         
         .package-feature i {
-            color: #D4AF37;
+            color: #b01b18;
             margin-right: 10px;
             width: 20px;
         }
@@ -128,7 +128,7 @@
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 4px solid #D4AF37;
+            border-left: 4px solid #b01b18;
         }
         
         .constructor-summary {
@@ -140,8 +140,8 @@
         }
         
         .option-selected {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: #D4AF37;
+            background: rgba(176, 27, 24, 0.1);
+            border-color: #b01b18;
         }
         
         .checkmark {
@@ -164,7 +164,7 @@
         <div class="container mx-auto px-6 z-10 relative">
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
-                    <span class="gold-gradient">Пакеты услуг</span>
+                    <span class="red-gradient">Пакеты услуг</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
                     Выберите готовый пакет или создайте индивидуальный тариф для вашей свадьбы. 
@@ -691,7 +691,7 @@
                         
                         <div class="flex justify-between text-xl font-bold mb-6">
                             <span class="text-white">Итого:</span>
-                            <span class="gold-gradient" x-text="calculateTotal().toLocaleString('ru-RU') + ' ₽'"></span>
+                            <span class="red-gradient" x-text="calculateTotal().toLocaleString('ru-RU') + ' ₽'"></span>
                         </div>
                         
                         <button class="btn-gold w-full py-4 rounded-full text-lg font-medium mb-4" @click="sendToWhatsApp()">

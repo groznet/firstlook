@@ -10,7 +10,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <style>
+        .animate-cursor {
+            animation: cursorBlink 0.7s infinite;
+        }
+
+        @keyframes cursorBlink {
+            0%, 50% { border-color: rgba(255,255,255,0.7); }
+            51%, 100% { border-color: transparent; }
+        }
+
+    </style>
 </head>
 <body class="dark-bg">
     <!-- Animated Background Elements -->
@@ -42,14 +53,26 @@
     <!-- End: Header -->
 
     <!-- Hero Section -->
-    <section class="h-[100vh] md:h-[70vh] flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+<section class="h-[100vh] md:h-[70vh] flex items-center relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+
+    <div class="container mx-auto px-6 z-10 relative flex flex-col md:flex-row items-center md:items-start">
         
-        <div class="container mx-auto px-6 z-10 relative">
+        <div class="md:w-1/2">
             <div class="max-w-2xl">
+                <!-- your existing text content -->
                 <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6 text-white glow-text">
-                    <span class="gold-gradient typing-animation">FIRSTLOOK</span>
+                    <span 
+                        x-data="typingLoop({
+                            words: ['FIRSTLOOK', 'CREATIVE STUDIO', 'VIDEO PRODUCTION', 'PHOTOGRAPHY'],
+                            speed: 120,
+                            pause: 1400
+                        })" 
+                        x-text="display"
+                        class="red-gradient border-r-2 pr-2 animate-cursor">
+                    </span>
                 </h1>
+
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
                     Профессиональная фото- и видеостудия с более чем 20-летним опытом. Свадебная съемка, эмоциональные видеоролики и художественный монтаж.
                 </p>
@@ -59,13 +82,26 @@
                 </div>
             </div>
         </div>
-        
-        <div class="scroll-down">
-            <a href="#portfolio" class="text-gold-400 text-2xl pulse-gold">
-                <i class="fas fa-chevron-down"></i>
-            </a>
+
+        <div class="hidden md:block md:w-1/2 px-6">
+            <video class="w-full h-auto object-cover rounded-xl"
+                   autoplay
+                   loop
+                   playsinline
+                   controls>
+                <source src="/assets/videos/video-1.mp4" type="video/mp4">
+            </video>
         </div>
-    </section>
+
+    </div>
+
+    <div class="scroll-down">
+        <a href="#portfolio" class="text-gold-400 text-2xl pulse-gold">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </div>
+</section>
+
 
     <!-- Stats Section -->
     <section class="py-16 bg-black bg-opacity-50">
@@ -76,15 +112,15 @@
                     <p class="text-gray-400 mt-2">Лет опыта</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
-                    <div class="stat-number">500+</div>
+                    <div class="stat-number">1000+</div>
                     <p class="text-gray-400 mt-2">Проектов</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
-                    <div class="stat-number">3</div>
-                    <p class="text-gray-400 mt-2">Страны</p>
+                    <div class="stat-number">30+</div>
+                    <p class="text-gray-400 mt-2">Сотрудников</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
-                    <div class="stat-number">100%</div>
+                    <div class="stat-number">99%</div>
                     <p class="text-gray-400 mt-2">Довольных клиентов</p>
                 </div>
             </div>
@@ -120,7 +156,7 @@
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
                                 <h3 class="text-white text-xl font-bold mb-2">Свадьба Ахмеда и Амины</h3>
-                                <p class="text-gray-300">Грозный, 2023</p>
+                                <p class="text-gray-300">Грозный, 2025</p>
                             </div>
                         </div>
                     </div>
@@ -131,8 +167,8 @@
                     <div class="relative h-80 bg-gradient-to-br from-amber-900 to-yellow-700">
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Love Story в горах</h3>
-                                <p class="text-gray-300">Чечня, 2023</p>
+                                <h3 class="text-white text-xl font-bold mb-2">Свадебный клип в горах</h3>
+                                <p class="text-gray-300">Чечня, 2025</p>
                             </div>
                         </div>
                     </div>
@@ -144,7 +180,7 @@
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
                                 <h3 class="text-white text-xl font-bold mb-2">Съемка для бренда</h3>
-                                <p class="text-gray-300">2022</p>
+                                <p class="text-gray-300">2025</p>
                             </div>
                         </div>
                     </div>
@@ -156,7 +192,7 @@
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
                                 <h3 class="text-white text-xl font-bold mb-2">Свадьба в Европе</h3>
-                                <p class="text-gray-300">Франция, 2022</p>
+                                <p class="text-gray-300">Франция, 2024</p>
                             </div>
                         </div>
                     </div>
@@ -167,7 +203,7 @@
                     <div class="relative h-80 bg-gradient-to-br from-green-900 to-lime-700">
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Городская Love Story</h3>
+                                <h3 class="text-white text-xl font-bold mb-2">Городская аэросъемка</h3>
                                 <p class="text-gray-300">Грозный, 2024</p>
                             </div>
                         </div>
@@ -352,7 +388,8 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="testimonial-card p-6">
+                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
+
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-900 to-amber-700 mr-4"></div>
                         <div>
@@ -367,7 +404,8 @@
                 </div>
                 
                 <!-- Testimonial 2 -->
-                <div class="testimonial-card p-6">
+                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
+
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 mr-4"></div>
                         <div>
@@ -382,7 +420,8 @@
                 </div>
                 
                 <!-- Testimonial 3 -->
-                <div class="testimonial-card p-6">
+                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
+
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-900 to-purple-700 mr-4"></div>
                         <div>
@@ -442,6 +481,44 @@
             .then(data => {
                 document.getElementById('contact-section-wrapper').innerHTML = data;
             });
+
+        // End: Load components
+        
+        // Typing Loop Alpine.js Component
+        function typingLoop({ words, speed = 120, pause = 1200 }) {
+            return {
+                words,
+                speed,
+                pause,
+                display: '',
+                currentWord: 0,
+                currentIndex: 0,
+                deleting: false,
+                async init() {
+                    while (true) {
+                        let word = this.words[this.currentWord];
+
+                        if (!this.deleting) {
+                            this.display = word.substring(0, this.currentIndex++);
+                            if (this.currentIndex > word.length) {
+                                await new Promise(r => setTimeout(r, this.pause));
+                                this.deleting = true;
+                            }
+                        } else {
+                            this.display = word.substring(0, this.currentIndex--);
+                            if (this.currentIndex < 0) {
+                                this.deleting = false;
+                                this.currentWord = (this.currentWord + 1) % this.words.length;
+                            }
+                        }
+
+                        await new Promise(r => setTimeout(r, this.speed));
+                    }
+                }
+            }
+        }
+        // End: Typing Loop Alpine.js Component
     </script>
+
 </body>
 </html>
