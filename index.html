@@ -53,54 +53,55 @@
     <!-- End: Header -->
 
     <!-- Hero Section -->
-<section class="h-[100vh] md:h-[70vh] flex items-center relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
+    <section class="h-[100vh] md:h-[70vh] flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-60 z-0"></div>
 
-    <div class="container mx-auto px-6 z-10 relative flex flex-col md:flex-row items-center md:items-start">
-        
-        <div class="md:w-1/2">
-            <div class="max-w-2xl">
-                <!-- your existing text content -->
-                <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6 text-white glow-text">
-                    <span 
-                        x-data="typingLoop({
-                            words: ['FIRSTLOOK', 'CREATIVE STUDIO', 'VIDEO PRODUCTION', 'PHOTOGRAPHY'],
-                            speed: 120,
-                            pause: 1400
-                        })" 
-                        x-text="display"
-                        class="red-gradient border-r-2 pr-2 animate-cursor">
-                    </span>
-                </h1>
+        <div class="container mx-auto px-6 z-10 relative flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-0">
+            
+            <div class="md:w-1/2">
+                <div class="max-w-2xl">
+                    <!-- your existing text content -->
+                    <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6 text-white glow-text">
+                        <span 
+                            x-data="typingLoop({
+                                words: ['FIRSTLOOK', 'CREATIVE STUDIO', 'VIDEO PRODUCTION', 'PHOTOGRAPHY'],
+                                speed: 120,
+                                pause: 1400
+                            })" 
+                            x-text="display"
+                            class="red-gradient border-r-2 pr-2 animate-cursor">
+                        </span>
+                    </h1>
 
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
-                    Профессиональная фото- и видеостудия с более чем 20-летним опытом. Свадебная съемка, эмоциональные видеоролики и художественный монтаж.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#portfolio" class="btn-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Смотреть работы</a>
-                    <a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Обсудить проект</a>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
+                        Профессиональная фото- и видеостудия с более чем 20-летним опытом. Свадебная съемка, эмоциональные видеоролики и художественный монтаж.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#portfolio" class="btn-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Смотреть работы</a>
+                        <a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Обсудить проект</a>
+                    </div>
                 </div>
             </div>
+
+            <div class="w-full md:w-1/2 px-0 md:px-6 order-2 md:order-none">
+                <video class="w-full h-auto object-cover rounded-xl"
+                    autoplay
+                    loop
+                    playsinline
+                    controls>
+                    <source src="/assets/videos/video-1.mp4" type="video/mp4">
+                </video>
+            </div>
+
+
         </div>
 
-        <div class="hidden md:block md:w-1/2 px-6">
-            <video class="w-full h-auto object-cover rounded-xl"
-                   autoplay
-                   loop
-                   playsinline
-                   controls>
-                <source src="/assets/videos/video-1.mp4" type="video/mp4">
-            </video>
+        <div class="scroll-down">
+            <a href="#portfolio" class="text-gold-400 text-2xl pulse-gold">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
-
-    </div>
-
-    <div class="scroll-down">
-        <a href="#portfolio" class="text-gold-400 text-2xl pulse-gold">
-            <i class="fas fa-chevron-down"></i>
-        </a>
-    </div>
-</section>
+    </section>
 
 
     <!-- Stats Section -->
@@ -341,7 +342,7 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">3 страны</h4>
+                                <h4 class="text-white font-bold">Масштаб</h4>
                                 <p class="text-gray-400 text-sm">Чечня, Россия, Европа</p>
                             </div>
                         </div>
