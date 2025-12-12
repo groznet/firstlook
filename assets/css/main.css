@@ -449,3 +449,8 @@ body {
     background: linear-gradient(45deg, #d6211d, #b01b18);
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
 }
+
+/* Kerim Custom CSS */
+.no-margin {
+    margin: 0 !important;
+}
