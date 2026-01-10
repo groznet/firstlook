@@ -3,29 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пакеты услуг | Firstlook — Фото и Видеостудия</title>
-    <script src="/assets/js/tailwindcss_local.js"></script>
+    <title>Конструктор тарифа | Firstlook — Видеостудия</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
     <style>
-        /* Custom styles for packages page */
         .dark-bg {
             background-color: #0a0a0a;
             color: #fff;
         }
         
-        .red-gradient {
-            background: linear-gradient(135deg, #b01b18 0%, #d6211d 50%, #b01b18 100%);
+        .gold-gradient {
+            background: linear-gradient(135deg, #d6211d 0%, #d6211d 50%, #d6211d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .btn-gold {
-            background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
+            background: linear-gradient(135deg, #d6211d 0%, #d6211d 100%);
             color: #000;
             font-weight: 600;
             transition: all 0.3s ease;
@@ -33,25 +31,25 @@
         
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(176, 27, 24, 0.3);
+            box-shadow: 0 10px 20px rgba(214, 33, 29, 0.3);
         }
         
         .btn-outline-gold {
-            border: 2px solid #b01b18;
-            color: #b01b18;
+            border: 2px solid #d6211d;
+            color: #d6211d;
             font-weight: 600;
             transition: all 0.3s ease;
         }
         
         .btn-outline-gold:hover {
-            background-color: #b01b18;
+            background-color: #d6211d;
             color: #000;
         }
         
         .card-elegant {
             background: rgba(30, 30, 30, 0.7);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(176, 27, 24, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.2);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
@@ -59,68 +57,7 @@
         .card-elegant:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(176, 27, 24, 0.5);
-        }
-        
-        .package-card {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .package-card.popular::before {
-            content: "ПОПУЛЯРНЫЙ";
-            position: absolute;
-            top: 20px;
-            right: -35px;
-            background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
-            color: #000;
-            padding: 5px 40px;
-            font-size: 12px;
-            font-weight: bold;
-            transform: rotate(45deg);
-            z-index: 10;
-        }
-        
-        .form-input {
-            width: 100%;
-            background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(176, 27, 24, 0.3);
-            border-radius: 8px;
-            padding: 12px 16px;
-            color: #fff;
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #b01b18;
-            box-shadow: 0 0 0 2px rgba(176, 27, 24, 0.2);
-        }
-        
-        .glow-text {
-            text-shadow: 0 0 10px rgba(176, 27, 24, 0.5);
-        }
-        
-        .section-padding {
-            padding-top: 80px;
-            padding-bottom: 80px;
-        }
-        
-        .gradient-divider {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #b01b18, transparent);
-        }
-        
-        .package-feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .package-feature i {
-            color: #b01b18;
-            margin-right: 10px;
-            width: 20px;
+            border-color: rgba(212, 175, 55, 0.5);
         }
         
         .constructor-step {
@@ -128,7 +65,7 @@
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
-            border-left: 4px solid #b01b18;
+            border-left: 4px solid #d6211d;
         }
         
         .constructor-summary {
@@ -140,17 +77,147 @@
         }
         
         .option-selected {
-            background: rgba(176, 27, 24, 0.1);
-            border-color: #b01b18;
+            background: rgba(214, 33, 29, 0.1);
+            border-color: #d6211d;
+        }
+        /* Make width/height 36px on desktop and 28px on mobile */
+        .counter-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(214, 33, 29, 0.1);
+            border: 1px solid rgba(214, 33, 29, 0.3);
+            color: #d6211d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 640px) {
+            .counter-btn {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        .counter-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #D4AF37;
+        }
+
+        .counter-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: white;
         }
         
-        .checkmark {
-            display: none;
+        /* min-width: 40px on desktop and 20px on mobile */
+        @media (max-width: 640px) {
+            .counter-value {
+                min-width: 20px;
+            }
         }
         
-        .option-selected .checkmark {
-            display: block;
+        .service-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
+        
+        .service-item:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price-badge {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .section-padding {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        
+        .gradient-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+        }
+        
+        .form-input {
+            width: 100%;
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+        
+        .gold-bg {
+            background: linear-gradient(135deg, #D4AF37 0%, #FFD700 100%);
+        }
+        
+        .package-tier-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .basic-badge {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60A5FA;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .premium-badge {
+            background: rgba(212, 175, 55, 0.1);
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        /* Help button and modal styles */
+        .help-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-left: 0.5rem;
+            cursor: pointer;
+        }
+        .help-modal-backdrop { background: rgba(0,0,0,0.6); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="dark-bg">
@@ -164,457 +231,332 @@
         <div class="container mx-auto px-6 z-10 relative">
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-5xl md:text-6xl font-bold mb-6 text-white glow-text">
-                    <span class="red-gradient">Пакеты услуг</span>
+                    <span class="gold-gradient">Конструктор тарифа</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                    Выберите готовый пакет или создайте индивидуальный тариф для вашей свадьбы. 
-                    Более 20 лет создаем незабываемые воспоминания.
+                    Соберите идеальный пакет видеосъёмки для вашего мероприятия. Просто выбирайте нужные услуги.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <a href="#packages" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Готовые пакеты</a>
-                    <a href="#constructor" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Конструктор тарифа</a>
+                    <a href="/prices" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Готовые пакеты</a>
+                    <a href="#constructor-form" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Собрать тариф</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Packages Section -->
-    <section id="packages" class="section-padding bg-black bg-opacity-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Готовые пакеты</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Мы разработали оптимальные решения для разных форматов свадеб и бюджетов
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Package 1: Essential -->
-                <div class="package-card card-elegant p-8 flex flex-col">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Минимальный</h3>
-                        <p class="text-gray-400">Для небольших свадеб</p>
-                    </div>
-                    
-                    <div class="text-center mb-6">
-                        <span class="text-4xl font-bold text-white">от 35 000 ₽</span>
-                    </div>
-                    
-                    <div class="mb-8 flex-grow">
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>1 фотограф</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Обработка 50+ фото</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Цветокоррекция</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-times text-gray-500"></i>
-                            <span class="text-gray-500">Видеосъёмка</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-times text-gray-500"></i>
-                            <span class="text-gray-500">Дрон</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-times text-gray-500"></i>
-                            <span class="text-gray-500">Ускоренный монтаж</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-outline-gold w-full py-3 rounded-full mt-auto" onclick="selectPackage('essential')">
-                        Выбрать пакет
-                    </button>
-                </div>
-                
-                <!-- Package 2: Standard (Popular) -->
-                <div class="package-card card-elegant p-8 flex flex-col popular">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Оптимальный</h3>
-                        <p class="text-gray-400">Свадьбы до 100 гостей</p>
-                    </div>
-                    
-                    <div class="text-center mb-6">
-                        <span class="text-4xl font-bold text-white">от 75 000 ₽</span>
-                    </div>
-                    
-                    <div class="mb-8 flex-grow">
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>2 фотографа</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>1 видеооператор</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Обработка 150+ фото</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Клип 3-5 минут</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Дрон (по согласованию)</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-times text-gray-500"></i>
-                            <span class="text-gray-500">Ускоренный монтаж</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-gold w-full py-3 rounded-full mt-auto" onclick="selectPackage('standard')">
-                        Выбрать пакет
-                    </button>
-                </div>
-                
-                <!-- Package 3: Premium -->
-                <div class="package-card card-elegant p-8 flex flex-col">
-                    <div class="text-center mb-6">
-                        <h3 class="text-2xl font-bold text-white mb-2">Старт Плюс</h3>
-                        <p class="text-gray-400">Для особых случаев</p>
-                    </div>
-                    
-                    <div class="text-center mb-6">
-                        <span class="text-4xl font-bold text-white">от 120 000 ₽</span>
-                    </div>
-                    
-                    <div class="mb-8 flex-grow">
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>2 фотографа + ассистент</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>2 видеооператора</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Полный день съёмки (12-14 ч)</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Обработка 300+ фото</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Полный фильм + клип</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Дрон, стедикам, звук</span>
-                        </div>
-                        <div class="package-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Ускоренный монтаж</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn-outline-gold w-full py-3 rounded-full mt-auto" onclick="selectPackage('premium')">
-                        Выбрать пакет
-                    </button>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <!-- See all packages /packages.html -->
-                <a href="/packages.html" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center">
-                    <span>Посмотреть все пакеты</span>
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-                <div class="flex flex-col md:flex-row items-center mt-6 justify-center space-x-4">
-                    <p class="text-gray-400 mb-4 md:mb-0">Не нашли подходящий вариант?</p>
-                    <a href="/packages/constructor/" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center">
-                        <span>Создать свой тариф</span>
-                        <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Package Constructor Section -->
-    <section id="constructor" class="section-padding bg-black bg-opacity-30">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Конструктор тарифа</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Соберите идеальный пакет услуг для вашей свадьбы. Выбирайте только то, что вам нужно.
-                </p>
-            </div>
-            
-            <div x-data="packageConstructor()" class="flex flex-col lg:flex-row gap-8">
+    <!-- Constructor Section -->
+    <section id="constructor-form" class="section-padding">
+        <div class="container mx-auto px-0 md:px-6">
+            <div class="flex flex-col lg:flex-row gap-8">
                 <!-- Constructor Steps -->
                 <div class="lg:w-2/3">
-                    <div class="space-y-6">
-                        <!-- Step 1: Photography -->
+                    <div x-data="packageConstructor()" class="space-y-6">
+                        <!-- Step 1: Video Operators -->
                         <div class="constructor-step">
-                            <h3 class="text-xl font-bold text-white mb-4">1. Фотосъёмка</h3>
+                            <h3 class="text-xl font-bold text-white mb-6">1. Видеооператоры</h3>
+                            <div class="space-y-4">
+                                <!-- Basic Operators -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <div class="flex items-center mb-2">
+                                            <h4 class="font-bold text-white text-lg">Видеооператор (Базовый)
+                                                <button class="help-btn" @click="showModal('basicOperator')" title="Подробнее">?</button>
+                                            </h4>
+                                            <span class="basic-badge package-tier-badge ml-2">HD</span>
+                                        </div>
+                                        <p class="text-gray-400 text-sm">Документальная съёмка в автоматических режимах</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4 space-y-2">
+                                        <span class="md:hidden">50 т</span>
+                                        <span class="hidden md:inline price-badge">50 000 ₽ / шт</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('basicOperator')" :disabled="counters.basicOperator <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.basicOperator"></span>
+                                            <button class="counter-btn" @click="increment('basicOperator')">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Premium Operators -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <div class="flex items-center mb-2">
+                                            <h4 class="font-bold text-white text-lg">Видеооператор (Премиум)
+                                                <button class="help-btn" @click="showModal('premiumOperator')" title="Подробнее">?</button>
+                                            </h4>
+                                            <span class="premium-badge package-tier-badge ml-2">4K</span>
+                                        </div>
+                                        <p class="text-gray-400 text-sm">Кинематографическая съёмка в ручных режимах</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">80 т</span>
+                                        <span class="hidden md:inline price-badge">80 000 ₽ / шт</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('premiumOperator')" :disabled="counters.premiumOperator <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.premiumOperator"></span>
+                                            <button class="counter-btn" @click="increment('premiumOperator')">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Studio Director -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <div class="flex items-center mb-2">
+                                            <h4 class="font-bold text-white text-lg">Руководитель студии
+                                                <button class="help-btn" @click="showModal('director')" title="Подробнее">?</button>
+                                            </h4>
+                                            <span class="premium-badge package-tier-badge ml-2">Премиум</span>
+                                        </div>
+                                        <p class="text-gray-400 text-sm">Художественный контроль, свадебный корреспондент</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">100 т</span>
+                                        <span class="hidden md:inline price-badge">100 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('director')" :disabled="counters.director <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.director"></span>
+                                            <button class="counter-btn" @click="increment('director')" :disabled="counters.director >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Additional Equipment -->
+                        <div class="constructor-step">
+                            <h3 class="text-xl font-bold text-white mb-6">2. Дополнительное оборудование</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.photography === 'none'}"
-                                     @click="selectedOptions.photography = 'none'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.photography === 'none'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Без фотосъёмки</h4>
-                                            <p class="text-sm text-gray-400">0 ₽</p>
+                                <!-- Camera Crane -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Операторский кран
+                                            <button class="help-btn" @click="showModal('crane')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Динамичные планы, профессиональная стабилизация</p>
+                                    </div>
+                                    <div class="flex flex-col items-center space-x-4 space-y-2">
+                                        <span class="md:hidden">70 т</span>
+                                        <span class="hidden md:inline price-badge">от 70 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('crane')" :disabled="counters.crane <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.crane"></span>
+                                            <button class="counter-btn" @click="increment('crane')" :disabled="counters.crane >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.photography === 'single'}"
-                                     @click="selectedOptions.photography = 'single'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.photography === 'single'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">1 фотограф</h4>
-                                            <p class="text-sm text-gray-400">25 000 ₽</p>
-                                        </div>
+                                <!-- Drone -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Аэросъёмка (Дрон)
+                                            <button class="help-btn" @click="showModal('drone')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Впечатляющие aerial-кадры, масштабные планы</p>
                                     </div>
-                                </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.photography === 'double'}"
-                                     @click="selectedOptions.photography = 'double'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.photography === 'double'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">2 фотографа</h4>
-                                            <p class="text-sm text-gray-400">45 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.photography === 'premium'}"
-                                     @click="selectedOptions.photography = 'premium'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.photography === 'premium'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">2 фотографа + ассистент</h4>
-                                            <p class="text-sm text-gray-400">60 000 ₽</p>
+                                    <div class="flex flex-col items-center space-x-4 space-y-2">
+                                        <span class="md:hidden">55 т</span>
+                                        <span class="hidden md:inline price-badge">от 55 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('drone')" :disabled="counters.drone <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.drone"></span>
+                                            <button class="counter-btn" @click="increment('drone')" :disabled="counters.drone >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Step 2: Videography -->
+
+                        <!-- Step 3: Materials Delivery -->
                         <div class="constructor-step">
-                            <h3 class="text-xl font-bold text-white mb-4">2. Видеосъёмка</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.videography === 'none'}"
-                                     @click="selectedOptions.videography = 'none'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.videography === 'none'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Без видеосъёмки</h4>
-                                            <p class="text-sm text-gray-400">0 ₽</p>
+                            <h3 class="text-xl font-bold text-white mb-6">3. Материалы и доставка</h3>
+                            <div class="space-y-4">
+                                <!-- Online Link -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Ссылка на фильм (1 год)
+                                            <button class="help-btn" @click="showModal('onlineLink')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Онлайн-доступ для скачивания и просмотра</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">5 т</span>
+                                        <span class="hidden md:inline price-badge">5 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('onlineLink')" :disabled="counters.onlineLink <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.onlineLink"></span>
+                                            <button class="counter-btn" @click="increment('onlineLink')" :disabled="counters.onlineLink >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.videography === 'single'}"
-                                     @click="selectedOptions.videography = 'single'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.videography === 'single'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">1 видеооператор</h4>
-                                            <p class="text-sm text-gray-400">30 000 ₽</p>
+                                <!-- USB Flash Drive -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">USB флешка
+                                            <button class="help-btn" @click="showModal('flashDrive')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Физический носитель с готовым фильмом</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">5 т</span>
+                                        <span class="hidden md:inline price-badge">5 000 ₽ / шт</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('flashDrive')" :disabled="counters.flashDrive <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.flashDrive"></span>
+                                            <button class="counter-btn" @click="increment('flashDrive')">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.videography === 'double'}"
-                                     @click="selectedOptions.videography = 'double'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.videography === 'double'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">2 видеооператора</h4>
-                                            <p class="text-sm text-gray-400">55 000 ₽</p>
+                                <!-- Hard Drive -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Жёсткий диск
+                                            <button class="help-btn" @click="showModal('hardDrive')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Внешний накопитель с полной версией фильма</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">15 т</span>
+                                        <span class="hidden md:inline price-badge">15 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('hardDrive')" :disabled="counters.hardDrive <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.hardDrive"></span>
+                                            <button class="counter-btn" @click="increment('hardDrive')" :disabled="counters.hardDrive >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Step 3: Duration -->
-                        <div class="constructor-step">
-                            <h3 class="text-xl font-bold text-white mb-4">3. Длительность съёмки</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.duration === '6h'}"
-                                     @click="selectedOptions.duration = '6h'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.duration === '6h'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">6 часов</h4>
-                                            <p class="text-sm text-gray-400">Базовый тариф</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.duration === '8h'}"
-                                     @click="selectedOptions.duration = '8h'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.duration === '8h'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">8 часов</h4>
-                                            <p class="text-sm text-gray-400">+ 5 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.duration === 'fullday'}"
-                                     @click="selectedOptions.duration = 'fullday'">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.duration === 'fullday'"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Полный день (12-14 ч)</h4>
-                                            <p class="text-sm text-gray-400">+ 15 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
+
                         <!-- Step 4: Additional Services -->
                         <div class="constructor-step">
-                            <h3 class="text-xl font-bold text-white mb-4">4. Дополнительные услуги</h3>
+                            <h3 class="text-xl font-bold text-white mb-6">4. Дополнительные услуги</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.drone}"
-                                     @click="selectedOptions.drone = !selectedOptions.drone">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.drone"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Аэросъёмка (дрон)</h4>
-                                            <p class="text-sm text-gray-400">+ 8 000 ₽</p>
+                                <!-- Express Clip -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Экспресс-ролик в зале
+                                            <button class="help-btn" @click="showModal('expressClip')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Быстрый монтаж для показа на экране в день свадьбы</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">45 т</span>
+                                        <span class="hidden md:inline price-badge">45 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('expressClip')" :disabled="counters.expressClip <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.expressClip"></span>
+                                            <button class="counter-btn" @click="increment('expressClip')" :disabled="counters.expressClip >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.steadicam}"
-                                     @click="selectedOptions.steadicam = !selectedOptions.steadicam">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.steadicam"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Стедикам / Кран</h4>
-                                            <p class="text-sm text-gray-400">+ 10 000 ₽</p>
+                                <!-- Overtime -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Переработка после 18:00
+                                            <button class="help-btn" @click="showModal('overtime')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Дополнительные часы съёмки в вечернее время</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">10-20 т/час</span>
+                                        <span class="hidden md:inline price-badge">10-20 000 ₽/час</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('overtime')" :disabled="counters.overtime <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.overtime">0</span>
+                                            <button class="counter-btn" @click="increment('overtime')">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.gopro}"
-                                     @click="selectedOptions.gopro = !selectedOptions.gopro">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.gopro"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">GoPro / экшн-камера</h4>
-                                            <p class="text-sm text-gray-400">+ 5 000 ₽</p>
+                                <!-- Second Day -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Второй день мероприятия
+                                            <button class="help-btn" @click="showModal('secondDay')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Съёмка обрядов и традиций на следующий день</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">80 т</span>
+                                        <span class="hidden md:inline price-badge">от 80 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('secondDay')" :disabled="counters.secondDay <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.secondDay">0</span>
+                                            <button class="counter-btn" @click="increment('secondDay')" :disabled="counters.secondDay >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.fastEdit}"
-                                     @click="selectedOptions.fastEdit = !selectedOptions.fastEdit">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.fastEdit"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Ускоренный монтаж</h4>
-                                            <p class="text-sm text-gray-400">+ 15 000 ₽</p>
+                                <!-- See-off Bride -->
+                                <div class="service-item card-elegant">
+                                    <div>
+                                        <h4 class="font-bold text-white mb-1">Проводы невесты
+                                            <button class="help-btn" @click="showModal('brideSeeOff')" title="Подробнее">?</button>
+                                        </h4>
+                                        <p class="text-gray-400 text-sm">Утренняя съёмка до основных мероприятий</p>
+                                    </div>
+                                    <div class="flex flex-col md:flex-row items-center space-x-4">
+                                        <span class="md:hidden">80 т</span>
+                                        <span class="hidden md:inline price-badge">от 80 000 ₽</span>
+                                        <div class="flex items-center">
+                                            <button class="counter-btn" @click="decrement('brideSeeOff')" :disabled="counters.brideSeeOff <= 0">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                            <span class="counter-value" x-text="counters.brideSeeOff">0</span>
+                                            <button class="counter-btn" @click="increment('brideSeeOff')" :disabled="counters.brideSeeOff >= 1">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.photoBook}"
-                                     @click="selectedOptions.photoBook = !selectedOptions.photoBook">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.photoBook"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Фотокнига премиум</h4>
-                                            <p class="text-sm text-gray-400">+ 12 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                     :class="{'option-selected': selectedOptions.loveStory}"
-                                     @click="selectedOptions.loveStory = !selectedOptions.loveStory">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.loveStory"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Love Story до свадьбы</h4>
-                                            <p class="text-sm text-gray-400">+ 20 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Add this with the other additional services -->
-                                <div class="card-elegant p-4 cursor-pointer" 
-                                    :class="{'option-selected': selectedOptions.soundRecording}"
-                                    @click="selectedOptions.soundRecording = !selectedOptions.soundRecording">
-                                    <div class="flex items-center">
-                                        <div class="w-6 h-6 rounded-full border-2 border-gray-400 mr-3 flex items-center justify-center">
-                                            <div class="w-3 h-3 rounded-full bg-yellow-500 checkmark" x-show="selectedOptions.soundRecording"></div>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-white">Звукозапись (Zoom/петлички)</h4>
-                                            <p class="text-sm text-gray-400">+ 7 000 ₽</p>
-                                        </div>
-                                    </div>
-                                </div>                                
-                                
                             </div>
                         </div>
                     </div>
@@ -622,79 +564,218 @@
                 
                 <!-- Constructor Summary -->
                 <div class="lg:w-1/3">
-                    <div class="constructor-summary">
-                        <h3 class="text-2xl font-bold text-white mb-6 text-center">Ваш тариф</h3>
+                    <div x-data="packageConstructor()" class="constructor-summary">
+                        <h3 class="text-2xl font-bold text-white mb-6 text-center glow-text">Ваш тариф</h3>
                         
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between" x-show="selectedOptions.photography !== 'none'">
-                                <span class="text-gray-400">Фотосъёмка:</span>
-                                <span class="text-white font-medium" x-text="getOptionPrice('photography').toLocaleString('ru-RU') + ' ₽'"></span>
-                            </div>
+                        <!-- Selected Services -->
+                        <div class="space-y-4 mb-6 max-h-[400px] overflow-y-auto pr-2">
+                            <!-- Basic Operators -->
+                            <template x-if="counters.basicOperator > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div>
+                                        <span class="text-gray-300">Видеооператор (Базовый)</span>
+                                        <span class="text-gray-500 ml-2" x-text="'×' + counters.basicOperator"></span>
+                                    </div>
+                                    <span class="text-white font-medium" x-text="formatPrice(counters.basicOperator * 50000) + ' ₽'"></span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.videography !== 'none'">
-                                <span class="text-gray-400">Видеосъёмка:</span>
-                                <span class="text-white font-medium" x-text="getOptionPrice('videography').toLocaleString('ru-RU') + ' ₽'"></span>
-                            </div>
+                            <!-- Premium Operators -->
+                            <template x-if="counters.premiumOperator > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div>
+                                        <span class="text-gray-300">Видеооператор (Премиум)</span>
+                                        <span class="text-gray-500 ml-2" x-text="'×' + counters.premiumOperator"></span>
+                                    </div>
+                                    <span class="text-white font-medium" x-text="formatPrice(counters.premiumOperator * 80000) + ' ₽'"></span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Длительность:</span>
-                                <span class="text-white font-medium" x-text="getOptionPrice('duration').toLocaleString('ru-RU') + ' ₽'"></span>
-                            </div>
+                            <!-- Studio Director -->
+                            <template x-if="counters.director > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Руководитель студии</span>
+                                    <span class="text-white font-medium" x-text="formatPrice(counters.director * 100000) + ' ₽'"></span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.drone">
-                                <span class="text-gray-400">Аэросъёмка:</span>
-                                <span class="text-white font-medium">8 000 ₽</span>
-                            </div>
+                            <!-- Camera Crane -->
+                            <template x-if="counters.crane > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Операторский кран</span>
+                                    <span class="text-white font-medium">70 000 ₽</span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.steadicam">
-                                <span class="text-gray-400">Стедикам:</span>
-                                <span class="text-white font-medium">10 000 ₽</span>
-                            </div>
+                            <!-- Drone -->
+                            <template x-if="counters.drone > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Аэросъёмка (Дрон)</span>
+                                    <span class="text-white font-medium">55 000 ₽</span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.gopro">
-                                <span class="text-gray-400">GoPro:</span>
-                                <span class="text-white font-medium">5 000 ₽</span>
-                            </div>
+                            <!-- Online Link -->
+                            <template x-if="counters.onlineLink > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Ссылка на фильм</span>
+                                    <span class="text-white font-medium">5 000 ₽</span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.fastEdit">
-                                <span class="text-gray-400">Ускоренный монтаж:</span>
-                                <span class="text-white font-medium">15 000 ₽</span>
-                            </div>
+                            <!-- Flash Drives -->
+                            <template x-if="counters.flashDrive > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div>
+                                        <span class="text-gray-300">USB флешка</span>
+                                        <span class="text-gray-500 ml-2" x-text="'×' + counters.flashDrive"></span>
+                                    </div>
+                                    <span class="text-white font-medium" x-text="formatPrice(counters.flashDrive * 5000) + ' ₽'"></span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.photoBook">
-                                <span class="text-gray-400">Фотокнига:</span>
-                                <span class="text-white font-medium">12 000 ₽</span>
-                            </div>
+                            <!-- Hard Drive -->
+                            <template x-if="counters.hardDrive > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Жёсткий диск</span>
+                                    <span class="text-white font-medium">15 000 ₽</span>
+                                </div>
+                            </template>
                             
-                            <div class="flex justify-between" x-show="selectedOptions.loveStory">
-                                <span class="text-gray-400">Love Story:</span>
-                                <span class="text-white font-medium">20 000 ₽</span>
-                            </div>
-
-                            <!-- Additional. Add this with the other additional service displays -->
-                            <div class="flex justify-between" x-show="selectedOptions.soundRecording">
-                                <span class="text-gray-400">Звукозапись:</span>
-                                <span class="text-white font-medium">7 000 ₽</span>
-                            </div>                            
-
+                            <!-- Express Clip -->
+                            <template x-if="counters.expressClip > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Экспресс-ролик</span>
+                                    <span class="text-white font-medium">45 000 ₽</span>
+                                </div>
+                            </template>
+                            
+                            <!-- Overtime -->
+                            <template x-if="counters.overtime > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <div>
+                                        <span class="text-gray-300">Переработка (часы)</span>
+                                        <span class="text-gray-500 ml-2" x-text="'×' + counters.overtime"></span>
+                                    </div>
+                                    <span class="text-white font-medium" x-text="formatPrice(counters.overtime * 15000) + ' ₽'"></span>
+                                </div>
+                            </template>
+                            
+                            <!-- Second Day -->
+                            <template x-if="counters.secondDay > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Второй день</span>
+                                    <span class="text-white font-medium">80 000 ₽</span>
+                                </div>
+                            </template>
+                            
+                            <!-- Bride See-off -->
+                            <template x-if="counters.brideSeeOff > 0">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-300">Проводы невесты</span>
+                                    <span class="text-white font-medium">80 000 ₽</span>
+                                </div>
+                            </template>
                         </div>
                         
                         <div class="gradient-divider my-6"></div>
                         
+                        <!-- Total -->
                         <div class="flex justify-between text-xl font-bold mb-6">
                             <span class="text-white">Итого:</span>
-                            <span class="red-gradient" x-text="calculateTotal().toLocaleString('ru-RU') + ' ₽'"></span>
+                            <span class="gold-gradient" x-text="formatPrice(calculateTotal()) + ' ₽'"></span>
                         </div>
                         
+                        <!-- Note -->
+                        <div class="text-sm text-gray-400 mb-6 p-3 bg-gray-900 rounded-lg">
+                            <p class="mb-2">💡 <span class="text-gold-400 font-medium">Указана приблизительная стоимость.</span></p>
+                            <p>Точная цена рассчитывается после обсуждения деталей вашего мероприятия.</p>
+                        </div>
+                        
+                        <!-- Action Buttons -->
                         <button class="btn-gold w-full py-4 rounded-full text-lg font-medium mb-4" @click="sendToWhatsApp()">
                             <i class="fab fa-whatsapp mr-2"></i>
                             Отправить в WhatsApp
                         </button>
                         
-                        <button class="btn-outline-gold w-full py-4 rounded-full text-lg font-medium" onclick="window.location.href='/contact.html'">
-                            <i class="fas fa-envelope mr-2"></i>
-                            Запросить консультацию
+                        <button class="btn-outline-gold w-full py-4 rounded-full text-lg font-medium" onclick="showContactForm()">
+                            <i class="fas fa-calendar mr-2"></i>
+                            Забронировать дату
                         </button>
+                        
+                        <!-- Reset Button -->
+                        <button class="text-gray-500 text-sm mt-4 w-full hover:text-gold-400 transition" @click="resetAll()">
+                            <i class="fas fa-redo mr-2"></i>
+                            Сбросить все настройки
+                        </button>
+                        
+                        <!-- Help / Details Modal -->
+                        <div x-cloak x-show="modal.open" class="fixed inset-0 flex items-center justify-center z-50">
+                            <div class="absolute inset-0 help-modal-backdrop" @click="closeModal()"></div>
+                            <div class="bg-black rounded-lg p-6 z-10 w-full max-w-xl">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-xl font-bold text-white" x-text="modal.title"></h4>
+                                    <button class="text-gray-400" @click="closeModal()">✕</button>
+                                </div>
+                                <p class="text-gray-300 mt-4" x-text="modal.body"></p>
+                                <div class="mt-6 flex justify-end">
+                                    <button class="btn-outline-gold mr-3" @click="closeModal()">Закрыть</button>
+                                    <button class="btn-gold" @click="selectFromModal()">Добавить услугу</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding bg-black bg-opacity-30">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Частые вопросы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Ответы на популярные вопросы о конструкторе тарифов
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- FAQ 1 -->
+                <div class="card-elegant p-6">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-medium text-white">Чем отличается базовый оператор от премиум?</h3>
+                        <i class="fas fa-chevron-down text-gold-400 transition-transform"></i>
+                    </div>
+                    <div class="mt-4 text-gray-400 hidden">
+                        <p><strong>Базовый оператор:</strong> Съёмка в автоматических режимах, технический монтаж, формат HD. Подходит для документальной фиксации события.</p>
+                        <p class="mt-2"><strong>Премиум оператор:</strong> Съёмка в ручных режимах, художественный монтаж, формат 4K. Создание эмоционального фильма с драматургией.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="card-elegant p-6">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-medium text-white">Можно ли комбинировать базовые и премиум услуги?</h3>
+                        <i class="fas fa-chevron-down text-gold-400 transition-transform"></i>
+                    </div>
+                    <div class="mt-4 text-gray-400 hidden">
+                        <p>Да, вы можете создать любой микс услуг. Например: 1 премиум оператор для основных моментов + 1 базовый оператор для общего охвата.</p>
+                        <p class="mt-2">Все услуги совместимы и будут выполнены с учётом их особенностей.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="card-elegant p-6">
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleFAQ(this)">
+                        <h3 class="text-xl font-medium text-white">Что лучше выбрать: ссылку, флешку или жёсткий диск?</h3>
+                        <i class="fas fa-chevron-down text-gold-400 transition-transform"></i>
+                    </div>
+                    <div class="mt-4 text-gray-400 hidden">
+                        <p><strong>Ссылка (5 000 ₽):</strong> Удобно для быстрого доступа и отправки родственникам. Хранится 1 год.</p>
+                        <p><strong>Флешка (5 000 ₽/шт):</strong> Физический носитель для просмотра на телевизоре или компьютере.</p>
+                        <p><strong>Жёсткий диск (15 000 ₽):</strong> Вместительный носитель для архивного хранения полной версии.</p>
+                        <p class="mt-2">Можно выбрать несколько вариантов одновременно.</p>
                     </div>
                 </div>
             </div>
@@ -706,148 +787,197 @@
 
     <script>
         // Package Constructor Alpine.js Component
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('packageConstructor', () => ({
-                selectedOptions: {
-                    photography: 'single',
-                    videography: 'single',
-                    duration: '8h',
-                    drone: false,
-                    steadicam: false,
-                    gopro: false,
-                    fastEdit: false,
-                    photoBook: false,
-                    loveStory: false,
-                    soundRecording: false
+        function packageConstructor() {
+            return {
+                modal: {
+                    open: false,
+                    title: '',
+                    body: '',
+                    key: ''
                 },
-                
-                getOptionPrice(option) {
-                    const prices = {
-                        photography: {
-                            'none': 0,
-                            'single': 25000,
-                            'double': 45000,
-                            'premium': 60000
-                        },
-                        videography: {
-                            'none': 0,
-                            'single': 30000,
-                            'double': 55000
-                        },
-                        duration: {
-                            '6h': 0,
-                            '8h': 5000,
-                            'fullday': 15000
+                serviceDetails: {
+                    basicOperator: { title: 'Видеооператор (Базовый)', body: 'Документальная съёмка в автоматических режимах. Подходит для общего охвата события. Цена: 50 000 ₽ / шт', priceKey: 'basicOperator' },
+                    premiumOperator: { title: 'Видеооператор (Премиум)', body: 'Кинематографическая съёмка в ручных режимах, более творческий подход. Цена: 80 000 ₽ / шт', priceKey: 'premiumOperator' },
+                    director: { title: 'Руководитель студии', body: 'Художественный контроль и координация, отвечает за творческую составляющую и качество результата. Цена: 100 000 ₽', priceKey: 'director' },
+                    crane: { title: 'Операторский кран', body: 'Кран даёт плавные динамичные кадры и профессиональную стабилизацию. Подходит для крупных планов и перемещений камеры.' , priceKey: 'crane' },
+                    drone: { title: 'Аэросъёмка (Дрон)', body: 'Аэросъёмка обеспечивает масштабные планы и панорамы. Требует погодных условий и согласований.', priceKey: 'drone' },
+                    onlineLink: { title: 'Ссылка на фильм (1 год)', body: 'Онлайн-доступ для скачивания и просмотра в течение года. Удобно для родственников и обмена ссылкой.', priceKey: 'onlineLink' },
+                    flashDrive: { title: 'USB флешка', body: 'Физический носитель с готовым фильмом. Подходит для подарков и просмотра без интернета.', priceKey: 'flashDrive' },
+                    hardDrive: { title: 'Жёсткий диск', body: 'Внешний накопитель с полной версией фильма для архивного хранения.', priceKey: 'hardDrive' },
+                    expressClip: { title: 'Экспресс-ролик', body: 'Быстрый монтаж для показа на экране в день свадьбы. Сокращённый срок подготовки.', priceKey: 'expressClip' },
+                    overtime: { title: 'Переработка после 18:00', body: 'Дополнительные часы съёмки — устанавливается по часу. Цена указана за час.', priceKey: 'overtime' },
+                    secondDay: { title: 'Второй день мероприятия', body: 'Съёмка на следующий день: обряды, традиции и дополнительные сюжетные линии.', priceKey: 'secondDay' },
+                    brideSeeOff: { title: 'Проводы невесты', body: 'Утренняя съёмка: подготовка, детали, семейные кадры до основного события.', priceKey: 'brideSeeOff' }
+                },
+                counters: {
+                    basicOperator: 0,
+                    premiumOperator: 0,
+                    director: 0,
+                    crane: 0,
+                    drone: 0,
+                    onlineLink: 0,
+                    flashDrive: 0,
+                    hardDrive: 0,
+                    expressClip: 0,
+                    overtime: 0,
+                    secondDay: 0,
+                    brideSeeOff: 0
+                },
+                increment(counter) {
+                    if (counter === 'director' || counter === 'crane' || counter === 'drone' || 
+                        counter === 'onlineLink' || counter === 'hardDrive' || counter === 'expressClip' || 
+                        counter === 'secondDay' || counter === 'brideSeeOff') {
+                        if (this.counters[counter] < 1) {
+                            this.counters[counter]++;
                         }
-                    };
-                    
-                    if (prices[option]) {
-                        return prices[option][this.selectedOptions[option]];
+                    } else {
+                        this.counters[counter]++;
                     }
-                    return 0;
                 },
-                
+                showModal(key) {
+                    const info = this.serviceDetails[key];
+                    if (!info) return;
+                    this.modal.open = true;
+                    this.modal.title = info.title;
+                    this.modal.body = info.body;
+                    this.modal.key = key;
+                },
+                closeModal() {
+                    this.modal.open = false;
+                    this.modal.title = '';
+                    this.modal.body = '';
+                    this.modal.key = '';
+                },
+                selectFromModal() {
+                    const key = this.modal.key;
+                    if (!key) return;
+                    // For single-qty items, set to 1; for multiples, increment by 1
+                    if (['director','crane','drone','onlineLink','hardDrive','expressClip','secondDay','brideSeeOff'].includes(key)) {
+                        this.counters[key] = 1;
+                    } else {
+                        this.counters[key] = (this.counters[key] || 0) + 1;
+                    }
+                    this.closeModal();
+                },
+                decrement(counter) {
+                    if (this.counters[counter] > 0) {
+                        this.counters[counter]--;
+                    }
+                },
                 calculateTotal() {
                     let total = 0;
                     
-                    // Add base services
-                    total += this.getOptionPrice('photography');
-                    total += this.getOptionPrice('videography');
-                    total += this.getOptionPrice('duration');
+                    // Operators
+                    total += this.counters.basicOperator * 50000;
+                    total += this.counters.premiumOperator * 80000;
+                    total += this.counters.director * 100000;
                     
-                    // Add additional services
-                    if (this.selectedOptions.drone) total += 8000;
-                    if (this.selectedOptions.steadicam) total += 10000;
-                    if (this.selectedOptions.gopro) total += 5000;
-                    if (this.selectedOptions.fastEdit) total += 15000;
-                    if (this.selectedOptions.photoBook) total += 12000;
-                    if (this.selectedOptions.loveStory) total += 20000;
-
-                    // Additional. Add this line in calculateTotal() method
-                    if (this.selectedOptions.soundRecording) total += 7000;                    
+                    // Equipment
+                    if (this.counters.crane > 0) total += 70000;
+                    if (this.counters.drone > 0) total += 55000;
+                    
+                    // Materials
+                    if (this.counters.onlineLink > 0) total += 5000;
+                    total += this.counters.flashDrive * 5000;
+                    if (this.counters.hardDrive > 0) total += 15000;
+                    
+                    // Additional services
+                    if (this.counters.expressClip > 0) total += 45000;
+                    total += this.counters.overtime * 15000;
+                    if (this.counters.secondDay > 0) total += 80000;
+                    if (this.counters.brideSeeOff > 0) total += 80000;
                     
                     return total;
                 },
-                
+                formatPrice(price) {
+                    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                },
+                resetAll() {
+                    Object.keys(this.counters).forEach(key => {
+                        this.counters[key] = 0;
+                    });
+                },
                 sendToWhatsApp() {
-                    let message = 'Здравствуйте! Я собрал(а) индивидуальный тариф для свадьбы:\n\n';
+                    let message = 'Здравствуйте! Я собрал(а) индивидуальный тариф видеосъёмки:\n\n';
                     
-                    // Photography
-                    if (this.selectedOptions.photography !== 'none') {
-                        const photographyOptions = {
-                            'single': '1 фотограф',
-                            'double': '2 фотографа',
-                            'premium': '2 фотографа + ассистент'
-                        };
-                        message += `• Фотосъемка: ${photographyOptions[this.selectedOptions.photography]}\n`;
+                    // Basic operators
+                    if (this.counters.basicOperator > 0) {
+                        message += `• Видеооператор (Базовый): ${this.counters.basicOperator} шт.\n`;
                     }
                     
-                    // Videography
-                    if (this.selectedOptions.videography !== 'none') {
-                        const videographyOptions = {
-                            'single': '1 видеооператор',
-                            'double': '2 видеооператора'
-                        };
-                        message += `• Видеосъемка: ${videographyOptions[this.selectedOptions.videography]}\n`;
+                    // Premium operators
+                    if (this.counters.premiumOperator > 0) {
+                        message += `• Видеооператор (Премиум): ${this.counters.premiumOperator} шт.\n`;
                     }
                     
-                    // Duration
-                    const durationOptions = {
-                        '6h': '6 часов',
-                        '8h': '8 часов',
-                        'fullday': 'Полный день (12-14 ч)'
-                    };
-                    message += `• Длительность: ${durationOptions[this.selectedOptions.duration]}\n`;
+                    // Director
+                    if (this.counters.director > 0) {
+                        message += `• Руководитель студии: 1 шт.\n`;
+                    }
+                    
+                    // Equipment
+                    if (this.counters.crane > 0) {
+                        message += `• Операторский кран: 1 шт.\n`;
+                    }
+                    if (this.counters.drone > 0) {
+                        message += `• Аэросъёмка (Дрон): 1 шт.\n`;
+                    }
+                    
+                    // Materials
+                    if (this.counters.onlineLink > 0) {
+                        message += `• Ссылка на фильм (1 год): 1 шт.\n`;
+                    }
+                    if (this.counters.flashDrive > 0) {
+                        message += `• USB флешка: ${this.counters.flashDrive} шт.\n`;
+                    }
+                    if (this.counters.hardDrive > 0) {
+                        message += `• Жёсткий диск: 1 шт.\n`;
+                    }
                     
                     // Additional services
-                    if (this.selectedOptions.drone) message += '• Аэросъемка (дрон)\n';
-                    if (this.selectedOptions.steadicam) message += '• Стедикам / Кран\n';
-                    if (this.selectedOptions.gopro) message += '• GoPro / экшн-камера\n';
-                    if (this.selectedOptions.fastEdit) message += '• Ускоренный монтаж\n';
-                    if (this.selectedOptions.photoBook) message += '• Фотокнига премиум\n';
-                    if (this.selectedOptions.loveStory) message += '• Love Story до свадьбы\n';
-
-                    // Additional. Add this line in sendToWhatsApp() method
-                    if (this.selectedOptions.soundRecording) message += '• Звукозапись (Zoom/петлички)\n';
+                    if (this.counters.expressClip > 0) {
+                        message += `• Экспресс-ролик в зале: 1 шт.\n`;
+                    }
+                    if (this.counters.overtime > 0) {
+                        message += `• Переработка после 18:00: ${this.counters.overtime} час.\n`;
+                    }
+                    if (this.counters.secondDay > 0) {
+                        message += `• Второй день мероприятия: 1 шт.\n`;
+                    }
+                    if (this.counters.brideSeeOff > 0) {
+                        message += `• Проводы невесты: 1 шт.\n`;
+                    }
                     
-                    message += `\nПредварительная стоимость: ${this.calculateTotal().toLocaleString('ru-RU')} ₽\n\nХочу обсудить детали!`;
+                    message += `\nПредварительная стоимость: ${this.formatPrice(this.calculateTotal())} ₽\n\nХочу обсудить детали и забронировать дату!`;
                     
                     const encodedMessage = encodeURIComponent(message);
                     window.open(`https://wa.me/79288893557?text=${encodedMessage}`, '_blank');
                 }
-            }))
-        });
-        
-        // Package Selection
-        function selectPackage(packageType) {
-            let message = '';
-            
-            switch(packageType) {
-                case 'essential':
-                    message = 'Здравствуйте! Я заинтересован(а) в пакете "Essential" для свадебной фотосъемки. Можете рассказать подробнее?';
-                    break;
-                case 'standard':
-                    message = 'Здравствуйте! Я заинтересован(а) в пакете "Standard" для свадебной фото и видеосъемки. Можете рассказать подробнее?';
-                    break;
-                case 'premium':
-                    message = 'Здравствуйте! Я заинтересован(а) в пакете "Premium" для свадебной съемки. Можете рассказать подробнее?';
-                    break;
             }
+        }
+        
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
             
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/79288893557?text=${encodedMessage}`, '_blank');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Show Contact Form
+        function showContactForm() {
+            window.location.href = '/contact';
         }
         
         // Load Header and Footer
         document.addEventListener('DOMContentLoaded', function() {
-            // Load Header
             fetch('/components/header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header-wrapper').innerHTML = data;
                 });
             
-            // Load Footer
             fetch('/components/footer.html')
                 .then(response => response.text())
                 .then(data => {
@@ -855,42 +985,24 @@
                 });
             
             // Initialize GSAP animations
-            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                gsap.registerPlugin(ScrollTrigger);
-                
-                // Animate elements on scroll
-                gsap.utils.toArray('.package-card').forEach(card => {
-                    gsap.from(card, {
-                        scrollTrigger: {
-                            trigger: card,
-                            start: 'top 80%',
-                            end: 'bottom 20%',
-                            toggleActions: 'play none none reverse'
-                        },
-                        y: 50,
-                        opacity: 0,
-                        duration: 0.8,
-                        ease: 'power2.out'
-                    });
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate constructor steps
+            gsap.utils.toArray('.constructor-step').forEach((step, i) => {
+                gsap.from(step, {
+                    scrollTrigger: {
+                        trigger: step,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.6,
+                    delay: i * 0.1,
+                    ease: 'power2.out'
                 });
-                
-                // Animate constructor steps
-                gsap.utils.toArray('.constructor-step').forEach((step, i) => {
-                    gsap.from(step, {
-                        scrollTrigger: {
-                            trigger: step,
-                            start: 'top 80%',
-                            end: 'bottom 20%',
-                            toggleActions: 'play none none reverse'
-                        },
-                        x: i % 2 === 0 ? -50 : 50,
-                        opacity: 0,
-                        duration: 0.8,
-                        delay: i * 0.1,
-                        ease: 'power2.out'
-                    });
-                });
-            }
+            });
         });
     </script>
 </body>

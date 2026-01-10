@@ -122,12 +122,12 @@
 <body x-data="packageCalculator()" x-init="init()" class="min-h-screen bg-gradient-to-b from-black to-gray-900">
     
     <!-- Include Header -->
-    <header id="header-wrapper"></header>
+    <div x-html="await fetchComponent('header')"></div>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pb-18 pt-8">
+    <main class="container mx-auto px-4 pb-16 pt-8">
         <!-- Page Header -->
-        <header class="mb-12 text-center pt-16">
+        <header class="mb-12 text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Пакеты видеосъёмки и монтажа</h1>
             <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
                 Выберите подходящий пакет и добавьте дополнительные услуги. Стоимость рассчитывается автоматически.
@@ -791,7 +791,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-chevron-right text-d6211d text-xs mt-1 mr-2"></i>
-                            <span>Для уточнения деталей и согласования ТЗ свяжитесь с нами по телефону <a href="tel:+79288893557" class="text-d6211d hover:underline font-medium">+7 (928) 889-35-57</a></span>
+                            <span>Для уточнения деталей и согласования ТЗ свяжитесь с нами по телефону <a href="tel:+79298883327" class="text-d6211d hover:underline font-medium">+7 (928) 889-35-57</a></span>
                         </li>
                     </ul>
                 </div>
@@ -799,26 +799,11 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+    <!-- Include Footer -->
+    <div x-html="await fetchComponent('footer')"></div>
 
     <script>
         document.addEventListener('alpine:init', () => {
-
-            // Load Header
-            fetch('/components/header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-wrapper').innerHTML = data;
-                });
-            
-            // Load Footer
-            fetch('/components/footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-wrapper').innerHTML = data;
-                });
-
             Alpine.data('packageCalculator', () => ({
                 // State
                 activeTab: 'basic',
@@ -918,7 +903,7 @@
                 
                 // Send to WhatsApp
                 sendToWhatsApp() {
-                    const phone = "+79288893557";
+                    const phone = "+79298883327";
                     let message = `Здравствуйте! Я хочу заказать видеосъёмку.\n\n`;
                     
                     if (this.selectedPackageId) {
@@ -970,6 +955,116 @@
                     const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
                     
                     window.open(whatsappUrl, '_blank');
+                },
+                
+                // Fetch component (simulated for demo)
+                async fetchComponent(component) {
+                    // In a real implementation, this would fetch from /components/ directory
+                    // For demo purposes, returning placeholder content
+                    
+                    if (component === 'header') {
+                        return `
+                            <header class="bg-black border-b border-gray-800 sticky top-0 z-50">
+                                <div class="container mx-auto px-4 py-4">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <a href="/" class="text-2xl font-bold text-white">
+                                                First<span class="text-d6211d">look</span>
+                                            </a>
+                                        </div>
+                                        <nav class="hidden md:flex space-x-8">
+                                            <a href="/" class="text-gray-300 hover:text-white transition">Главная</a>
+                                            <a href="/portfolio" class="text-gray-300 hover:text-white transition">Портфолио</a>
+                                            <a href="/packages" class="text-d6211d font-bold">Пакеты и цены</a>
+                                            <a href="/blog" class="text-gray-300 hover:text-white transition">Новости</a>
+                                            <a href="/about" class="text-gray-300 hover:text-white transition">О Студии</a>
+                                            <a href="/contact" class="text-gray-300 hover:text-white transition">Связаться</a>
+                                        </nav>
+                                        <a href="tel:+79298883327" class="bg-d6211d text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition">
+                                            +7 (928) 889-35-57
+                                        </a>
+                                    </div>
+                                </div>
+                            </header>
+                        `;
+                    }
+                    
+                    if (component === 'footer') {
+                        return `
+                            <footer class="bg-black border-t border-gray-800 mt-20">
+                                <div class="container mx-auto px-4 py-12">
+                                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                                        <div>
+                                            <h3 class="text-2xl font-bold text-white mb-4">
+                                                First<span class="text-d6211d">look</span>
+                                            </h3>
+                                            <p class="text-gray-400 mb-4">
+                                                Профессиональная видеопродакшн студия с более чем 20-летним опытом работы.
+                                            </p>
+                                            <div class="flex space-x-4">
+                                                <a href="https://instagram.com/firstlook" class="text-gray-400 hover:text-d6211d transition">
+                                                    <i class="fab fa-instagram text-xl"></i>
+                                                </a>
+                                                <a href="https://vk.com/firstlook" class="text-gray-400 hover:text-d6211d transition">
+                                                    <i class="fab fa-vk text-xl"></i>
+                                                </a>
+                                                <a href="https://youtube.com/@firstlook" class="text-gray-400 hover:text-d6211d transition">
+                                                    <i class="fab fa-youtube text-xl"></i>
+                                                </a>
+                                                <a href="https://t.me/firstlook" class="text-gray-400 hover:text-d6211d transition">
+                                                    <i class="fab fa-telegram text-xl"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <h4 class="text-white font-bold mb-4">Услуги</h4>
+                                            <ul class="space-y-2">
+                                                <li><a href="/services/wedding-photo" class="text-gray-400 hover:text-white transition">Свадебная фотосъёмка</a></li>
+                                                <li><a href="/services/wedding-video" class="text-gray-400 hover:text-white transition">Свадебная видеосъёмка</a></li>
+                                                <li><a href="/services/editing" class="text-gray-400 hover:text-white transition">Монтаж и постпродакшн</a></li>
+                                                <li><a href="/services/brand-content" class="text-gray-400 hover:text-white transition">Контент для брендов</a></li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div>
+                                            <h4 class="text-white font-bold mb-4">Полезное</h4>
+                                            <ul class="space-y-2">
+                                                <li><a href="/faq" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                                                <li><a href="/reviews" class="text-gray-400 hover:text-white transition">Отзывы</a></li>
+                                                <li><a href="/education" class="text-gray-400 hover:text-white transition">Обучение / Курсы</a></li>
+                                                <li><a href="/privacy" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a></li>
+                                            </ul>
+                                        </div>
+                                        
+                                        <div>
+                                            <h4 class="text-white font-bold mb-4">Контакты</h4>
+                                            <ul class="space-y-3">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-phone text-d6211d mt-1 mr-3"></i>
+                                                    <a href="tel:+79298883327" class="text-gray-400 hover:text-white transition">+7 (928) 889-35-57</a>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-envelope text-d6211d mt-1 mr-3"></i>
+                                                    <a href="mailto:info@firstlook.ru" class="text-gray-400 hover:text-white transition">info@firstlook.ru</a>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-map-marker-alt text-d6211d mt-1 mr-3"></i>
+                                                    <span class="text-gray-400">пр-т Мохаммеда Али, 1, Грозный ​364060</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                                        <p>© 2023 Firstlook — Видеостудия, Монтаж и Обучение. Все права защищены.</p>
+                                    </div>
+                                </div>
+                            </footer>
+                        `;
+                    }
+                    
+                    return '';
                 }
             }));
         });

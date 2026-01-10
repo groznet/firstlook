@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css?v=1.0">
     <style>
         .animate-cursor {
             animation: cursorBlink 0.7s infinite;
@@ -61,31 +61,74 @@
             
             <div class="md:w-1/2">
                 <div class="max-w-2xl">
-                    <!-- your existing text content -->
-                    <h1 class="text-5xl md:text-7xl font-bold heading-font mb-6 text-white glow-text">
-                        Видеостудия FIRSTLOOK
-                    </h1>
-
-                    <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed text-glow">
-                        Профессиональная фото- и видеостудия с более чем 20-летним опытом. Свадебная съемка, эмоциональные видеоролики и художественный монтаж.
-                    </p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#portfolio" class="btn-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Смотреть работы</a>
-                        <a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform">Обсудить проект</a>
+                    <!-- Typing Animation Headline -->
+                    <div class="mb-6">
+                        <h1 class="text-4xl md:text-6xl font-bold heading-font text-white glow-text mb-2 leading-tight">
+                            <div
+                                x-data="typingLoop({
+                                    words: [
+                                        'First-look — Опыт, которому доверяют',
+                                        'Видеопродакшн — Качественно. Надолго.',
+                                        'Живые эмоции и детали, в кадре навсегда'
+                                    ],
+                                    speed: 80,
+                                    pause: 1600
+                                })"
+                                x-init="init()"
+                                class="inline-block max-w-[18ch] md:max-w-[24ch] min-h-[2.6em]"
+                            >
+                                <span
+                                    x-text="display"
+                                    class="inline-block whitespace-pre-line bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent drop-shadow-lg"
+                                    style="text-shadow: 0 0 20px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.1);"
+                                ></span>
+                                <span class="animate-cursor inline-block w-[3px] h-[1em] bg-white align-text-bottom ml-1"></span>
+                            </div>
+                        </h1>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4" 
+                         x-data="{ show: false }" 
+                         x-init="setTimeout(() => show = true, 1500)">
+                        <div x-show="show" 
+                             x-transition:enter="transition-all duration-700 delay-100"
+                             x-transition:enter-start="opacity-0 translate-y-6"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <a href="#portfolio" class="btn-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform inline-block w-full sm:w-auto">
+                                Смотреть работы
+                            </a>
+                        </div>
+                        <div x-show="show" 
+                             x-transition:enter="transition-all duration-700 delay-300"
+                             x-transition:enter-start="opacity-0 translate-y-6"
+                             x-transition:enter-end="opacity-100 translate-y-0">
+                            <a href="#contact" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center transform hover:scale-105 transition-transform inline-block w-full sm:w-auto">
+                                Обсудить проект
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full md:w-1/2 px-0 md:px-6 order-2 md:order-none">
-                <video class="w-full h-auto object-cover rounded-xl"
-                    autoplay
-                    loop
-                    playsinline
-                    controls>
-                    <source src="/assets/videos/video-1.mp4" type="video/mp4">
-                </video>
+            <div class="w-full md:w-1/2 px-0 md:px-6 order-2 md:order-none"
+                 x-data="{ show: false }" 
+                 x-init="setTimeout(() => show = true, 2000)">
+                <div x-show="show" 
+                     x-transition:enter="transition-all duration-1000"
+                     x-transition:enter-start="opacity-0 translate-x-10"
+                     x-transition:enter-end="opacity-100 translate-x-0"
+                     class="relative transform-gpu hover:scale-[1.02] transition-transform duration-700">
+                    <video class="w-full h-auto object-cover rounded-xl shadow-2xl"
+                        autoplay
+                        loop
+                        playsinline
+                        controls>
+                        <source src="/assets/videos/video-1.mp4" type="video/mp4">
+                    </video>
+                    <!-- Subtle 3D shadow effect -->
+                    <div class="absolute inset-0 rounded-xl bg-gradient-to-tr from-transparent via-transparent to-gold-500/5 -z-10 transform translate-y-4 blur-lg"></div>
+                </div>
             </div>
-
 
         </div>
 
@@ -106,7 +149,7 @@
                     <p class="text-gray-400 mt-2">Лет опыта</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
-                    <div class="stat-number">1000+</div>
+                    <div class="stat-number">5000+</div>
                     <p class="text-gray-400 mt-2">Проектов</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
@@ -137,8 +180,8 @@
             <div class="flex flex-wrap justify-center gap-4 mb-12" id="portfolio-filters">
                 <button class="filter-btn active" data-filter="all">Все работы</button>
                 <button class="filter-btn" data-filter="wedding">Свадьбы</button>
-                <button class="filter-btn" data-filter="lovestory">Love Story</button>
-                <button class="filter-btn" data-filter="brand">Бренды</button>
+                <button class="filter-btn" data-filter="trailer">Трейлеры</button>
+                <button class="filter-btn" data-filter="commercial">Рекламные</button>
             </div>
 
             <!-- Portfolio Grid -->
@@ -156,8 +199,8 @@
                     </div>
                 </div>
 
-                <!-- Love Story -->
-                <div class="portfolio-item card-elegant" data-category="lovestory">
+                <!-- Trailer -->
+                <div class="portfolio-item card-elegant" data-category="trailer">
                     <div class="relative h-80 bg-gradient-to-br from-amber-900 to-yellow-700">
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
@@ -169,48 +212,12 @@
                 </div>
 
                 <!-- Brand -->
-                <div class="portfolio-item card-elegant" data-category="brand">
+                <div class="portfolio-item card-elegant" data-category="commercial">
                     <div class="relative h-80 bg-gradient-to-br from-blue-900 to-cyan-700">
                         <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
                             <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Съемка для бренда</h3>
+                                <h3 class="text-white text-xl font-bold mb-2">Ролик для магазина</h3>
                                 <p class="text-gray-300">2025</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Wedding -->
-                <div class="portfolio-item card-elegant" data-category="wedding">
-                    <div class="relative h-80 bg-gradient-to-br from-red-900 to-rose-700">
-                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
-                            <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Свадьба в Европе</h3>
-                                <p class="text-gray-300">Франция, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Love Story -->
-                <div class="portfolio-item card-elegant" data-category="lovestory">
-                    <div class="relative h-80 bg-gradient-to-br from-green-900 to-lime-700">
-                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
-                            <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Городская аэросъемка</h3>
-                                <p class="text-gray-300">Грозный, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Brand -->
-                <div class="portfolio-item card-elegant" data-category="brand">
-                    <div class="relative h-80 bg-gradient-to-br from-slate-900 to-gray-700">
-                        <div class="portfolio-overlay absolute inset-0 flex items-end p-6 z-10">
-                            <div>
-                                <h3 class="text-white text-xl font-bold mb-2">Рекламная съемка</h3>
-                                <p class="text-gray-300">2024</p>
                             </div>
                         </div>
                     </div>
@@ -345,7 +352,7 @@
                                 <i class="fas fa-camera"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">500+ проектов</h4>
+                                <h4 class="text-white font-bold">5000+ проектов</h4>
                                 <p class="text-gray-400 text-sm">Успешно реализовано</p>
                             </div>
                         </div>
@@ -368,84 +375,6 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="py-16 bg-black bg-opacity-50">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold heading-font text-white mb-4 glow-text">Отзывы клиентов</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto text-glow">
-                    Что говорят наши клиенты о сотрудничестве с Firstlook
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
-
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-amber-900 to-amber-700 mr-4"></div>
-                        <div>
-                            <h4 class="font-bold text-white">Ахмед и Амина</h4>
-                            <p class="text-gray-400 text-sm">Свадьба в Грозном</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 italic">
-                        "Firstlook создали невероятные фото и видео нашей свадьбы! Каждый раз, когда пересматриваем, 
-                        испытываем те же эмоции. Спасибо за профессионализм и внимание к деталям!"
-                    </p>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
-
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 mr-4"></div>
-                        <div>
-                            <h4 class="font-bold text-white">Мадина</h4>
-                            <p class="text-gray-400 text-sm">Love Story</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 italic">
-                        "Съемка Love Story в горах превзошла все ожидания! Команда Firstlook умеет создавать 
-                        по-настоящему атмосферные кадры. Рекомендую всем, кто ценит качество и креатив!"
-                    </p>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card p-6 translate-y-4 transition-all duration-700">
-
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-900 to-purple-700 mr-4"></div>
-                        <div>
-                            <h4 class="font-bold text-white">Руслан</h4>
-                            <p class="text-gray-400 text-sm">Бренд-контент</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 italic">
-                        "Заказывали контент для нашего бренда одежды. Firstlook не только сделали качественные фото, 
-                        но и помогли с креативной концепцией. Результат превзошел ожидания!"
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold heading-font text-white mb-6 glow-text">Готовы создать незабываемые кадры?</h2>
-            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8 text-glow">
-                Свяжитесь с нами для обсуждения вашего проекта. Мы поможем воплотить ваши идеи в жизнь.
-            </p>
-            <a href="#contact" class="btn-gold px-8 py-4 rounded-full text-lg transform hover:scale-105 transition-transform">Обсудить проект</a>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact-section-wrapper" class="section-padding bg-black bg-opacity-70">
-        <!-- Loaded dynamically -->
     </section>
 
     <!-- Footer -->
