@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О Студии | Firstlook — Фото и Видеостудия</title>
+    <title>О Студии | Firstlook — Видеостудия и Монтаж</title>
     <script src="/assets/js/tailwindcss_local.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -76,54 +76,6 @@
             background: linear-gradient(90deg, transparent, #b01b18, transparent);
         }
         
-        .timeline-item {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 12px;
-            height: 12px;
-            background: #b01b18;
-            border-radius: 50%;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 20px;
-            width: 2px;
-            height: calc(100% + 20px);
-            background: rgba(176, 27, 24, 0.3);
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        .team-member {
-            transition: all 0.3s ease;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
         .floating-shape {
             position: absolute;
             border-radius: 50%;
@@ -146,14 +98,75 @@
         .gold-bg {
             background: linear-gradient(135deg, #b01b18 0%, #d6211d 100%);
         }
+        
+        /* Parallax Background Effects */
+        .parallax-layer-1 {
+            background: radial-gradient(circle at 20% 50%, rgba(176, 27, 24, 0.1) 0%, transparent 50%);
+        }
+        
+        .parallax-layer-2 {
+            background: radial-gradient(circle at 80% 20%, rgba(214, 33, 29, 0.08) 0%, transparent 40%);
+        }
+        
+        .parallax-layer-3 {
+            background: linear-gradient(45deg, rgba(10, 10, 10, 0.95), rgba(20, 20, 20, 0.9));
+        }
+        
+        .parallax-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .subtle-grid {
+            background-image: 
+                linear-gradient(rgba(176, 27, 24, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(176, 27, 24, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .elegant-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(176, 27, 24, 0.03) 0%, transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(214, 33, 29, 0.03) 0%, transparent 55%);
+        }
+        
+        .video-wave {
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(176, 27, 24, 0.1) 20%, 
+                rgba(214, 33, 29, 0.2) 50%, 
+                rgba(176, 27, 24, 0.1) 80%, 
+                transparent 100%);
+            height: 1px;
+            margin: 40px auto;
+            max-width: 800px;
+        }
     </style>
 </head>
 <body class="dark-bg">
     <!-- Header -->
     <header id="header-wrapper"></header>
 
+    <!-- Parallax Background Layers -->
+    <div class="parallax-background">
+        <div class="parallax-layer-1 absolute inset-0"></div>
+        <div class="parallax-layer-2 absolute inset-0"></div>
+        <div class="parallax-layer-3 absolute inset-0"></div>
+        <div class="subtle-grid absolute inset-0"></div>
+        <div class="elegant-pattern absolute inset-0"></div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 relative overflow-hidden">
+    <section class="pt-32 pb-20 relative overflow-hidden parallax-container">
         <!-- Animated Background Elements -->
         <div class="floating-shape" style="width: 200px; height: 200px; top: 10%; left: 5%;"></div>
         <div class="floating-shape" style="width: 150px; height: 150px; top: 60%; right: 8%; animation-delay: -2s;"></div>
@@ -167,19 +180,19 @@
                     <span class="red-gradient">О Студии Firstlook</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                    Более 20 лет создаем эмоциональные фото и видео, которые рассказывают ваши истории. 
+                    Более 20 лет создаем эмоциональные видео, которые рассказывают ваши истории. 
                     Профессионализм, качество и внимание к деталям — наш подход к каждому проекту.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="#story" class="btn-gold px-8 py-4 rounded-full text-lg text-center">Наша история</a>
-                    <a href="#team" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Наша команда</a>
+                    <a href="#philosophy" class="btn-outline-gold px-8 py-4 rounded-full text-lg text-center">Наша философия</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-black bg-opacity-50">
+    <section class="py-16 relative parallax-container">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
@@ -191,8 +204,8 @@
                     <p class="text-gray-400 mt-2">Свадеб снято</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
-                    <div class="stat-number">3</div>
-                    <p class="text-gray-400 mt-2">Страны работы</p>
+                    <div class="stat-number">15+</div>
+                    <p class="text-gray-400 mt-2">Профессионалов в команде</p>
                 </div>
                 <div class="card-elegant p-6 transform hover:scale-105 transition-transform">
                     <div class="stat-number">100%</div>
@@ -203,7 +216,7 @@
     </section>
 
     <!-- Our Story Section -->
-    <section id="story" class="section-padding bg-black bg-opacity-30 parallax-bg">
+    <section id="story" class="section-padding relative parallax-container">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
@@ -216,12 +229,12 @@
                 <div class="lg:w-1/2">
                     <h2 class="text-4xl font-bold text-white mb-6 glow-text">Наша история</h2>
                     <p class="text-gray-400 text-lg mb-6 leading-relaxed">
-                        Firstlook — профессиональная фото- и видеостудия с более чем 20-летним опытом работы в Чечне, России и Европе. 
-                        Наш путь начался в 2003 году с небольшой команды энтузиастов, влюбленных в искусство фотографии.
+                        Firstlook — профессиональная видеопродакшн студия с более чем 20-летним опытом работы в Чечне и соседних регионах. 
+                        Наш путь начался в 2003 году с небольшой команды энтузиастов, влюбленных в искусство видеосъемки.
                     </p>
                     <p class="text-gray-400 text-lg mb-8 leading-relaxed">
                         За годы работы мы выросли в команду профессионалов, которая знает, как подчеркнуть вашу уникальность 
-                        и создать контент, который будет радовать вас годами. Мы специализируемся на свадебной съемке, 
+                        и создать видео, которое будет радовать вас годами. Мы специализируемся на свадебной видеосъемке, 
                         создании эмоциональных видеороликов и художественном монтаже.
                     </p>
                     
@@ -232,7 +245,7 @@
                             </div>
                             <div>
                                 <h4 class="text-white font-bold">20+ лет опыта</h4>
-                                <p class="text-gray-400 text-sm">В индустрии фото и видео</p>
+                                <p class="text-gray-400 text-sm">В индустрии видеосъемки</p>
                             </div>
                         </div>
                         
@@ -241,14 +254,14 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h4 class="text-white font-bold">Масштаб</h4>
-                                <p class="text-gray-400 text-sm">Чечня, Россия, Европа</p>
+                                <h4 class="text-white font-bold">Локализация</h4>
+                                <p class="text-gray-400 text-sm">Чечня и соседние регионы</p>
                             </div>
                         </div>
                         
                         <div class="flex items-center transform hover:scale-105 transition-transform">
                             <div class="gold-bg text-black p-3 rounded-full mr-4">
-                                <i class="fas fa-camera"></i>
+                                <i class="fas fa-video"></i>
                             </div>
                             <div>
                                 <h4 class="text-white font-bold">5000+ проектов</h4>
@@ -267,7 +280,7 @@
                         </div>
                     </div>
                     
-                    <a href="#mission" class="btn-outline-gold px-6 py-3 rounded-full inline-flex items-center transform hover:scale-105 transition-transform">
+                    <a href="#philosophy" class="btn-outline-gold px-6 py-3 rounded-full inline-flex items-center transform hover:scale-105 transition-transform">
                         <span>Узнать больше</span>
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
@@ -277,7 +290,7 @@
     </section>
 
     <!-- Mission and Values Section -->
-    <section id="mission" class="section-padding bg-black bg-opacity-50">
+    <section id="philosophy" class="section-padding relative parallax-container">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наша философия</h2>
@@ -304,7 +317,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4">Бескомпромиссное качество</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        От профессиональной техники до кропотливого постпродакшена — мы уделяем внимание каждой детали. 
+                        От профессионального оборудования до кропотливого постпродакшена — мы уделяем внимание каждой детали. 
                         Только лучшее оборудование и технологии для ваших самых важных моментов.
                     </p>
                 </div>
@@ -320,246 +333,88 @@
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="section-padding bg-black bg-opacity-30">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наш путь</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    20 лет развития, роста и бесценного опыта в мире фото и видео
-                </p>
-            </div>
             
-            <div class="max-w-4xl mx-auto">
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2003 - Начало пути</h3>
-                            <span class="text-gold-400 font-medium">Основание студии</span>
+            <!-- Video Wave Divider -->
+            <div class="video-wave"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                <div class="card-elegant p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="gold-bg text-black p-3 rounded-full mr-4">
+                            <i class="fas fa-film"></i>
                         </div>
-                        <p class="text-gray-400">
-                            Firstlook начинает свой путь как небольшая фотостудия в Грозном. 
-                            Первые свадьбы, первые довольные клиенты и твердая уверенность в выбранном направлении.
-                        </p>
+                        <h3 class="text-2xl font-bold text-white">Кинематографический подход</h3>
                     </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Мы создаем не просто видеозапись, а настоящие фильмы с драматургией, эмоциональными акцентами 
+                        и профессиональной цветокоррекцией. Каждый проект — это история, рассказанная на языке кино.
+                    </p>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2008 - Расширение услуг</h3>
-                            <span class="text-gold-400 font-medium">Видеосъемка и монтаж</span>
+                <div class="card-elegant p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="gold-bg text-black p-3 rounded-full mr-4">
+                            <i class="fas fa-headset"></i>
                         </div>
-                        <p class="text-gray-400">
-                            Добавляем видеосъемку и профессиональный монтаж к нашим услугам. 
-                            Инвестируем в современное оборудование и обучение команды.
-                        </p>
+                        <h3 class="text-2xl font-bold text-white">Полное сопровождение</h3>
                     </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2012 - Выход на российский рынок</h3>
-                            <span class="text-gold-400 font-medium">Москва и регионы</span>
-                        </div>
-                        <p class="text-gray-400">
-                            Начинаем работать по всей России — от Москвы до Сочи. 
-                            Формируем мобильные съемочные группы для работы в разных регионах.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2016 - Европейские проекты</h3>
-                            <span class="text-gold-400 font-medium">Международный опыт</span>
-                        </div>
-                        <p class="text-gray-400">
-                            Первые свадьбы в Европе — Франция, Италия, Испания. 
-                            Изучаем международные стандарты и внедряем лучшие практики в свою работу.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2020 - Образовательные программы</h3>
-                            <span class="text-gold-400 font-medium">Обучение и менторство</span>
-                        </div>
-                        <p class="text-gray-400">
-                            Запускаем курсы и мастер-классы по фото- и видеомонтажу. 
-                            Делимся 20-летним опытом с новым поколением фотографов и видеооператоров.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="card-elegant p-6">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                            <h3 class="text-xl font-bold text-white">2024 - Firstlook сегодня</h3>
-                            <span class="text-gold-400 font-medium">Премиум-услуги</span>
-                        </div>
-                        <p class="text-gray-400">
-                            Ведущая фото- и видеостудия с командой профессионалов, работающая в 3 странах. 
-                            Более 500 реализованных проектов и сотни довольных клиентов.
-                        </p>
-                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        От предсвадебной консультации до финального монтажа — мы сопровождаем вас на каждом этапе. 
+                        Помогаем с планированием, подготовкой и реализацией вашей идеальной свадьбы.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section id="team" class="section-padding bg-black bg-opacity-50">
+    <!-- Specialization Section -->
+    <section class="section-padding relative parallax-container">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наша команда</h2>
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наша специализация</h2>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Профессионалы с многолетним опытом, объединенные любовью к искусству фотографии и видео
+                    Эксперты в создании эмоциональных свадебных видео с акцентом на традиции и культуру Чечни
                 </p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Team Member 1 -->
-                <div class="team-member card-elegant p-6 text-center">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-amber-900 to-amber-700 mx-auto mb-4 border-4 border-gold-600"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Ахьяд</h3>
-                    <p class="text-gold-400 mb-4">Основатель и главный оператор</p>
-                    <p class="text-gray-400 text-sm mb-4">
-                        20+ лет в индустрии. Специализируется на свадебной съемке и художественном монтаже.
-                    </p>
-                    <div class="flex justify-center space-x-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-instagram text-xs"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-vk text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Team Member 2 -->
-                <div class="team-member card-elegant p-6 text-center">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-blue-900 to-blue-700 mx-auto mb-4 border-4 border-gold-600"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Мадина</h3>
-                    <p class="text-gold-400 mb-4">Фотограф и ретушер</p>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Специалист по портретной и репортажной съемке. Мастер цветокоррекции и художественной ретуши.
-                    </p>
-                    <div class="flex justify-center space-x-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-instagram text-xs"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-vk text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Team Member 3 -->
-                <div class="team-member card-elegant p-6 text-center">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-900 to-purple-700 mx-auto mb-4 border-4 border-gold-600"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Ислам</h3>
-                    <p class="text-gold-400 mb-4">Видеооператор и монтажер</p>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Эксперт по кинематографичной съемке и цветокоррекции. Создает эмоциональные свадебные фильмы.
-                    </p>
-                    <div class="flex justify-center space-x-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-instagram text-xs"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-youtube text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Team Member 4 -->
-                <div class="team-member card-elegant p-6 text-center">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-green-900 to-green-700 mx-auto mb-4 border-4 border-gold-600"></div>
-                    <h3 class="text-xl font-bold text-white mb-2">Залина</h3>
-                    <p class="text-gold-400 mb-4">Координатор и продюсер</p>
-                    <p class="text-gray-400 text-sm mb-4">
-                        Организует съемочный процесс от А до Я. Помогает клиентам в подготовке и планировании свадьбы.
-                    </p>
-                    <div class="flex justify-center space-x-3">
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-instagram text-xs"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition-all">
-                            <i class="fab fa-telegram text-xs"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <p class="text-gray-400 mb-6">
-                    Наша команда — это не просто сотрудники, а единомышленники, преданные своему делу. 
-                    Мы постоянно учимся, развиваемся и следим за последними тенденциями в мире фото и видео.
-                </p>
-                <a href="/contact" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
-                    <span>Связаться с нами</span>
-                    <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Equipment Section -->
-    <section class="section-padding bg-black bg-opacity-30">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наше оборудование</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    Работаем только на профессиональной технике для бескомпромиссного качества
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card-elegant p-6 text-center">
+                <div class="card-elegant p-6 text-center transform hover:scale-105 transition-transform">
                     <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-4 mx-auto">
-                        <i class="fas fa-camera"></i>
+                        <i class="fas fa-ring"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Фотоаппараты</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Свадебная видеосъемка</h3>
                     <p class="text-gray-400 text-sm">
-                        Canon EOS R5, Sony A7IV, Nikon Z9 с полным парком профессиональных объективов
+                        Полное покрытие свадебного дня с акцентом на традиционные моменты и современную подачу
                     </p>
                 </div>
                 
-                <div class="card-elegant p-6 text-center">
+                <div class="card-elegant p-6 text-center transform hover:scale-105 transition-transform">
                     <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-4 mx-auto">
-                        <i class="fas fa-video"></i>
+                        <i class="fas fa-cut"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Видеокамеры</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Художественный монтаж</h3>
                     <p class="text-gray-400 text-sm">
-                        Sony FX6, Canon C70, Blackmagic Pocket Cinema Camera 6K для кинематографичного изображения
+                        Создание эмоциональных фильмов с драматургией, цветокоррекцией и профессиональным саунд-дизайном
                     </p>
                 </div>
                 
-                <div class="card-elegant p-6 text-center">
+                <div class="card-elegant p-6 text-center transform hover:scale-105 transition-transform">
                     <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-4 mx-auto">
-                        <i class="fas fa-microphone"></i>
+                        <i class="fas fa-vr-cardboard"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Звук</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Кинематографическая съемка</h3>
                     <p class="text-gray-400 text-sm">
-                        Беспроводные микрофоны Rode, петлички, рекордеры Zoom для кристально чистого звука
+                        Использование операторских кранов, дронов и профессиональной стабилизации для кинокадров
                     </p>
                 </div>
                 
-                <div class="card-elegant p-6 text-center">
+                <div class="card-elegant p-6 text-center transform hover:scale-105 transition-transform">
                     <div class="gold-bg w-16 h-16 rounded-full flex items-center justify-center text-black text-2xl mb-4 mx-auto">
-                        <i class="fas fa-lightbulb"></i>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white mb-2">Свет и стабилизация</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Обучение монтажу</h3>
                     <p class="text-gray-400 text-sm">
-                        Профессиональный свет Aputure, стабилизаторы DJI Ronin, стедикамы и краны
+                        Курсы и мастер-классы по видеомонтажу для начинающих и профессиональных видеооператоров
                     </p>
                 </div>
             </div>
@@ -567,18 +422,18 @@
     </section>
 
     <!-- Education Section -->
-    <section class="section-padding bg-black bg-opacity-50">
+    <section class="section-padding relative parallax-container">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2">
-                    <h2 class="text-4xl font-bold text-white mb-6 glow-text">Обучение и менторство</h2>
+                    <h2 class="text-4xl font-bold text-white mb-6 glow-text">Обучение видеомонтажу</h2>
                     <p class="text-gray-400 text-lg mb-6 leading-relaxed">
-                        Делимся 20-летним опытом с новым поколением фотографов и видеооператоров. 
-                        Проводим курсы, мастер-классы и индивидуальные консультации.
+                        Делимся 20-летним опытом с новым поколением видеооператоров и монтажеров. 
+                        Проводим курсы, мастер-классы и индивидуальные консультации по видеомонтажу.
                     </p>
                     <p class="text-gray-400 text-lg mb-8 leading-relaxed">
                         Наши образовательные программы подходят как для начинающих, так и для опытных специалистов, 
-                        желающих повысить свой уровень в фото- и видеомонтаже.
+                        желающих повысить свой уровень в художественном монтаже и цветокоррекции.
                     </p>
                     
                     <div class="space-y-4 mb-8">
@@ -586,19 +441,19 @@
                             <div class="gold-bg text-black p-2 rounded-full mr-4">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <span class="text-white">Базовый курс свадебной фотографии</span>
+                            <span class="text-white">Базовый курс свадебного видеомонтажа</span>
                         </div>
                         <div class="flex items-center">
                             <div class="gold-bg text-black p-2 rounded-full mr-4">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <span class="text-white">Профессиональный видеомонтаж в DaVinci Resolve</span>
+                            <span class="text-white">Профессиональный монтаж в DaVinci Resolve</span>
                         </div>
                         <div class="flex items-center">
                             <div class="gold-bg text-black p-2 rounded-full mr-4">
                                 <i class="fas fa-check"></i>
                             </div>
-                            <span class="text-white">Цветокоррекция и грейдинг</span>
+                            <span class="text-white">Цветокоррекция и грейдинг свадебного видео</span>
                         </div>
                         <div class="flex items-center">
                             <div class="gold-bg text-black p-2 rounded-full mr-4">
@@ -624,29 +479,65 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 bg-gradient-to-r from-amber-900 to-amber-700 bg-opacity-80">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 glow-text">Готовы создать историю вместе?</h2>
-            <p class="text-xl text-gray-200 max-w-2xl mx-auto mb-8">
-                Доверьте нам ваши самые важные моменты. Мы превратим их в незабываемые воспоминания, 
-                которые будут радовать вас всю жизнь.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="/contact" class="btn-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
-                    <i class="fas fa-calendar mr-2"></i>
-                    Забронировать дату
-                </a>
-                <a href="tel:+79288893557" class="btn-outline-gold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center">
-                    <i class="fas fa-phone mr-2"></i>
-                    +7 (928) 889-35-57
+    <!-- Process Section -->
+    <section class="section-padding bg-black bg-opacity-30 relative parallax-container">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white mb-4 glow-text">Наш процесс работы</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    От первой консультации до финального монтажа — четкий и прозрачный процесс
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="card-elegant p-6 text-center">
+                    <div class="gold-bg text-black w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">1</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Консультация</h3>
+                    <p class="text-gray-400 text-sm">
+                        Обсуждение ваших пожеланий, выбор пакета и планирование съемочного дня
+                    </p>
+                </div>
+                
+                <div class="card-elegant p-6 text-center">
+                    <div class="gold-bg text-black w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">2</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Подготовка</h3>
+                    <p class="text-gray-400 text-sm">
+                        Составление плана съемки, подготовка оборудования и согласование деталей
+                    </p>
+                </div>
+                
+                <div class="card-elegant p-6 text-center">
+                    <div class="gold-bg text-black w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">3</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Съемка</h3>
+                    <p class="text-gray-400 text-sm">
+                        Профессиональная видеосъемка с акцентом на эмоции и ключевые моменты
+                    </p>
+                </div>
+                
+                <div class="card-elegant p-6 text-center">
+                    <div class="gold-bg text-black w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold mb-4 mx-auto">4</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Монтаж</h3>
+                    <p class="text-gray-400 text-sm">
+                        Художественный монтаж, цветокоррекция и сдача готового фильма
+                    </p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <p class="text-gray-400 mb-6 max-w-3xl mx-auto">
+                    Мы работаем в Чечне и соседних регионах, понимая особенности местных традиций и культурных норм. 
+                    Наш опыт позволяет создавать видео, которое отражает не только красоту момента, но и глубину традиций.
+                </p>
+                <a href="/contact" class="btn-gold px-8 py-3 rounded-full text-lg inline-flex items-center transform hover:scale-105 transition-transform">
+                    <span>Связаться с нами</span>
+                    <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
+    <footer id="footer-wrapper" class="bg-black py-12 border-t border-gray-800 relative"></footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -666,6 +557,29 @@
             // Initialize GSAP animations
             gsap.registerPlugin(ScrollTrigger);
             
+            // Parallax effect for background layers
+            gsap.to('.parallax-layer-1', {
+                scrollTrigger: {
+                    trigger: '.parallax-container',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1
+                },
+                y: 100,
+                ease: 'none'
+            });
+            
+            gsap.to('.parallax-layer-2', {
+                scrollTrigger: {
+                    trigger: '.parallax-container',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 2
+                },
+                y: 50,
+                ease: 'none'
+            });
+            
             // Animate stats on scroll
             gsap.utils.toArray('.card-elegant').forEach((card, i) => {
                 gsap.from(card, {
@@ -683,37 +597,16 @@
                 });
             });
             
-            // Animate timeline items
-            gsap.utils.toArray('.timeline-item').forEach((item, i) => {
-                gsap.from(item, {
-                    scrollTrigger: {
-                        trigger: item,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    },
-                    x: -50,
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: 'power2.out'
-                });
-            });
-            
-            // Animate team members
-            gsap.utils.toArray('.team-member').forEach((member, i) => {
-                gsap.from(member, {
-                    scrollTrigger: {
-                        trigger: member,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse'
-                    },
+            // Floating shapes animation
+            gsap.utils.toArray('.floating-shape').forEach((shape, i) => {
+                gsap.to(shape, {
                     y: 30,
-                    opacity: 0,
-                    duration: 0.6,
-                    delay: i * 0.1,
-                    ease: 'power2.out'
+                    rotation: 360,
+                    duration: 8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: i * 0.5
                 });
             });
         });

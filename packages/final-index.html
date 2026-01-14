@@ -180,7 +180,7 @@
                             <h3 class="text-xl font-bold">Вариант 1</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">1 оператор</span>
-                                <div class="info-tip" data-tooltip="'Съёмка ведётся в автоматических режимах камеры, без предварительной подготовки и анкетирования'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Съёмка ведётся в автоматических режимах камеры, без предварительной подготовки и анкетирования'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">50 000 ₽</div>
@@ -226,7 +226,7 @@
                             <h3 class="text-xl font-bold">Вариант 2</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">2 оператора</span>
-                                <div class="info-tip" data-tooltip="'Два оператора обеспечивают съёмку с разных ракурсов'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Два оператора обеспечивают съёмку с разных ракурсов'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">100 000 ₽</div>
@@ -272,7 +272,7 @@
                             <h3 class="text-xl font-bold">Вариант 3</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">3 оператора</span>
-                                <div class="info-tip" data-tooltip="'Три оператора обеспечивают максимальное покрытие события'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Три оператора обеспечивают максимальное покрытие события'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">150 000 ₽</div>
@@ -339,7 +339,7 @@
                             <h3 class="text-xl font-bold">START</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">2 оператора</span>
-                                <div class="info-tip" data-tooltip="'Съёмка в ручных режимах камеры с полным контролем экспозиции и фокуса'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Съёмка в ручных режимах камеры с полным контролем экспозиции и фокуса'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">160 000 ₽</div>
@@ -390,7 +390,7 @@
                             <h3 class="text-xl font-bold">PRO</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">3 оператора</span>
-                                <div class="info-tip" data-tooltip="'Включает главного оператора студии, который формирует визуальный стиль проекта'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Включает главного оператора студии, который формирует визуальный стиль проекта'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">240 000 ₽</div>
@@ -445,7 +445,7 @@
                             <h3 class="text-xl font-bold">SINEMA</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">4 оператора</span>
-                                <div class="info-tip" data-tooltip="'Максимальное покрытие свадебного дня с четырьмя операторами'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Максимальное покрытие свадебного дня с четырьмя операторами'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">350 000 ₽</div>
@@ -500,7 +500,7 @@
                             <h3 class="text-xl font-bold">ELITE</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">Операторы + руководитель</span>
-                                <div class="info-tip" data-tooltip="'Руководитель студии в роли свадебного корреспондента'">?</div>
+                                <div class="info-tip" @click.stop x-tooltip="'Руководитель студии в роли свадебного корреспондента'">?</div>
                             </div>
                         </div>
                         <div class="price-badge">500 000 ₽</div>
@@ -555,7 +555,7 @@
                             <h3 class="text-2xl font-bold">LEGEND</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-300 text-md">5 операторов + руководитель</span>
-                                <div class="info-tip ml-2" data-tooltip="'Максимальный пакет с полным набором услуг для создания кинематографического фильма'">?</div>
+                                <div class="info-tip ml-2" @click.stop x-tooltip="'Максимальный пакет с полным набором услуг для создания кинематографического фильма'">?</div>
                             </div>
                             <p class="text-gray-300 mt-3 max-w-2xl">
                                 Полный комплекс услуг для создания шедевра. Включает все возможные опции и участие руководителя студии.
@@ -634,33 +634,25 @@
                 <!-- Drone -->
                 <div 
                     class="addon-item p-5 cursor-pointer"
-                    :class="[
-                        selectedAddons.includes('drone') ? 'selected' : '',
-                        !canToggleAddon('drone') ? 'addon-disabled' : ''
-                    ]"
+                    :class="selectedAddons.includes('drone') ? 'selected' : ''"
                     @click="toggleAddon('drone')"
-                    x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
                         <h4 class="font-bold text-lg">Дрон (аэросъёмка)</h4>
                         <div class="flex items-center">
-                            <span class="price-badge text-sm" x-text="getAddonPrice('drone')"></span>
+                            <span class="price-badge text-sm" x-text="activeTab === 'basic' ? '55 000 ₽' : '70 000 ₽'"></span>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm mb-4">Аэросъёмка свадебного дня для создания впечатляющих панорамных кадров.</p>
                     <div class="flex items-center justify-between">
-                        <div class="info-tip" data-tooltip="Аэросъёмка добавляет масштабные, кинематографические кадры с высоты птичьего полёта">?</div>
+                        <div class="info-tip" @click.stop x-tooltip="'Аэросъёмка добавляет масштабные, кинематографические кадры с высоты птичьего полёта'">?</div>
                         <div class="flex items-center">
-                            <span class="text-sm mr-2" x-text="
-                                isAddonIncluded('drone') ? 'Включено' : 
-                                selectedAddons.includes('drone') ? 'Добавлено' : 'Добавить'
-                            "></span>
-                            <div class="relative" x-show="canToggleAddon('drone')">
+                            <span class="text-sm mr-2" x-text="selectedAddons.includes('drone') ? 'Добавлено' : 'Добавить'"></span>
+                            <div class="relative">
                                 <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('drone') ? 'bg-d6211d' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('drone') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
-                            <span x-show="!canToggleAddon('drone')" class="text-xs text-d6211d ml-2">Включено</span>
                         </div>
                     </div>
                 </div>
@@ -668,33 +660,25 @@
                 <!-- Crane -->
                 <div 
                     class="addon-item p-5 cursor-pointer"
-                    :class="[
-                        selectedAddons.includes('crane') ? 'selected' : '',
-                        !canToggleAddon('crane') ? 'addon-disabled' : ''
-                    ]"
+                    :class="selectedAddons.includes('crane') ? 'selected' : ''"
                     @click="toggleAddon('crane')"
-                    x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
                         <h4 class="font-bold text-lg">Операторский кран</h4>
                         <div class="flex items-center">
-                            <span class="price-badge text-sm" x-text="getAddonPrice('crane')"></span>
+                            <span class="price-badge text-sm" x-text="activeTab === 'basic' ? '70 000 ₽' : '100 000 ₽'"></span>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm mb-4">Плавные вертикальные и круговые движения камеры для кинематографических кадров.</p>
                     <div class="flex items-center justify-between">
-                        <div class="info-tip" data-tooltip="Операторский кран позволяет создавать плавные, динамичные кадры с движением камеры">?</div>
+                        <div class="info-tip" @click.stop x-tooltip="'Операторский кран позволяет создавать плавные, динамичные кадры с движением камеры'">?</div>
                         <div class="flex items-center">
-                            <span class="text-sm mr-2" x-text="
-                                isAddonIncluded('crane') ? 'Включено' : 
-                                selectedAddons.includes('crane') ? 'Добавлено' : 'Добавить'
-                            "></span>
-                            <div class="relative" x-show="canToggleAddon('crane')">
+                            <span class="text-sm mr-2" x-text="selectedAddons.includes('crane') ? 'Добавлено' : 'Добавить'"></span>
+                            <div class="relative">
                                 <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('crane') ? 'bg-d6211d' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('crane') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
-                            <span x-show="!canToggleAddon('crane')" class="text-xs text-d6211d ml-2">Включено</span>
                         </div>
                     </div>
                 </div>
@@ -702,33 +686,25 @@
                 <!-- Express Video -->
                 <div 
                     class="addon-item p-5 cursor-pointer"
-                    :class="[
-                        selectedAddons.includes('express') ? 'selected' : '',
-                        !canToggleAddon('express') ? 'addon-disabled' : ''
-                    ]"
+                    :class="selectedAddons.includes('express') ? 'selected' : ''"
                     @click="toggleAddon('express')"
-                    x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
                         <h4 class="font-bold text-lg">Экспресс-ролик в зале</h4>
                         <div class="flex items-center">
-                            <span class="price-badge text-sm" x-text="getAddonPrice('express')"></span>
+                            <span class="price-badge text-sm">45 000 ₽</span>
                         </div>
                     </div>
                     <p class="text-gray-400 text-sm mb-4">Быстрый монтаж ролика из утренних кадров для показа на экране в зале вечером.</p>
                     <div class="flex items-center justify-between">
-                        <div class="info-tip" data-tooltip="Экспресс-ролик создаётся в течение свадебного дня и показывается гостям во время вечера">?</div>
+                        <div class="info-tip" @click.stop x-tooltip="'Экспресс-ролик создаётся в течение свадебного дня и показывается гостям во время вечера'">?</div>
                         <div class="flex items-center">
-                            <span class="text-sm mr-2" x-text="
-                                isAddonIncluded('express') ? 'Включено' : 
-                                selectedAddons.includes('express') ? 'Добавлено' : 'Добавить'
-                            "></span>
-                            <div class="relative" x-show="canToggleAddon('express')">
+                            <span class="text-sm mr-2" x-text="selectedAddons.includes('express') ? 'Добавлено' : 'Добавить'"></span>
+                            <div class="relative">
                                 <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('express') ? 'bg-d6211d' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('express') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
-                            <span x-show="!canToggleAddon('express')" class="text-xs text-d6211d ml-2">Включено</span>
                         </div>
                     </div>
                 </div>
@@ -738,7 +714,6 @@
                     class="addon-item p-5 cursor-pointer"
                     :class="selectedAddons.includes('correspondent') ? 'selected' : ''"
                     @click="toggleAddon('correspondent')"
-                    x-show="activeTab === 'premium' && selectedPackageId !== 'premium-elite' && selectedPackageId !== 'premium-legend'"
                 >
                     <div class="flex justify-between items-center mb-3">
                         <h4 class="font-bold text-lg">Свадебный корреспондент</h4>
@@ -748,7 +723,7 @@
                     </div>
                     <p class="text-gray-400 text-sm mb-4">Записывает живые реплики и эмоции гостей для усиления эффекта присутствия.</p>
                     <div class="flex items-center justify-between">
-                        <div class="info-tip" data-tooltip="Свадебный корреспондент работает в паре с оператором, записывая интервью и эмоции гостей">?</div>
+                        <div class="info-tip" @click.stop x-tooltip="'Свадебный корреспондент работает в паре с оператором, записывая интервью и эмоции гостей'">?</div>
                         <div class="flex items-center">
                             <span class="text-sm mr-2" x-text="selectedAddons.includes('correspondent') ? 'Добавлено' : 'Добавить'"></span>
                             <div class="relative">
@@ -816,7 +791,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-chevron-right text-d6211d text-xs mt-1 mr-2"></i>
-                            <span>Для уточнения деталей и согласования ТЗ свяжитесь с нами по телефону <a href="tel:+79288893557" class="text-d6211d hover:underline font-medium">+7 (928) 889-35-57</a></span>
+                            <span>Для уточнения деталей и согласования ТЗ свяжитесь с нами по телефону <a href="tel:+79298883327" class="text-d6211d hover:underline font-medium">+7 (928) 889-35-57</a></span>
                         </li>
                     </ul>
                 </div>
@@ -827,7 +802,7 @@
     <!-- Footer -->
     <footer id="footer-wrapper" class="bg-black py-12 border-t border-gold-900"></footer>
 
-<script>
+    <script>
         document.addEventListener('alpine:init', () => {
 
             // Load Header
@@ -866,12 +841,6 @@
                     'premium-legend': { name: 'Премиум LEGEND', basePrice: 695000, type: 'premium' },
                 },
                 
-                // Package included addons
-                packageIncludedAddons: {
-                    'premium-elite': ['crane'],
-                    'premium-legend': ['crane', 'drone', 'express']
-                },
-                
                 // Addon prices (basic, premium)
                 addonPrices: {
                     'drone': { basic: 55000, premium: 70000 },
@@ -885,14 +854,8 @@
                     // Set default selection
                     this.selectPackage('basic1');
                     
-                    // Initialize tooltips
-                    this.initializeTooltips();
-                    
                     // Update total when selections change
-                    this.$watch('selectedPackageId', () => {
-                        this.updateIncludedAddons();
-                        this.calculateTotal();
-                    });
+                    this.$watch('selectedPackageId', () => this.calculateTotal());
                     this.$watch('selectedAddons', () => this.calculateTotal());
                     this.$watch('activeTab', (newTab) => {
                         // Clear selection if switching between basic/premium
@@ -900,61 +863,6 @@
                             this.selectedPackageId = null;
                         }
                         this.calculateTotal();
-                    });
-                },
-                
-                // Initialize custom tooltips
-                initializeTooltips() {
-                    document.addEventListener('mouseover', (e) => {
-                        if (e.target.classList.contains('info-tip')) {
-                            const tooltipText = e.target.getAttribute('data-tooltip');
-                            if (!tooltipText) return;
-                            
-                            // Remove existing tooltip
-                            const existingTooltip = document.querySelector('.custom-tooltip');
-                            if (existingTooltip) existingTooltip.remove();
-                            
-                            // Create new tooltip
-                            const tooltip = document.createElement('div');
-                            tooltip.className = 'custom-tooltip fixed z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg border border-gray-700 max-w-xs';
-                            tooltip.textContent = tooltipText;
-                            document.body.appendChild(tooltip);
-                            
-                            // Position tooltip
-                            const rect = e.target.getBoundingClientRect();
-                            const tooltipWidth = tooltip.offsetWidth;
-                            const tooltipHeight = tooltip.offsetHeight;
-                            
-                            let top = rect.top - tooltipHeight - 10;
-                            let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
-                            
-                            // Adjust if tooltip goes off screen
-                            if (top < 10) top = rect.bottom + 10;
-                            if (left < 10) left = 10;
-                            if (left + tooltipWidth > window.innerWidth - 10) {
-                                left = window.innerWidth - tooltipWidth - 10;
-                            }
-                            
-                            tooltip.style.top = `${top}px`;
-                            tooltip.style.left = `${left}px`;
-                            
-                            // Store reference for removal
-                            e.target._currentTooltip = tooltip;
-                        }
-                    });
-                    
-                    document.addEventListener('mouseout', (e) => {
-                        if (e.target.classList.contains('info-tip') && e.target._currentTooltip) {
-                            e.target._currentTooltip.remove();
-                            e.target._currentTooltip = null;
-                        }
-                    });
-                    
-                    document.addEventListener('click', (e) => {
-                        if (e.target.classList.contains('info-tip') && e.target._currentTooltip) {
-                            e.target._currentTooltip.remove();
-                            e.target._currentTooltip = null;
-                        }
                     });
                 },
                 
@@ -969,67 +877,8 @@
                     }
                 },
                 
-                // Update included addons based on selected package
-                updateIncludedAddons() {
-                    // Remove all addons first
-                    this.selectedAddons = [];
-                    
-                    // Add included addons for the selected package
-                    if (this.selectedPackageId && this.packageIncludedAddons[this.selectedPackageId]) {
-                        this.packageIncludedAddons[this.selectedPackageId].forEach(addonId => {
-                            if (!this.selectedAddons.includes(addonId)) {
-                                this.selectedAddons.push(addonId);
-                            }
-                        });
-                    }
-                },
-                
-                // Check if addon is included in package
-                isAddonIncluded(addonId) {
-                    if (!this.selectedPackageId || !this.packageIncludedAddons[this.selectedPackageId]) {
-                        return false;
-                    }
-                    return this.packageIncludedAddons[this.selectedPackageId].includes(addonId);
-                },
-                
-                // Check if addon can be toggled (not included in package)
-                canToggleAddon(addonId) {
-                    // For ELITE and LEGEND packages, some addons are included and cannot be toggled
-                    if (this.selectedPackageId === 'premium-elite' && addonId === 'crane') {
-                        return false;
-                    }
-                    if (this.selectedPackageId === 'premium-legend') {
-                        if (addonId === 'crane' || addonId === 'drone' || addonId === 'express') {
-                            return false;
-                        }
-                    }
-                    return true;
-                },
-                
-                // Get addon display price
-                getAddonPrice(addonId) {
-                    const isPremium = this.activeTab === 'premium';
-                    const priceData = this.addonPrices[addonId];
-                    
-                    if (!priceData) return 'Индивидуально';
-                    
-                    // For included addons, show "Включено"
-                    if (this.isAddonIncluded(addonId)) {
-                        return 'Включено в пакет';
-                    }
-                    
-                    // Otherwise show the price
-                    const price = isPremium ? priceData.premium : priceData.basic;
-                    return price > 0 ? `${this.formatPrice(price)} ₽` : 'Индивидуально';
-                },
-                
                 // Toggle addon
                 toggleAddon(addonId) {
-                    // Don't toggle if addon is included in package
-                    if (!this.canToggleAddon(addonId)) {
-                        return;
-                    }
-                    
                     if (this.selectedAddons.includes(addonId)) {
                         this.selectedAddons = this.selectedAddons.filter(id => id !== addonId);
                     } else {
@@ -1046,10 +895,10 @@
                         total += this.packages[this.selectedPackageId].basePrice;
                     }
                     
-                    // Add addons (only those that are not included in the package)
+                    // Add addons
                     const isPremium = this.activeTab === 'premium';
                     this.selectedAddons.forEach(addonId => {
-                        if (this.addonPrices[addonId] && !this.isAddonIncluded(addonId)) {
+                        if (this.addonPrices[addonId]) {
                             total += isPremium ? this.addonPrices[addonId].premium : this.addonPrices[addonId].basic;
                         }
                     });
@@ -1069,7 +918,7 @@
                 
                 // Send to WhatsApp
                 sendToWhatsApp() {
-                    const phone = "+79288893557";
+                    const phone = "+79298883327";
                     let message = `Здравствуйте! Я хочу заказать видеосъёмку.\n\n`;
                     
                     if (this.selectedPackageId) {
@@ -1104,13 +953,8 @@
                                     break;
                             }
                             
-                            // Check if addon is included in package
-                            const isIncluded = this.isAddonIncluded(addonId);
-                            
                             message += `• ${addonName}`;
-                            if (isIncluded) {
-                                message += ` - Включено в пакет`;
-                            } else if (addonPrice > 0) {
+                            if (addonPrice > 0) {
                                 message += ` - ${this.formatPrice(addonPrice)} ₽`;
                             } else {
                                 message += ` (индивидуально)`;
@@ -1130,53 +974,63 @@
             }));
         });
         
-        // Add CSS for custom tooltips
-        const style = document.createElement('style');
-        style.textContent = `
-            .custom-tooltip {
-                position: fixed;
-                z-index: 9999;
-                background: rgba(30, 30, 30, 0.95);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(214, 33, 29, 0.3);
-                border-radius: 8px;
-                padding: 12px 16px;
-                font-size: 14px;
-                line-height: 1.4;
-                color: #fff;
-                max-width: 300px;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-                animation: tooltipFadeIn 0.2s ease-out;
-                pointer-events: none;
-            }
+        // Tooltip directive for Alpine.js
+        Alpine.directive('tooltip', (el, { expression }) => {
+            let tooltip = null;
             
-            @keyframes tooltipFadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(5px);
+            const showTooltip = (event) => {
+                if (tooltip) return;
+                
+                tooltip = document.createElement('div');
+                tooltip.textContent = expression;
+                tooltip.className = 'fixed z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg border border-gray-700 max-w-xs';
+                document.body.appendChild(tooltip);
+                
+                const rect = el.getBoundingClientRect();
+                const tooltipWidth = tooltip.offsetWidth;
+                const tooltipHeight = tooltip.offsetHeight;
+                
+                // Position tooltip above the element
+                let top = rect.top - tooltipHeight - 10;
+                let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+                
+                // Adjust if tooltip goes off screen
+                if (top < 10) top = rect.bottom + 10;
+                if (left < 10) left = 10;
+                if (left + tooltipWidth > window.innerWidth - 10) {
+                    left = window.innerWidth - tooltipWidth - 10;
                 }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
+                
+                tooltip.style.top = `${top}px`;
+                tooltip.style.left = `${left}px`;
+            };
+            
+            const hideTooltip = () => {
+                if (tooltip) {
+                    document.body.removeChild(tooltip);
+                    tooltip = null;
                 }
-            }
+            };
             
-            .info-tip {
-                cursor: help;
-                position: relative;
-            }
+            el.addEventListener('mouseenter', showTooltip);
+            el.addEventListener('mouseleave', hideTooltip);
+            el.addEventListener('click', hideTooltip);
             
-            .addon-disabled {
-                opacity: 0.6;
-                cursor: not-allowed;
+            // Cleanup
+            el._tooltipCleanup = () => {
+                el.removeEventListener('mouseenter', showTooltip);
+                el.removeEventListener('mouseleave', hideTooltip);
+                el.removeEventListener('click', hideTooltip);
+                hideTooltip();
+            };
+        });
+        
+        // Cleanup tooltips when element is removed
+        Alpine.interceptInit((el, { cleanup }) => {
+            if (el._tooltipCleanup) {
+                cleanup(el._tooltipCleanup);
             }
-            
-            .addon-disabled .addon-item {
-                pointer-events: none;
-            }
-        `;
-        document.head.appendChild(style);
-    </script>    
-
+        });
+    </script>
 </body>
 </html>

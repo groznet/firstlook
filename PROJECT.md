@@ -48,7 +48,7 @@
 📞 **Contact Details**
 🌐 Domain: firstlookstudio.ru
 📱 +7 (928) 889-35-57 | WhatsApp
-📧 Email: info@firstlook.ru
+📧 Email: info@firstlookstudio.ru
 ✈️ Telegram:   [@firstlook](https://t.me/firstlook)  
 📍 Адрес: пр-т Мохаммеда Али, 1, Грозный ​364060
 
