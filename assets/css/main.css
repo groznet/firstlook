@@ -454,3 +454,8 @@ body {
 .no-margin {
     margin: 0 !important;
 }
+
+/* Important */
+[x-cloak] {
+    display: none !important;
+}
