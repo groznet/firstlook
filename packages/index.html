@@ -294,7 +294,7 @@
         <!-- Page Header -->
         <header class="mb-12 text-center pt-16">
             <h1 class="text-4xl md:text-5xl font-bold mb-4">Пакеты видеосъёмки и монтажа</h1>
-            <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
+            <p class="text-gray-300  max-w-3xl mx-auto mb-6">
                 Выберите подходящий пакет и добавьте дополнительные услуги. Стоимость рассчитывается автоматически.
                 <span class="block text-sm text-gray-400 mt-2">Все пакеты могут быть скорректированы под ваши задачи.</span>
             </p>
@@ -306,14 +306,14 @@
                 <button 
                     @click="activeTab = 'basic'"
                     :class="activeTab === 'basic' ? 'tab-active bg-gray-800' : 'text-gray-400 hover:text-gray-300'"
-                    class="px-6 py-3 text-lg font-medium rounded-md transition-all duration-300 focus:outline-none"
+                    class="px-6 py-3 font-medium rounded-md transition-all duration-300 focus:outline-none"
                 >
                     Базовые пакеты
                 </button>
                 <button 
                     @click="activeTab = 'premium'"
                     :class="activeTab === 'premium' ? 'tab-active bg-gray-800' : 'text-gray-400 hover:text-gray-300'"
-                    class="px-6 py-3 text-lg font-medium rounded-md transition-all duration-300 focus:outline-none"
+                    class="px-6 py-3 font-medium rounded-md transition-all duration-300 focus:outline-none"
                 >
                     Премиум пакеты
                 </button>
@@ -726,12 +726,12 @@
                                 Полный комплекс услуг для создания шедевра. Включает все возможные опции и участие руководителя студии.
                             </p>
                         </div>
-                        <div class="price-badge text-lg mt-4 md:mt-0">695 000 ₽</div>
+                        <div class="price-badge  mt-4 md:mt-0">695 000 ₽</div>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                         <div>
-                            <h4 class="font-bold text-lg mb-3 text-d6211d">Включено в пакет:</h4>
+                            <h4 class="font-bold  mb-3 text-d6211d">Включено в пакет:</h4>
                             <ul class="space-y-3">
                                 <li class="flex items-start">
                                     <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -752,7 +752,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h4 class="font-bold text-lg mb-3 text-d6211d">Дополнительно:</h4>
+                            <h4 class="font-bold  mb-3 text-d6211d">Дополнительно:</h4>
                             <ul class="space-y-3">
                                 <li class="flex items-start">
                                     <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -807,7 +807,7 @@
                     x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-lg">Дрон (аэросъёмка)</h4>
+                        <h4 class="font-bold ">Дрон (аэросъёмка)</h4>
                         <div class="flex items-center">
                             <span class="price-badge text-sm" x-text="getAddonPrice('drone')"></span>
                         </div>
@@ -841,7 +841,7 @@
                     x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-lg">Операторский кран</h4>
+                        <h4 class="font-bold ">Операторский кран</h4>
                         <div class="flex items-center">
                             <span class="price-badge text-sm" x-text="getAddonPrice('crane')"></span>
                         </div>
@@ -875,7 +875,7 @@
                     x-show="activeTab === 'premium' && !['premium-elite', 'premium-legend'].includes(selectedPackageId) || activeTab === 'basic'"
                 >
                     <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-lg">Экспресс-ролик в зале</h4>
+                        <h4 class="font-bold ">Экспресс-ролик в зале</h4>
                         <div class="flex items-center">
                             <span class="price-badge text-sm" x-text="getAddonPrice('express')"></span>
                         </div>
@@ -906,7 +906,7 @@
                     x-show="activeTab === 'premium' && selectedPackageId !== 'premium-elite' && selectedPackageId !== 'premium-legend'"
                 >
                     <div class="flex justify-between items-center mb-3">
-                        <h4 class="font-bold text-lg">Свадебный корреспондент</h4>
+                        <h4 class="font-bold ">Свадебный корреспондент</h4>
                         <div class="flex items-center">
                             <span class="price-badge text-sm">Индивидуально</span>
                         </div>
@@ -946,7 +946,7 @@
                 </div>
                 
                 <div class="mt-6 md:mt-0 text-center md:text-right">
-                    <div class="text-gray-400 text-lg mb-1">Общая стоимость:</div>
+                    <div class="text-gray-400  mb-1">Общая стоимость:</div>
                     <div class="text-5xl font-bold total-price text-d6211d mb-4" x-text="formatPrice(totalPrice) + ' ₽'"></div>
                     <button @click="sendToWhatsApp()" class="btn-primary">
                         <i class="fab fa-whatsapp mr-2"></i>Забронировать в WhatsApp
@@ -959,13 +959,13 @@
         </div>
 
         <!-- Info Note -->
-        <div class="mt-10 p-6 border border-d6211d/30 bg-d6211d/5 rounded-lg">
+        <div class="my-10 p-6 border border-d6211d/30 bg-d6211d/5 rounded-lg">
             <div class="flex items-start">
                 <div class="text-d6211d text-xl mr-4 mt-1">
                     <i class="fas fa-info-circle"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-lg mb-2">Важная информация</h4>
+                    <h4 class="font-bold  mb-2">Важная информация</h4>
                     <ul class="space-y-2 text-gray-300">
                         <li class="flex items-start">
                             <i class="fas fa-chevron-right text-d6211d text-xs mt-1 mr-2"></i>
