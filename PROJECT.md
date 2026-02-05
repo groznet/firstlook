@@ -2,11 +2,11 @@
 
 ## 🏷️ Project Name
 
-> Firstlook — Видеостудия, Монтаж и Обучение
+> First Look — Видеостудия, Монтаж и Обучение
 
 ## 🧭 Project Summary
 
-> Firstlook — профессиональная видеопродакшн студия с более чем 20-летним опытом работы в Чечне и за её пределами. Мы специализируемся на свадебной съемке, создании эмоциональных видеороликов и художественном монтаже. Также проводим обучение по видеомонтажу для начинающих и профессионалов.
+> First Look — профессиональная видеопродакшн студия с более чем 20-летним опытом работы в Чечне и за её пределами. Мы специализируемся на свадебной съемке, создании эмоциональных видеороликов и художественном монтаже. Также проводим обучение по видеомонтажу для начинающих и профессионалов.
 
 **Type:** Corporate  
 **Status:** In Development / Live  
@@ -96,7 +96,7 @@
 | Versioning | GitHub                                                   |
 
 **Design Notes / Look & Feel:**  
-_Elegant dark aesthetic with a rich, premium atmosphere. Smooth animations, micro-interactions, subtle motion, and parallax elements to highlight the artistic nature of Firstlook. The overall design should feel high-end, detailed, and crafted with care — clearly showing that this is not a simple template website, but a refined premium experience._
+_Elegant dark aesthetic with a rich, premium atmosphere. Smooth animations, micro-interactions, subtle motion, and parallax elements to highlight the artistic nature of First Look. The overall design should feel high-end, detailed, and crafted with care — clearly showing that this is not a simple template website, but a refined premium experience._
 
 ## 📁 Project Structure
 

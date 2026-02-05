@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пакеты и цены | Firstlook — Видеостудия, Монтаж и Обучение</title>
+    <title>Пакеты и цены | First Look — Видеостудия, Монтаж и Обучение</title>
     <script src="/assets/js/tailwindcss_local.js?v=1.0.2"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -324,14 +324,20 @@
         <div x-show="activeTab === 'basic'" x-transition:enter="fade-in" class="space-y-12">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold mb-2">Базовые пакеты</h2>
-                <p class="text-gray-300 max-w-2xl mx-auto">
-                    Документальная съёмка и технический монтаж в формате HD. Фиксированная видеозапись события без художественной обработки.
+                <p class="text-gray-300 max-w-4xl mx-auto">
+                    Документальная съёмка и стандартный базовый монтаж в формате 4K.
+                    Цельная видеозапись свадебного дня с аккуратной сборкой и включённым трейлером,
+                    без художественной режиссуры и сложной постобработки.
                 </p>
                 <div class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400">
                     <i class="fas fa-info-circle text-d6211d"></i>
-                    <span>Все базовые пакеты включают: съёмку в автоматических режимах, технический монтаж без участия заказчика, без правок после сдачи.</span>
+                    <span>
+                        Все базовые пакеты включают: съёмку в автоматических режимах,
+                        базовый монтаж без участия заказчика, без внесения правок после сдачи.
+                    </span>
                 </div>
             </div>
+
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Basic Package 1 -->
@@ -345,7 +351,7 @@
                             <h3 class="text-xl font-bold">Вариант 1</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">1 оператор</span>
-                                <div class="info-tip" data-tooltip="'Съёмка ведётся в автоматических режимах камеры, без предварительной подготовки и анкетирования'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Съёмка ведётся в автоматических режимах камеры, без предварительной подготовки и анкетирования'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -356,11 +362,11 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 флешка с записью</span>
+                            <span>1 флешка с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>Ссылка на фильм (1 год, по желанию)</span>
+                            <span>Ссылка на готовый фильм (сроком на 1 год)</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-clock text-gray-500 mt-1 mr-3 text-sm"></i>
@@ -368,7 +374,7 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">60 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">65 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('basic1')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
@@ -390,7 +396,7 @@
                             <h3 class="text-xl font-bold">Вариант 2</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">2 оператора</span>
-                                <div class="info-tip" data-tooltip="'Два оператора обеспечивают съёмку с разных ракурсов'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Два оператора обеспечивают съёмку с разных ракурсов'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -401,11 +407,11 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>Ссылка на фильм (1 год, по желанию)</span>
+                            <span>Ссылка на готовый фильм (сроком на 1 год)</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-clock text-gray-500 mt-1 mr-3 text-sm"></i>
@@ -413,7 +419,7 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">115 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">125 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('basic2')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
@@ -435,7 +441,7 @@
                             <h3 class="text-xl font-bold">Вариант 3</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">3 оператора</span>
-                                <div class="info-tip" data-tooltip="'Три оператора обеспечивают максимальное покрытие события'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Три оператора обеспечивают максимальное покрытие события'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -446,15 +452,15 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с записью</span>
+                            <span>1 жёсткий диск с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>Ссылка на фильм (1 год, по желанию)</span>
+                            <span>Ссылка на готовый фильм (сроком на 1 год)</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-clock text-gray-500 mt-1 mr-3 text-sm"></i>
@@ -501,7 +507,7 @@
                             <h3 class="text-xl font-bold">START</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">2 оператора</span>
-                                <div class="info-tip" data-tooltip="'Съёмка в ручных режимах камеры с полным контролем экспозиции и фокуса'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Съёмка в ручных режимах камеры с полным контролем экспозиции и фокуса'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -512,7 +518,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -551,7 +557,7 @@
                             <h3 class="text-xl font-bold">PRO</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">3 оператора</span>
-                                <div class="info-tip" data-tooltip="'Включает главного оператора студии, который формирует визуальный стиль проекта'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Включает главного оператора студии, который формирует визуальный стиль проекта'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -562,11 +568,11 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с записью</span>
+                            <span>1 жёсткий диск с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -593,7 +599,7 @@
                     </div>
                 </div>
 
-                <!-- Premium Package SINEMA -->
+                <!-- Premium Package CINEMA -->
                 <div 
                     class="package-card p-6 cursor-pointer"
                     :class="selectedPackageId === 'premium-sinema' ? 'selected' : ''"
@@ -602,10 +608,10 @@
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <span class="premium-badge mb-2 block w-fit">Sinema</span>
-                            <h3 class="text-xl font-bold">SINEMA</h3>
+                            <h3 class="text-xl font-bold">CINEMA</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">4 оператора</span>
-                                <div class="info-tip" data-tooltip="'Максимальное покрытие свадебного дня с четырьмя операторами'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Максимальное покрытие свадебного дня с четырьмя операторами'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -616,11 +622,11 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с записью</span>
+                            <span>1 жёсткий диск с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -659,7 +665,7 @@
                             <h3 class="text-xl font-bold">ELITE</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">Операторы + руководитель</span>
-                                <div class="info-tip" data-tooltip="'Руководитель студии в роли свадебного корреспондента'">?</div>
+                                <!-- <div class="info-tip" data-tooltip="'Руководитель студии в роли свадебного корреспондента'">?</div> -->
                             </div>
                         </div>
                     </div>
@@ -674,11 +680,11 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>2 флешки с записью</span>
+                            <span>2 флешки с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с записью</span>
+                            <span>1 жёсткий диск с готовым фильмом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -713,7 +719,7 @@
                             <h3 class="text-2xl font-bold">LEGEND</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-300 text-md">5 операторов + руководитель</span>
-                                <div class="info-tip ml-2" data-tooltip="'Максимальный пакет с полным набором услуг для создания кинематографического фильма'">?</div>
+                                <!-- <div class="info-tip ml-2" data-tooltip="'Максимальный пакет с полным набором услуг для создания кинематографического фильма'">?</div> -->
                             </div>
                             <p class="text-gray-300 mt-3 max-w-2xl">
                                 Полный комплекс услуг для создания шедевра. Включает все возможные опции и участие руководителя студии.
@@ -1011,14 +1017,14 @@
                 // Package data
                 packages: {
                     // Basic packages
-                    'basic1': { name: 'Базовый вариант 1', basePrice: 60000, type: 'basic' },
-                    'basic2': { name: 'Базовый вариант 2', basePrice: 115000, type: 'basic' },
+                    'basic1': { name: 'Базовый вариант 1', basePrice: 65000, type: 'basic' },
+                    'basic2': { name: 'Базовый вариант 2', basePrice: 125000, type: 'basic' },
                     'basic3': { name: 'Базовый вариант 3', basePrice: 180000, type: 'basic' },
                     
                     // Premium packages
                     'premium-start': { name: 'Премиум START', basePrice: 175000, type: 'premium' },
                     'premium-pro': { name: 'Премиум PRO', basePrice: 270000, type: 'premium' },
-                    'premium-sinema': { name: 'Премиум SINEMA', basePrice: 350000, type: 'premium' },
+                    'premium-sinema': { name: 'Премиум CINEMA', basePrice: 350000, type: 'premium' },
                     'premium-elite': { name: 'Премиум ELITE', basePrice: 500000, type: 'premium' },
                     'premium-legend': { name: 'Премиум LEGEND', basePrice: 695000, type: 'premium' },
                 },
