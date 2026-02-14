@@ -325,9 +325,7 @@
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold mb-2">Базовые пакеты</h2>
                 <p class="text-gray-300 max-w-4xl mx-auto">
-                    Документальная съёмка и стандартный базовый монтаж в формате 4K.
-                    Цельная видеозапись свадебного дня с аккуратной сборкой и включённым трейлером,
-                    без художественной режиссуры и сложной постобработки.
+                    Стандартная видеосъёмка в формате HD. Надёжная запись вашего события без постановки и сложного монтажа — быстро и по доступной цене.
                 </p>
                 <div class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400">
                     <i class="fas fa-info-circle text-d6211d"></i>
@@ -378,7 +376,7 @@
                         <button 
                             @click.stop="selectPackage('basic1')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'basic1' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'basic1' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'basic1' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -423,7 +421,7 @@
                         <button 
                             @click.stop="selectPackage('basic2')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'basic2' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'basic2' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'basic2' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -456,7 +454,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с готовым фильмом</span>
+                            <span>1 жёсткий диск с сырьевым материалом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -472,7 +470,7 @@
                         <button 
                             @click.stop="selectPackage('basic3')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'basic3' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'basic3' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'basic3' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -485,8 +483,8 @@
         <div x-show="activeTab === 'premium'" x-transition:enter="fade-in" class="space-y-12">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold mb-2">Премиум пакеты</h2>
-                <p class="text-gray-300 max-w-2xl mx-auto">
-                    Кинематографическая съёмка и режиссёрский монтаж в формате 4K. Эмоциональный фильм с драматургией для пар, которые хотят не просто видео, а живой фильм.
+                <p class="text-gray-300 max-w-5xl mx-auto">
+                    Живой фильм 4K — с эмоциями, смыслом и красивой подачей. Продуманная съёмка, режиссёрский подход и профессиональный авторский монтаж, который включает цветокоррекцию, стабилизацию, сложный саунд-дизайн с участием заказчика. Результат — живой, эмоциональный фильм, а не просто запись.
                 </p>
                 <div class="mt-4 inline-flex items-center gap-2 text-sm text-gray-400">
                     <i class="fas fa-info-circle text-d6211d"></i>
@@ -534,11 +532,11 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">175 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">200 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('premium-start')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'premium-start' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'premium-start' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'premium-start' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -572,7 +570,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с готовым фильмом</span>
+                            <span>1 жёсткий диск с сырьевым материалом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -588,11 +586,11 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">270 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">300 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('premium-pro')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'premium-pro' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'premium-pro' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'premium-pro' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -607,7 +605,7 @@
                 >
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <span class="premium-badge mb-2 block w-fit">Sinema</span>
+                            <span class="premium-badge mb-2 block w-fit">Cinema</span>
                             <h3 class="text-xl font-bold">CINEMA</h3>
                             <div class="flex items-center mt-1">
                                 <span class="text-gray-400 text-sm">4 оператора</span>
@@ -626,7 +624,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с готовым фильмом</span>
+                            <span>1 жёсткий диск с сырьевым материалом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -642,11 +640,11 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">350 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">385 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('premium-sinema')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'premium-sinema' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'premium-sinema' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'premium-sinema' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -684,7 +682,7 @@
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
-                            <span>1 жёсткий диск с готовым фильмом</span>
+                            <span>1 жёсткий диск с сырьевым материалом</span>
                         </li>
                         <li class="flex items-start">
                             <i class="fas fa-check text-green-500 mt-1 mr-3 text-sm"></i>
@@ -696,11 +694,11 @@
                         </li>
                     </ul>
                     <div class="text-center">
-                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">500 000 ₽</span></div>
+                        <div class="text-sm text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white">475 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('premium-elite')"
                             class="w-full py-3 rounded-lg border border-gray-700 hover:border-d6211d transition-colors"
-                            :class="selectedPackageId === 'premium-elite' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'premium-elite' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'premium-elite' ? 'Выбрано' : 'Выбрать этот пакет'"></span>
                         </button>
@@ -773,11 +771,11 @@
                     </div>
                     
                     <div class="text-center">
-                        <div class="text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white text-2xl">695 000 ₽</span></div>
+                        <div class="text-gray-400 mb-3">Итоговая стоимость: <span class="font-bold text-white text-2xl">690 000 ₽</span></div>
                         <button 
                             @click.stop="selectPackage('premium-legend')"
                             class="w-full md:w-auto py-3 px-8 rounded-lg border border-gray-700 hover:border-d6211d transition-colors gradient-border"
-                            :class="selectedPackageId === 'premium-legend' ? 'bg-d6211d/10 border-d6211d' : ''"
+                            :class="selectedPackageId === 'premium-legend' ? 'bg-red-500/10 border-d6211d' : ''"
                         >
                             <span x-text="selectedPackageId === 'premium-legend' ? 'Выбрано' : 'Выбрать пакет LEGEND'"></span>
                         </button>
@@ -819,7 +817,7 @@
                                 selectedAddons.includes('drone') ? 'Добавлено' : 'Добавить'
                             "></span>
                             <div class="relative" x-show="canToggleAddon('drone')">
-                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('drone') ? 'bg-d6211d' : ''">
+                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('drone') ? 'bg-red-500' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('drone') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
@@ -853,7 +851,7 @@
                                 selectedAddons.includes('crane') ? 'Добавлено' : 'Добавить'
                             "></span>
                             <div class="relative" x-show="canToggleAddon('crane')">
-                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('crane') ? 'bg-d6211d' : ''">
+                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('crane') ? 'bg-red-500' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('crane') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
@@ -887,7 +885,7 @@
                                 selectedAddons.includes('express') ? 'Добавлено' : 'Добавить'
                             "></span>
                             <div class="relative" x-show="canToggleAddon('express')">
-                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('express') ? 'bg-d6211d' : ''">
+                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('express') ? 'bg-red-500' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('express') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
@@ -915,7 +913,7 @@
                         <div class="flex items-center">
                             <span class="text-sm mr-2" x-text="selectedAddons.includes('correspondent') ? 'Добавлено' : 'Добавить'"></span>
                             <div class="relative">
-                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('correspondent') ? 'bg-d6211d' : ''">
+                                <div class="w-10 h-6 flex items-center bg-gray-700 rounded-full p-1 cursor-pointer" :class="selectedAddons.includes('correspondent') ? 'bg-red-500' : ''">
                                     <div class="bg-white w-4 h-4 rounded-full shadow-md transform transition-transform" :class="selectedAddons.includes('correspondent') ? 'translate-x-4' : ''"></div>
                                 </div>
                             </div>
@@ -957,7 +955,7 @@
         </div>
 
         <!-- Info Note -->
-        <div class="my-10 p-6 border border-d6211d/30 bg-d6211d/5 rounded-lg">
+        <div class="my-10 p-6 border border-d6211d/30 bg-red-500/5 rounded-lg">
             <div class="flex items-start">
                 <div class="text-d6211d text-xl mr-4 mt-1">
                     <i class="fas fa-info-circle"></i>
@@ -1022,11 +1020,11 @@
                     'basic3': { name: 'Базовый вариант 3', basePrice: 180000, type: 'basic' },
                     
                     // Premium packages
-                    'premium-start': { name: 'Премиум START', basePrice: 175000, type: 'premium' },
-                    'premium-pro': { name: 'Премиум PRO', basePrice: 270000, type: 'premium' },
-                    'premium-sinema': { name: 'Премиум CINEMA', basePrice: 350000, type: 'premium' },
-                    'premium-elite': { name: 'Премиум ELITE', basePrice: 500000, type: 'premium' },
-                    'premium-legend': { name: 'Премиум LEGEND', basePrice: 695000, type: 'premium' },
+                    'premium-start': { name: 'Премиум START', basePrice: 200000, type: 'premium' },
+                    'premium-pro': { name: 'Премиум PRO', basePrice: 300000, type: 'premium' },
+                    'premium-sinema': { name: 'Премиум CINEMA', basePrice: 385000, type: 'premium' },
+                    'premium-elite': { name: 'Премиум ELITE', basePrice: 475000, type: 'premium' },
+                    'premium-legend': { name: 'Премиум LEGEND', basePrice: 690000, type: 'premium' },
                 },
                 
                 // Package included addons
@@ -1039,7 +1037,7 @@
                 addonPrices: {
                     'drone': { basic: 55000, premium: 70000 },
                     'crane': { basic: 70000, premium: 100000 },
-                    'express': { basic: 45000, premium: 45000 },
+                    'express': { basic: 40000, premium: 40000 },
                     'correspondent': { basic: 0, premium: 0 }, // индивидуально
                 },
                 
@@ -1259,7 +1257,7 @@
                                     break;
                                 case 'express': 
                                     addonName = 'Экспресс-ролик в зале';
-                                    addonPrice = 45000;
+                                    addonPrice = 40000;
                                     break;
                                 case 'correspondent': 
                                     addonName = 'Свадебный корреспондент';
