@@ -308,7 +308,7 @@
                     :class="activeTab === 'basic' ? 'tab-active bg-gray-800' : 'text-gray-400 hover:text-gray-300'"
                     class="px-6 py-3 font-medium rounded-md transition-all duration-300 focus:outline-none"
                 >
-                    Базовые пакеты
+                    Классические пакеты
                 </button>
                 <button 
                     @click="activeTab = 'premium'"
@@ -323,7 +323,7 @@
         <!-- Basic Packages -->
         <div x-show="activeTab === 'basic'" x-transition:enter="fade-in" class="space-y-12">
             <div class="text-center mb-8">
-                <h2 class="text-3xl font-bold mb-2">Базовые пакеты</h2>
+                <h2 class="text-3xl font-bold mb-2">Классические пакеты</h2>
                 <p class="text-gray-300 max-w-4xl mx-auto">
                     Стандартная видеосъёмка в формате HD. Надёжная запись вашего события без постановки и сложного монтажа — быстро и по доступной цене.
                 </p>
@@ -1015,9 +1015,9 @@
                 // Package data
                 packages: {
                     // Basic packages
-                    'basic1': { name: 'Базовый вариант 1', basePrice: 65000, type: 'basic' },
-                    'basic2': { name: 'Базовый вариант 2', basePrice: 125000, type: 'basic' },
-                    'basic3': { name: 'Базовый вариант 3', basePrice: 180000, type: 'basic' },
+                    'basic1': { name: 'Классический вариант 1', basePrice: 65000, type: 'basic' },
+                    'basic2': { name: 'Классический вариант 2', basePrice: 125000, type: 'basic' },
+                    'basic3': { name: 'Классический вариант 3', basePrice: 180000, type: 'basic' },
                     
                     // Premium packages
                     'premium-start': { name: 'Премиум START', basePrice: 200000, type: 'premium' },
